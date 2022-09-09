@@ -1,0 +1,11 @@
+{
+  "type": "code",
+  "modid": "doubt",
+  "name": "doubt",
+  "authors": ["Unknown"],
+  "description": "To be added",
+  "version": "1.0.0",
+  "dependencies": {
+    "game": "1.17.2"
+  }
+}
