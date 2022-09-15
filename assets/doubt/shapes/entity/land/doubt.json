@@ -8,16 +8,16 @@
 	"textureSizes": {
 	},
 	"textures": {
-		"head": "C:/Users/Lan/Desktop/game dev/vintage story modding/models/Doubt/Textures/head",
+		"head": "C:/Users/heatb/Desktop/game dev/vintage story modding/models/Doubt/Textures/head",
 		"blackbronze": "block/metal/ingot/blackbronze",
 		"molybdochalkos1": "block/metal/sheet/molybdochalkos1",
-		"cloak1": "C:/Users/Lan/Desktop/game dev/vintage story modding/models/Doubt/Textures/cloak1",
-		"chestspine1": "C:/Users/Lan/Desktop/game dev/vintage story modding/models/Doubt/Textures/chestspine1",
-		"legs": "C:/Users/Lan/Desktop/game dev/vintage story modding/models/Doubt/Textures/legs",
-		"cloak2": "C:/Users/Lan/Desktop/game dev/vintage story modding/models/Doubt/Textures/cloak2",
-		"chestspine2": "C:/Users/Lan/Desktop/game dev/vintage story modding/models/Doubt/Textures/chestspine2",
+		"cloak1": "C:/Users/heatb/Desktop/game dev/vintage story modding/models/Doubt/Textures/cloak1",
+		"chestspine1": "C:/Users/heatb/Desktop/game dev/vintage story modding/models/Doubt/Textures/chestspine1",
+		"legs": "C:/Users/heatb/Desktop/game dev/vintage story modding/models/Doubt/Textures/legs",
+		"cloak2": "C:/Users/heatb/Desktop/game dev/vintage story modding/models/Doubt/Textures/cloak2",
+		"chestspine2": "C:/Users/heatb/Desktop/game dev/vintage story modding/models/Doubt/Textures/chestspine2",
 		"bismuth1": "block/metal/sheet/bismuth1",
-		"arm": "C:/Users/Lan/Desktop/game dev/vintage story modding/models/Doubt/Textures/arm"
+		"arm": "C:/Users/heatb/Desktop/game dev/vintage story modding/models/Doubt/Textures/arm"
 	},
 	"elements": [
 		{
@@ -3382,7 +3382,7 @@
 		{
 			"name": "death",
 			"code": "death",
-			"quantityframes": 45,
+			"quantityframes": 80,
 			"onActivityStopped": "PlayTillEnd",
 			"onAnimationEnd": "Hold",
 			"keyframes": [
@@ -3396,7 +3396,7 @@
 						"Midsection": { "rotationX": 0.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"BottomJoint": { "rotationX": 0.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"Waist": { "rotationX": 0.0, "rotationY": 0.0, "rotationZ": 0.0 },
-						"Spine": {  },
+						"Spine": { "rotationX": 0.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"SpineInner": {  },
 						"Spine33": { "rotationX": 0.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"SpineInner34": {  },
@@ -3429,7 +3429,7 @@
 					"elements": {
 						"Doubt": {  },
 						"Legs": {  },
-						"Waist": { "rotationX": -5.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"Waist": { "rotationX": -20.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"Spine": {  },
 						"SpineInner": {  },
 						"Spine33": { "rotationX": 0.0, "rotationY": 0.0, "rotationZ": 0.0 },
@@ -3458,19 +3458,18 @@
 						"SpineInner": {  },
 						"Spine33": { "rotationX": -5.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"SpineInner34": {  },
-						"Spine35": { "rotationX": 0.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"Spine35": { "rotationX": -5.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"ChestLower": { "rotationX": -10.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"Shoulder": { "rotationX": 36.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"Shoulder1": {  },
 						"ElbowInner": {  },
 						"ElbowOuter": { "rotationX": 19.0, "rotationY": 0.0, "rotationZ": 0.0 },
-						"ArmGear": { "rotationX": -60.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"ShoulderGearCenter": { "rotationX": 0.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"ChestUpper": {  },
 						"Cloak": {  },
 						"Cube182": { "rotationX": 3.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"Cube183": { "rotationX": 8.0, "rotationY": 0.0, "rotationZ": 0.0 },
-						"Cube181": { "rotationX": -8.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"Cube181": { "rotationX": -14.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"Neck": {  },
 						"Head": { "rotationX": -22.0, "rotationY": 0.0, "rotationZ": 0.0 }
 					}
@@ -3495,7 +3494,7 @@
 					}
 				},
 				{
-					"frame": 14,
+					"frame": 18,
 					"elements": {
 						"Doubt": { "offsetX": 0.0, "offsetY": 4.0, "offsetZ": 1.0, "rotationX": 0.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"Legs": {  },
@@ -3522,7 +3521,7 @@
 						"HeadGear": { "rotationX": 180.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"Shoulder": {  },
 						"Shoulder1": {  },
-						"ShoulderGearCenter": { "rotationX": 60.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"ShoulderGearCenter": { "rotationX": 140.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"LegL": { "rotationX": 38.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"Upper163": {  },
 						"Midsection164": { "rotationX": -16.0, "rotationY": 0.0, "rotationZ": 0.0 },
@@ -3530,7 +3529,7 @@
 					}
 				},
 				{
-					"frame": 15,
+					"frame": 26,
 					"elements": {
 						"Doubt": {  },
 						"Legs": {  },
@@ -3549,7 +3548,7 @@
 					}
 				},
 				{
-					"frame": 25,
+					"frame": 27,
 					"elements": {
 						"Doubt": { "offsetX": 0.0, "offsetY": 0.0, "offsetZ": -7.0, "rotationX": 61.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"Legs": {  },
@@ -3571,11 +3570,11 @@
 						"Cube183": { "rotationX": 36.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"Neck": { "rotationX": 0.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"Head": { "rotationX": 0.0, "rotationY": 0.0, "rotationZ": 0.0 },
-						"Shoulder": { "rotationX": 50.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"Shoulder": { "rotationX": 50.0, "rotationY": -7.0, "rotationZ": 19.0 },
 						"Shoulder1": {  },
 						"ElbowInner": {  },
-						"ElbowOuter": { "rotationX": 28.0, "rotationY": 0.0, "rotationZ": 0.0 },
-						"ArmGear": { "rotationX": -120.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"ElbowOuter": { "rotationX": 31.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"ArmGear": { "rotationX": -180.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"LegL": { "rotationX": -8.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"Upper163": {  },
 						"Midsection164": { "rotationX": 19.0, "rotationY": 0.0, "rotationZ": 0.0 },
@@ -3583,7 +3582,13 @@
 					}
 				},
 				{
-					"frame": 26,
+					"frame": 29,
+					"elements": {
+
+					}
+				},
+				{
+					"frame": 31,
 					"elements": {
 						"Doubt": { "offsetX": 0.0, "offsetY": 0.0, "offsetZ": -7.0, "rotationX": 61.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"Legs": {  },
@@ -3594,10 +3599,10 @@
 						"Waist": { "rotationX": -75.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"Spine": { "rotationX": 0.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"SpineInner": {  },
-						"Spine33": { "rotationX": -4.38, "rotationY": 0.0, "rotationZ": 0.0 },
+						"Spine33": { "rotationX": -5.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"SpineInner34": {  },
-						"Spine35": { "rotationX": -4.38, "rotationY": 0.0, "rotationZ": 0.0 },
-						"ChestLower": { "rotationX": -4.38, "rotationY": 0.0, "rotationZ": 0.0 },
+						"Spine35": { "rotationX": -5.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"ChestLower": { "rotationX": 0.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"ChestUpper": {  },
 						"Cloak": { "offsetX": 0.0, "offsetY": 0.1, "offsetZ": 0.0, "rotationX": 0.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"Cube181": { "rotationX": 25.0, "rotationY": 0.0, "rotationZ": 0.0 },
@@ -3608,7 +3613,7 @@
 						"Shoulder": {  },
 						"Shoulder1": {  },
 						"ElbowInner": {  },
-						"ElbowOuter": { "rotationX": 28.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"ElbowOuter": { "rotationX": 31.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"LegL": { "rotationX": -8.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"Upper163": {  },
 						"Midsection164": { "rotationX": 19.0, "rotationY": 0.0, "rotationZ": 0.0 },
@@ -3616,29 +3621,30 @@
 					}
 				},
 				{
-					"frame": 29,
+					"frame": 42,
 					"elements": {
 						"Doubt": {  },
 						"Legs": {  },
 						"Waist": {  },
-						"Spine": {  },
+						"Spine": { "rotationX": 5.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"SpineInner": {  },
-						"Spine33": {  },
+						"Spine33": { "rotationX": 5.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"SpineInner34": {  },
-						"Spine35": {  },
-						"ChestLower": {  },
-						"Neck": {  },
-						"Head": {  },
-						"NeckUpper": {  },
-						"FaceUpper": {  },
-						"HeadGear": { "rotationX": -90.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"Spine35": { "rotationX": 0.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"ChestLower": { "rotationX": 0.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"Neck": { "rotationX": 0.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"Head": { "rotationX": 0.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"ChestUpper": {  },
+						"Cloak": {  },
+						"Cube181": { "rotationX": 8.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"Shoulder": {  },
 						"Shoulder1": {  },
-						"ShoulderGearCenter": { "rotationX": 120.0, "rotationY": 0.0, "rotationZ": 0.0 }
+						"ElbowInner": {  },
+						"ElbowOuter": { "rotationX": 26.0, "rotationY": 0.0, "rotationZ": 0.0 }
 					}
 				},
 				{
-					"frame": 37,
+					"frame": 49,
 					"elements": {
 						"Doubt": {  },
 						"Legs": {  },
@@ -3649,12 +3655,11 @@
 						"SpineInner34": {  },
 						"Spine35": {  },
 						"ChestLower": {  },
-						"Neck": { "rotationX": 0.0, "rotationY": 0.0, "rotationZ": 0.0 },
-						"Head": { "rotationX": 0.0, "rotationY": 0.0, "rotationZ": 0.0 }
+						"Neck": { "rotationX": 10.0, "rotationY": 0.0, "rotationZ": 0.0 }
 					}
 				},
 				{
-					"frame": 44,
+					"frame": 54,
 					"elements": {
 						"Doubt": { "offsetX": 0.0, "offsetY": -3.0, "offsetZ": 0.0, "rotationX": 36.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"Legs": {  },
@@ -3674,17 +3679,92 @@
 						"Cube181": { "rotationX": -30.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"Cube182": { "rotationX": -9.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"Cube183": { "rotationX": 3.0, "rotationY": 0.0, "rotationZ": 0.0 },
-						"Neck": { "rotationX": 10.0, "rotationY": 0.0, "rotationZ": 0.0 },
-						"Head": { "rotationX": 14.0, "rotationY": 39.0, "rotationZ": 36.0 },
+						"Neck": { "rotationX": 20.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"Head": { "rotationX": 6.0, "rotationY": 14.0, "rotationZ": 11.0 },
 						"NeckUpper": {  },
 						"FaceUpper": {  },
 						"HeadGear": { "rotationX": -30.0, "rotationY": 0.0, "rotationZ": 0.0 },
-						"Shoulder": { "rotationX": 36.0, "rotationY": 6.0, "rotationZ": 19.0 },
+						"Shoulder": { "rotationX": 23.0, "rotationY": 6.0, "rotationZ": 19.0 },
 						"Shoulder1": {  },
 						"ElbowInner": {  },
-						"ElbowOuter": { "rotationX": -3.0, "rotationY": 0.0, "rotationZ": 0.0 },
-						"ArmGear": { "rotationX": 0.0, "rotationY": 0.0, "rotationZ": 0.0 },
-						"ShoulderGearCenter": { "rotationX": 0.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"ElbowOuter": { "rotationX": 5.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"ArmGear": { "rotationX": -120.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"LegL": { "rotationX": -8.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"Upper163": {  },
+						"Midsection164": { "rotationX": 30.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"BottomJoint165": { "rotationX": 41.0, "rotationY": 0.0, "rotationZ": 0.0 }
+					}
+				},
+				{
+					"frame": 59,
+					"elements": {
+						"Doubt": { "offsetX": 0.0, "offsetY": -3.0, "offsetZ": 0.0, "rotationX": 36.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"Legs": {  },
+						"LegR": { "rotationX": -36.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"Upper": {  },
+						"Midsection": { "rotationX": 25.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"BottomJoint": { "rotationX": 53.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"Waist": { "rotationX": -60.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"Spine": { "rotationX": 10.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"SpineInner": {  },
+						"Spine33": { "rotationX": 15.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"SpineInner34": {  },
+						"Spine35": { "rotationX": 15.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"ChestLower": { "rotationX": 15.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"ChestUpper": {  },
+						"Cloak": { "offsetX": 0.0, "offsetY": 0.1, "offsetZ": 0.0, "rotationX": 0.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"Cube181": { "rotationX": -30.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"Cube182": { "rotationX": -9.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"Cube183": { "rotationX": 3.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"Neck": { "rotationX": 20.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"Head": { "rotationX": 6.0, "rotationY": 14.0, "rotationZ": 11.0 },
+						"NeckUpper": {  },
+						"FaceUpper": {  },
+						"HeadGear": { "rotationX": -30.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"Shoulder": { "rotationX": 23.0, "rotationY": 6.0, "rotationZ": 19.0 },
+						"Shoulder1": {  },
+						"ElbowInner": {  },
+						"ElbowOuter": { "rotationX": 5.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"ArmGear": { "rotationX": -120.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"ShoulderGearCenter": { "rotationX": -60.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"LegL": { "rotationX": -8.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"Upper163": {  },
+						"Midsection164": { "rotationX": 30.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"BottomJoint165": { "rotationX": 41.0, "rotationY": 0.0, "rotationZ": 0.0 }
+					}
+				},
+				{
+					"frame": 79,
+					"elements": {
+						"Doubt": { "offsetX": 0.0, "offsetY": -3.0, "offsetZ": 0.0, "rotationX": 36.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"Legs": {  },
+						"LegR": { "rotationX": -36.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"Upper": {  },
+						"Midsection": { "rotationX": 25.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"BottomJoint": { "rotationX": 53.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"Waist": { "rotationX": -60.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"Spine": { "rotationX": 10.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"SpineInner": {  },
+						"Spine33": { "rotationX": 15.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"SpineInner34": {  },
+						"Spine35": { "rotationX": 15.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"ChestLower": { "rotationX": 15.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"ChestUpper": {  },
+						"Cloak": { "offsetX": 0.0, "offsetY": 0.1, "offsetZ": 0.0, "rotationX": 0.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"Cube181": { "rotationX": -30.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"Cube182": { "rotationX": -9.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"Cube183": { "rotationX": 3.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"Neck": { "rotationX": 20.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"Head": { "rotationX": 6.0, "rotationY": 14.0, "rotationZ": 11.0 },
+						"NeckUpper": {  },
+						"FaceUpper": {  },
+						"HeadGear": { "rotationX": -30.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"Shoulder": { "rotationX": 23.0, "rotationY": 6.0, "rotationZ": 19.0 },
+						"Shoulder1": {  },
+						"ElbowInner": {  },
+						"ElbowOuter": { "rotationX": 5.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"ArmGear": { "rotationX": -120.0, "rotationY": 0.0, "rotationZ": 0.0 },
+						"ShoulderGearCenter": { "rotationX": -60.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"LegL": { "rotationX": -8.0, "rotationY": 0.0, "rotationZ": 0.0 },
 						"Upper163": {  },
 						"Midsection164": { "rotationX": 30.0, "rotationY": 0.0, "rotationZ": 0.0 },
