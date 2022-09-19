@@ -10,7 +10,7 @@
 	"textures": {
 		"head": "entity/head",
 		"blackbronze": "game:block/metal/ingot/blackbronze",
-		"molybdochalkos1": "block/metal/sheet/molybdochalkos1",
+		"molybdochalkos1": "game:block/metal/sheet/molybdochalkos1",
 		"cloak1": "entity/cloak1",
 		"chestspine1": "entity/chestspine1",
 		"legs": "entity/legs",
