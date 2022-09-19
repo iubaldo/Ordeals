@@ -2,7 +2,7 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <StartAction>Program</StartAction>
-    <StartProgram>D:\Games\Vintagestory\Vintagestory.exe</StartProgram>
-    <StartArguments>-openWorld="modsamplestest" -pcreativebuilding --addModPath="C:\Users\heatb\Desktop\game dev\vintage story modding\vsmodtemplate-1.5.7\mods</StartArguments>
+    <StartProgram>C:\Games\Vintagestory\Vintagestory.exe</StartProgram>
+    <StartArguments>-openWorld="modsamplestest" -pcreativebuilding --addModPath="C:\Users\Lan\Desktop\game dev\vintage story modding\vsmodtemplate-1.5.7\mods</StartArguments>
   </PropertyGroup>
 </Project>
