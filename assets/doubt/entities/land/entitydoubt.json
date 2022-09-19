@@ -18,7 +18,8 @@
       { "code": "repulseagents" },
       { "code": "controlledphysics", "stepHeight": 1.2 },
       { "code": "floatupwhenstuck", "onlyWhenDead": true },
-      { "code": "interpolateposition" }
+      { "code": "interpolateposition" },
+	  { "code": "harvestable", duration: 5 }
     ],
     "animations": [
       {
@@ -89,7 +90,7 @@
 			"code": "meleeattack",
 			"entityCodes": ["player"],
 			"priority": 2,
-			"damageByType": 15,
+			"damage": 15,
 			"damageTier": 3,
 			"damageType": "PiercingAttack",
 			"mincooldown": 500, 
@@ -115,15 +116,14 @@
         ]
       },
 	  { 
-		"code": "harvestable", duration: 3, drops: {
-			[
-				{
-					"type": "item",
-					"code": "gear-rusty",
-					"quantity": { "avg": 2, "var": 1 }
-				}
-			]
-		}
+		"code": "harvestable", duration: 5, drops: 
+		[
+			{
+				"type": "item",
+				"code": "gear-rusty",
+				"quantity": { "avg": 2, "var": 1 }
+			}
+		]
 	  }
     ]
   },
