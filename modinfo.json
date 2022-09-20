@@ -6,6 +6,6 @@
   "description": "Living is painful. Adds the Green Dawn enemy from Lobotomy Corporation.",
   "version": "1.0.0",
   "dependencies": {
-    "game": "1.17.2"
+    "game": "1.17.4"
   }
 }

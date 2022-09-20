@@ -1,7 +1,7 @@
 {
 	"editor": {
 		"allAngles": true,
-		"entityTextureMode": false
+		"entityTextureMode": true
 	},
 	"textureWidth": 16,
 	"textureHeight": 16,
@@ -22,21 +22,25 @@
 	"elements": [
 		{
 			"name": "Doubt",
-			"from": [ 0.0, 0.0, 0.0 ], 
-			"to": [ 0.0, 0.0, 0.0 ], 
+			"from": [ 0.0, 0.0, -16.0 ], 
+			"to": [ 0.0, 0.0, -16.0 ], 
+			"uv": [ 0.0, 0.0 ],
+			"rotationOrigin": [ 0.0, 0.0, 0.0 ],
+			"rotationY": -90.0,
 			"faces": {
-				"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-				"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-				"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-				"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
+				"north": { "texture": "#face", "uv": [ 0.0, 0.5, 0.5, 1.0 ] },
+				"east": { "texture": "#face", "uv": [ 0.5, 0.5, 1.0, 1.0 ] },
+				"south": { "texture": "#face", "uv": [ 1.0, 0.5, 1.5, 1.0 ] },
+				"west": { "texture": "#face", "uv": [ 1.5, 0.5, 2.0, 1.0 ] },
 				"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-				"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
+				"down": { "texture": "#face", "uv": [ 0.5, 0.0, 1.0, 0.5 ] }
 			},
 			"children": [
 				{
 					"name": "Legs",
 					"from": [ 8.0, 19.0, 5.0 ], 
 					"to": [ 8.0, 19.0, 5.0 ], 
+					"uv": [ 0.0, 0.0 ],
 					"rotationOrigin": [ 8.0, 19.0, 5.0 ],
 					"faces": {
 						"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -51,6 +55,7 @@
 							"name": "LegR",
 							"from": [ -7.0, -10.5, -4.0 ], 
 							"to": [ -7.0, -10.5, -4.0 ], 
+							"uv": [ 0.0, 0.0 ],
 							"rotationOrigin": [ -6.0, 0.0, -0.75 ],
 							"rotationX": 19.0,
 							"faces": {
@@ -66,6 +71,7 @@
 									"name": "Upper",
 									"from": [ 0.0, -1.0, 3.0 ], 
 									"to": [ 2.0, 12.0, 6.0 ], 
+									"uv": [ 0.0, 0.0 ],
 									"rotationOrigin": [ 1.0, 9.0, 4.0 ],
 									"rotationX": -45.0,
 									"faces": {
@@ -81,6 +87,7 @@
 											"name": "Midsection",
 											"from": [ 0.5, -10.0, 1.0 ], 
 											"to": [ 1.5, 0.0, 3.0 ], 
+											"uv": [ 5.0, 4.0 ],
 											"rotationOrigin": [ 1.0, 0.0, 2.0 ],
 											"rotationX": 133.0,
 											"faces": {
@@ -96,6 +103,7 @@
 													"name": "BottomJoint",
 													"from": [ -1.0, -2.0, -1.0 ], 
 													"to": [ 2.0, 1.0, 2.0 ], 
+													"uv": [ 2.0, 0.0 ],
 													"rotationOrigin": [ 0.5, 1.0, 0.5 ],
 													"rotationX": -125.0,
 													"faces": {
@@ -111,6 +119,7 @@
 															"name": "Lower",
 															"from": [ 1.0, -11.0, 1.0 ], 
 															"to": [ 2.0, 0.0, 2.0 ], 
+															"uv": [ 0.0, 0.0 ],
 															"rotationOrigin": [ 1.5, 0.0, 1.5 ],
 															"faces": {
 																"north": { "texture": "#legs", "uv": [ 1.5, 5.0, 2.5, 16.0 ] },
@@ -125,6 +134,7 @@
 																	"name": "LowerWire",
 																	"from": [ 0.25, 7.25, 2.0 ], 
 																	"to": [ 0.25, 7.25, 2.0 ], 
+																	"uv": [ 0.0, 0.0 ],
 																	"rotationOrigin": [ 0.25, 7.0566, 2.4656 ],
 																	"rotationX": 22.5,
 																	"faces": {
@@ -140,6 +150,7 @@
 																			"name": "Cube11",
 																			"from": [ 0.05, 0.0, 0.0 ], 
 																			"to": [ 0.45, 4.0, 0.4 ], 
+																			"uv": [ 0.0, 0.0 ],
 																			"rotationOrigin": [ 0.0, 0.0, 0.0 ],
 																			"rotationX": -45.0,
 																			"faces": {
@@ -155,6 +166,7 @@
 																			"name": "Cube10",
 																			"from": [ 0.0, -3.7304, -0.2341 ], 
 																			"to": [ 0.5, 0.2696, 0.2659 ], 
+																			"uv": [ 0.0, 0.0 ],
 																			"rotationOrigin": [ -0.25, -1.7304, -0.4841 ],
 																			"faces": {
 																				"north": { "texture": "#molybdochalkos1", "uv": [ 0.0, 0.0, 0.5, 4.0 ] },
@@ -177,6 +189,7 @@
 											"name": "UpperWire",
 											"from": [ 0.0, 0.0, 0.0 ], 
 											"to": [ 0.0, 0.0, 0.0 ], 
+											"uv": [ 0.0, 0.0 ],
 											"faces": {
 												"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
 												"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -190,6 +203,7 @@
 													"name": "Cube15",
 													"from": [ 0.75, 6.0, -0.5 ], 
 													"to": [ 1.25, 12.0, 0.0 ], 
+													"uv": [ 0.0, 0.0 ],
 													"rotationOrigin": [ 1.25, 10.0, -0.75 ],
 													"rotationX": 30.0,
 													"faces": {
@@ -205,6 +219,7 @@
 													"name": "Cube17",
 													"from": [ 0.79, 0.8, -2.0 ], 
 													"to": [ 1.19, 6.8, -1.6 ], 
+													"uv": [ 0.0, 0.0 ],
 													"rotationOrigin": [ 1.25, 6.0, -1.75 ],
 													"rotationX": -30.0,
 													"faces": {
@@ -226,6 +241,7 @@
 							"name": "Waist",
 							"from": [ -6.0, -1.0, -3.0 ], 
 							"to": [ 6.0, 1.0, 2.0 ], 
+							"uv": [ 0.0, 9.0 ],
 							"rotationOrigin": [ 0.0, 0.0, -1.0 ],
 							"faces": {
 								"north": { "texture": "#chestspine2", "uv": [ 0.0, 9.0, 12.0, 11.0 ] },
@@ -240,6 +256,7 @@
 									"name": "Middle",
 									"from": [ 2.0, -2.0, 1.0 ], 
 									"to": [ 10.0, 0.0, 4.0 ], 
+									"uv": [ 6.0, 1.0 ],
 									"rotationOrigin": [ 6.0, -1.0, 2.0 ],
 									"faces": {
 										"north": { "texture": "#legs", "uv": [ 6.0, 4.0, 14.0, 6.0 ] },
@@ -254,6 +271,7 @@
 									"name": "Spine",
 									"from": [ 3.5, 2.0, 1.0 ], 
 									"to": [ 8.5, 5.0, 4.0 ], 
+									"uv": [ 0.0, 0.0 ],
 									"rotationOrigin": [ 5.5, 4.0, 2.0 ],
 									"faces": {
 										"north": { "texture": "#chestspine1", "uv": [ 0.0, 0.0, 5.0, 3.0 ] },
@@ -268,6 +286,7 @@
 											"name": "SpineInner",
 											"from": [ 1.0, 3.0, 0.5 ], 
 											"to": [ 4.0, 4.0, 2.5 ], 
+											"uv": [ 2.0, 3.0 ],
 											"rotationOrigin": [ 2.5, 4.0, 1.5 ],
 											"faces": {
 												"north": { "texture": "#molybdochalkos1", "uv": [ 3.0, 3.5, 6.0, 4.5 ] },
@@ -282,6 +301,7 @@
 													"name": "Spine33",
 													"from": [ -1.0, 1.0, -0.25 ], 
 													"to": [ 4.0, 4.0, 2.75 ], 
+													"uv": [ 0.0, 0.0 ],
 													"rotationOrigin": [ 1.5, 2.5, 1.25 ],
 													"rotationX": 10.0,
 													"faces": {
@@ -297,6 +317,7 @@
 															"name": "SpineInner34",
 															"from": [ 1.0, 3.0, 0.5 ], 
 															"to": [ 4.0, 4.0, 2.5 ], 
+															"uv": [ 1.5, 2.0 ],
 															"rotationOrigin": [ 2.5, 4.0, 1.5 ],
 															"faces": {
 																"north": { "texture": "#molybdochalkos1", "uv": [ 2.5, 3.5, 5.5, 4.5 ] },
@@ -311,6 +332,7 @@
 																	"name": "Spine35",
 																	"from": [ -1.0, 1.0, 0.0 ], 
 																	"to": [ 4.0, 4.0, 3.0 ], 
+																	"uv": [ 0.0, 0.0 ],
 																	"rotationOrigin": [ 1.5, 2.5, 1.5 ],
 																	"rotationX": 10.0,
 																	"faces": {
@@ -326,6 +348,7 @@
 																			"name": "SpineInner36",
 																			"from": [ 1.0, 3.0, 0.5 ], 
 																			"to": [ 4.0, 4.0, 2.5 ], 
+																			"uv": [ 1.0, 2.0 ],
 																			"rotationOrigin": [ 2.5, 4.0, 1.5 ],
 																			"faces": {
 																				"north": { "texture": "#molybdochalkos1", "uv": [ 3.5, 4.0, 6.5, 5.0 ] },
@@ -340,6 +363,7 @@
 																			"name": "ChestLower",
 																			"from": [ -1.5, 3.9433, 0.1139 ], 
 																			"to": [ 6.5, 7.9433, 3.1139 ], 
+																			"uv": [ 3.0, 0.0 ],
 																			"rotationOrigin": [ 2.5, 3.4433, 1.6139 ],
 																			"rotationX": 10.0,
 																			"faces": {
@@ -355,6 +379,7 @@
 																					"name": "ChestSideR",
 																					"from": [ 0.0, 1.0, -0.5 ], 
 																					"to": [ 3.0, 6.0, 3.5 ], 
+																					"uv": [ 0.0, 0.0 ],
 																					"rotationOrigin": [ 1.5, 1.5, 2.0 ],
 																					"rotationZ": 30.0,
 																					"faces": {
@@ -370,6 +395,7 @@
 																					"name": "ChestUpper",
 																					"from": [ -3.0, 4.0, -1.5 ], 
 																					"to": [ 11.0, 8.0, 4.5 ], 
+																					"uv": [ 0.0, 2.0 ],
 																					"rotationOrigin": [ 4.0, 4.0, 1.5 ],
 																					"faces": {
 																						"north": { "texture": "#chestspine1", "uv": [ 0.0, 12.0, 14.0, 16.0 ] },
@@ -384,6 +410,7 @@
 																							"name": "Cloak",
 																							"from": [ 1.5, 4.1, -0.5 ], 
 																							"to": [ 12.5, 4.1, 6.5 ], 
+																							"uv": [ 0.0, 0.0 ],
 																							"rotationOrigin": [ 1.0, 4.0, 0.0 ],
 																							"faces": {
 																								"north": { "texture": "#cloak1", "uv": [ 0.0, 0.0, 11.0, 0.25 ] },
@@ -398,6 +425,7 @@
 																									"name": "Cube181",
 																									"from": [ 1.0, 0.0, 7.0 ], 
 																									"to": [ 10.0, 0.0, 39.0 ], 
+																									"uv": [ 0.0, 0.0 ],
 																									"rotationOrigin": [ 0.0, 0.0, 7.0 ],
 																									"rotationX": 60.0,
 																									"faces": {
@@ -413,6 +441,7 @@
 																									"name": "Cube182",
 																									"from": [ 0.0, 0.0, -7.0 ], 
 																									"to": [ 11.0, 0.0, 0.0 ], 
+																									"uv": [ 0.0, 0.0 ],
 																									"rotationOrigin": [ 0.0, 0.0, 0.0 ],
 																									"rotationX": -85.0,
 																									"faces": {
@@ -428,6 +457,7 @@
 																											"name": "Cube183",
 																											"from": [ 11.0, 0.0, 0.0 ], 
 																											"to": [ 22.0, 0.0, 24.0 ], 
+																											"uv": [ 0.0, 0.0 ],
 																											"rotationOrigin": [ 11.0, 0.0, 0.0 ],
 																											"rotationX": -25.0,
 																											"rotationY": 180.0,
@@ -450,6 +480,7 @@
 																					"name": "ChestSideL",
 																					"from": [ 5.0, 1.0, -0.5 ], 
 																					"to": [ 8.0, 6.0, 3.5 ], 
+																					"uv": [ 0.0, 0.0 ],
 																					"rotationOrigin": [ 6.5, 1.5, 2.0 ],
 																					"rotationZ": -30.0,
 																					"faces": {
@@ -465,6 +496,7 @@
 																					"name": "Neck",
 																					"from": [ 3.0, 7.6872, 0.6806 ], 
 																					"to": [ 5.0, 11.6872, 2.6806 ], 
+																					"uv": [ 10.5, 0.0 ],
 																					"rotationOrigin": [ 4.0, 7.6872, 1.6806 ],
 																					"faces": {
 																						"north": { "texture": "#head", "uv": [ 10.5, 0.0, 12.5, 4.0 ] },
@@ -479,6 +511,7 @@
 																							"name": "Head",
 																							"from": [ 0.0, 2.4, 2.75 ], 
 																							"to": [ 0.0, 2.4, 2.75 ], 
+																							"uv": [ 0.0, 0.0 ],
 																							"rotationOrigin": [ 1.0, 4.0, 1.0 ],
 																							"faces": {
 																								"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -493,6 +526,7 @@
 																									"name": "NeckUpper",
 																									"from": [ -0.75, 0.0, -5.0 ], 
 																									"to": [ 2.75, 3.0, -3.5 ], 
+																									"uv": [ 0.0, 0.0 ],
 																									"rotationOrigin": [ 1.0, 3.182, -3.5607 ],
 																									"rotationX": -80.0,
 																									"faces": {
@@ -508,6 +542,7 @@
 																											"name": "HeadBack",
 																											"from": [ 0.5, 1.25, 1.25 ], 
 																											"to": [ 3.0, 6.25, 6.25 ], 
+																											"uv": [ 7.0, 6.0 ],
 																											"rotationOrigin": [ 1.75, 2.75, 2.0 ],
 																											"rotationX": 90.0,
 																											"faces": {
@@ -523,6 +558,7 @@
 																											"name": "NeckLower",
 																											"from": [ 0.25, -1.0805, -1.563 ], 
 																											"to": [ 0.25, -1.0805, -1.563 ], 
+																											"uv": [ 0.0, 0.0 ],
 																											"rotationOrigin": [ 1.75, -0.0805, -0.6237 ],
 																											"rotationX": 65.0,
 																											"faces": {
@@ -538,6 +574,7 @@
 																													"name": "Head46",
 																													"from": [ 0.0, 0.0, 0.0 ], 
 																													"to": [ 3.0, 3.5, 1.5 ], 
+																													"uv": [ 0.0, 0.0 ],
 																													"rotationOrigin": [ 2.5, 3.0, 1.5 ],
 																													"rotationX": -45.0,
 																													"faces": {
@@ -555,6 +592,7 @@
 																											"name": "FaceLower",
 																											"from": [ -0.25, 2.0952, 0.2846 ], 
 																											"to": [ 3.75, 6.0952, 3.2846 ], 
+																											"uv": [ 0.0, 10.5 ],
 																											"rotationOrigin": [ 0.75, 1.5972, -4.7161 ],
 																											"rotationX": 65.0,
 																											"faces": {
@@ -570,6 +608,7 @@
 																											"name": "FaceUpper",
 																											"from": [ -1.25, -2.322, 1.167 ], 
 																											"to": [ -1.25, -2.322, 1.167 ], 
+																											"uv": [ 0.0, 0.0 ],
 																											"rotationOrigin": [ -1.25, -2.3255, 1.1696 ],
 																											"rotationX": 50.0,
 																											"faces": {
@@ -585,6 +624,7 @@
 																													"name": "Cube55",
 																													"from": [ -0.5, 0.0, -1.0 ], 
 																													"to": [ 6.5, 6.0, 2.5 ], 
+																													"uv": [ 0.0, 0.0 ],
 																													"rotationOrigin": [ 2.0, 0.0, 1.25 ],
 																													"faces": {
 																														"north": { "texture": "#head", "uv": [ 0.0, 0.0, 7.0, 6.0 ] },
@@ -599,6 +639,7 @@
 																													"name": "Eye1",
 																													"from": [ 3.5, 1.0, 2.5 ], 
 																													"to": [ 3.5, 1.0, 2.5 ], 
+																													"uv": [ 0.0, 0.0 ],
 																													"rotationOrigin": [ 4.5, 2.0, 2.5 ],
 																													"faces": {
 																														"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -613,6 +654,7 @@
 																															"name": "Eyeball1",
 																															"from": [ 0.5, 0.5, 0.0 ], 
 																															"to": [ 1.5, 1.5, 0.25 ], 
+																															"uv": [ 0.0, 0.0 ],
 																															"rotationOrigin": [ 1.0, 1.0, 0.0 ],
 																															"rotationZ": 45.0,
 																															"faces": {
@@ -628,6 +670,7 @@
 																																	"name": "Eye70",
 																																	"from": [ 0.0, -0.5, 0.0 ], 
 																																	"to": [ 1.0, 0.0, 0.5 ], 
+																																	"uv": [ 0.5, 4.0 ],
 																																	"rotationOrigin": [ 0.5, -0.5, 0.0 ],
 																																	"faces": {
 																																		"north": { "texture": "#blackbronze", "uv": [ 0.5, 4.0, 1.5, 4.5 ] },
@@ -642,6 +685,7 @@
 																																	"name": "Eye68",
 																																	"from": [ 0.0, 1.0, 0.0 ], 
 																																	"to": [ 1.0, 1.5, 0.5 ], 
+																																	"uv": [ 0.0, 3.5 ],
 																																	"rotationOrigin": [ 0.5, 0.5, 0.0 ],
 																																	"faces": {
 																																		"north": { "texture": "#blackbronze", "uv": [ 0.5, 4.0, 1.5, 4.5 ] },
@@ -656,6 +700,7 @@
 																																	"name": "Eye67",
 																																	"from": [ 1.0, -0.5, 0.0 ], 
 																																	"to": [ 1.5, 1.5, 0.5 ], 
+																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 3.0, -0.5, 2.25 ],
 																																	"faces": {
 																																		"north": { "texture": "#blackbronze", "uv": [ 0.0, 0.0, 0.5, 2.0 ] },
@@ -670,6 +715,7 @@
 																																	"name": "Eye69",
 																																	"from": [ -0.5, -0.5, 0.0 ], 
 																																	"to": [ 0.0, 1.5, 0.5 ], 
+																																	"uv": [ 0.5, 4.0 ],
 																																	"rotationOrigin": [ 2.0, -0.5, 2.25 ],
 																																	"faces": {
 																																		"north": { "texture": "#blackbronze", "uv": [ 1.0, 4.0, 1.5, 6.0 ] },
@@ -688,6 +734,7 @@
 																													"name": "Eye2",
 																													"from": [ 2.5, -1.5, 1.75 ], 
 																													"to": [ 2.5, -1.5, 1.75 ], 
+																													"uv": [ 0.0, 0.0 ],
 																													"rotationOrigin": [ 2.5, -1.0, 2.5 ],
 																													"rotationX": 15.0,
 																													"faces": {
@@ -703,6 +750,7 @@
 																															"name": "Eyeball77",
 																															"from": [ 0.5, 0.5, 0.0 ], 
 																															"to": [ 1.0, 1.0, 0.25 ], 
+																															"uv": [ 0.0, 0.0 ],
 																															"rotationOrigin": [ 0.75, 0.75, 0.0 ],
 																															"faces": {
 																																"north": { "texture": "#arm", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -717,6 +765,7 @@
 																																	"name": "Eye73",
 																																	"from": [ -0.25, 0.0, 0.0 ], 
 																																	"to": [ 0.0, 0.5, 0.5 ], 
+																																	"uv": [ 0.5, 3.5 ],
 																																	"rotationOrigin": [ 2.0, -0.5, 2.25 ],
 																																	"faces": {
 																																		"north": { "texture": "#blackbronze", "uv": [ 0.5, 4.0, 1.0, 4.5 ] },
@@ -731,6 +780,7 @@
 																																	"name": "Eye74",
 																																	"from": [ 0.5, 0.0, 0.0 ], 
 																																	"to": [ 0.75, 0.5, 0.5 ], 
+																																	"uv": [ 0.5, 4.0 ],
 																																	"rotationOrigin": [ 3.0, -0.5, 2.25 ],
 																																	"faces": {
 																																		"north": { "texture": "#blackbronze", "uv": [ 1.0, 4.0, 1.5, 4.5 ] },
@@ -745,6 +795,7 @@
 																																	"name": "Eye75",
 																																	"from": [ 0.0, 0.5, 0.0 ], 
 																																	"to": [ 0.5, 0.75, 0.5 ], 
+																																	"uv": [ 0.0, 4.0 ],
 																																	"rotationOrigin": [ 0.5, 0.5, 0.0 ],
 																																	"faces": {
 																																		"north": { "texture": "#blackbronze", "uv": [ 0.5, 4.0, 1.0, 4.5 ] },
@@ -759,6 +810,7 @@
 																																	"name": "Eye76",
 																																	"from": [ 0.0, -0.25, 0.0 ], 
 																																	"to": [ 0.5, 0.0, 0.5 ], 
+																																	"uv": [ 0.5, 4.0 ],
 																																	"rotationOrigin": [ 0.5, -0.5, 0.0 ],
 																																	"faces": {
 																																		"north": { "texture": "#blackbronze", "uv": [ 1.0, 4.0, 1.5, 4.5 ] },
@@ -777,6 +829,7 @@
 																													"name": "Eye3",
 																													"from": [ 3.5, -2.5, 1.5 ], 
 																													"to": [ 3.5, -2.5, 1.5 ], 
+																													"uv": [ 0.0, 0.0 ],
 																													"rotationOrigin": [ 3.5, -2.0, 2.5 ],
 																													"rotationX": 15.0,
 																													"faces": {
@@ -792,6 +845,7 @@
 																															"name": "Eyeball79",
 																															"from": [ 0.5, 0.5, 0.0 ], 
 																															"to": [ 1.0, 1.0, 0.25 ], 
+																															"uv": [ 0.0, 0.0 ],
 																															"rotationOrigin": [ 0.75, 0.75, 0.0 ],
 																															"faces": {
 																																"north": { "texture": "#arm", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -806,6 +860,7 @@
 																																	"name": "Eye80",
 																																	"from": [ -0.25, 0.0, 0.0 ], 
 																																	"to": [ 0.0, 0.5, 0.5 ], 
+																																	"uv": [ 0.5, 3.5 ],
 																																	"rotationOrigin": [ 2.0, -0.5, 2.25 ],
 																																	"faces": {
 																																		"north": { "texture": "#blackbronze", "uv": [ 0.5, 3.5, 1.0, 4.0 ] },
@@ -820,6 +875,7 @@
 																																	"name": "Eye81",
 																																	"from": [ 0.5, 0.0, 0.0 ], 
 																																	"to": [ 0.75, 0.5, 0.5 ], 
+																																	"uv": [ 0.5, 3.5 ],
 																																	"rotationOrigin": [ 3.0, -0.5, 2.25 ],
 																																	"faces": {
 																																		"north": { "texture": "#blackbronze", "uv": [ 0.5, 3.5, 1.0, 4.0 ] },
@@ -834,6 +890,7 @@
 																																	"name": "Eye82",
 																																	"from": [ 0.0, 0.5, 0.0 ], 
 																																	"to": [ 0.5, 0.75, 0.5 ], 
+																																	"uv": [ 0.5, 4.0 ],
 																																	"rotationOrigin": [ 0.5, 0.5, 0.0 ],
 																																	"faces": {
 																																		"north": { "texture": "#blackbronze", "uv": [ 1.0, 4.5, 1.5, 5.0 ] },
@@ -848,6 +905,7 @@
 																																	"name": "Eye83",
 																																	"from": [ 0.0, -0.25, 0.0 ], 
 																																	"to": [ 0.5, 0.0, 0.5 ], 
+																																	"uv": [ 0.5, 3.5 ],
 																																	"rotationOrigin": [ 0.5, -0.5, 0.0 ],
 																																	"faces": {
 																																		"north": { "texture": "#blackbronze", "uv": [ 0.5, 4.0, 1.0, 4.5 ] },
@@ -866,6 +924,7 @@
 																													"name": "HeadGear",
 																													"from": [ 0.0, 3.6227, -1.4193 ], 
 																													"to": [ 0.0, 3.6227, -1.4193 ], 
+																													"uv": [ 0.0, 0.0 ],
 																													"rotationOrigin": [ 0.5, 4.1227, -0.9193 ],
 																													"faces": {
 																														"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -880,6 +939,7 @@
 																															"name": "HeadGearCenter",
 																															"from": [ 0.0, 0.0, 0.0 ], 
 																															"to": [ 1.0, 1.0, 1.0 ], 
+																															"uv": [ 0.0, 0.0 ],
 																															"rotationOrigin": [ 0.0, 0.0, 3.0 ],
 																															"faces": {
 																																"north": { "texture": "#molybdochalkos1", "uv": [ 0.0, 0.0, 1.0, 1.0 ] },
@@ -894,6 +954,7 @@
 																																	"name": "HeadGear154",
 																																	"from": [ 0.25, 2.5, -0.75 ], 
 																																	"to": [ 0.25, 2.5, -0.25 ], 
+																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.5, 2.0, 0.5 ],
 																																	"faces": {
 																																		"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -908,6 +969,7 @@
 																																			"name": "HeadGear159",
 																																			"from": [ 0.0, 0.0, 0.0 ], 
 																																			"to": [ 0.5, 0.75, 2.5 ], 
+																																			"uv": [ 0.0, 0.0 ],
 																																			"rotationOrigin": [ 0.25, 0.0, 1.25 ],
 																																			"faces": {
 																																				"north": { "texture": "#bismuth1", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -924,6 +986,7 @@
 																																	"name": "HeadGear155",
 																																	"from": [ 0.25, -1.5, -0.75 ], 
 																																	"to": [ 0.25, -1.5, -0.25 ], 
+																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.5, -1.0, 0.5 ],
 																																	"faces": {
 																																		"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -938,6 +1001,7 @@
 																																			"name": "HeadGear156",
 																																			"from": [ 0.0, 0.0, 0.0 ], 
 																																			"to": [ 0.5, 0.75, 2.5 ], 
+																																			"uv": [ 0.0, 0.0 ],
 																																			"rotationOrigin": [ 0.25, 0.0, 1.25 ],
 																																			"rotationX": 180.0,
 																																			"faces": {
@@ -955,6 +1019,7 @@
 																																	"name": "HeadGear157",
 																																	"from": [ 0.25, 2.0, 0.75 ], 
 																																	"to": [ 0.25, 2.0, 1.25 ], 
+																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.5, 1.0, 2.5 ],
 																																	"faces": {
 																																		"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -969,6 +1034,7 @@
 																																			"name": "HeadGear158",
 																																			"from": [ 0.05, 0.0, 0.0 ], 
 																																			"to": [ 0.45, 0.75, 2.5 ], 
+																																			"uv": [ 0.0, 0.0 ],
 																																			"rotationOrigin": [ 0.25, 0.0, 1.25 ],
 																																			"rotationX": 45.0,
 																																			"faces": {
@@ -986,6 +1052,7 @@
 																																	"name": "HeadGear160",
 																																	"from": [ 0.25, 2.0, -2.25 ], 
 																																	"to": [ 0.25, 2.0, -1.75 ], 
+																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.5, 1.0, -0.5 ],
 																																	"faces": {
 																																		"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -1000,6 +1067,7 @@
 																																			"name": "HeadGear161",
 																																			"from": [ 0.05, 0.0, 0.0 ], 
 																																			"to": [ 0.45, 0.75, 2.5 ], 
+																																			"uv": [ 0.0, 0.0 ],
 																																			"rotationOrigin": [ 0.25, 0.0, 1.25 ],
 																																			"rotationX": -45.0,
 																																			"faces": {
@@ -1017,6 +1085,7 @@
 																																	"name": "HeadGear162",
 																																	"from": [ 0.25, 0.5, 1.25 ], 
 																																	"to": [ 0.25, 0.5, 1.75 ], 
+																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.5, 0.0, 2.5 ],
 																																	"faces": {
 																																		"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -1031,6 +1100,7 @@
 																																			"name": "HeadGear163",
 																																			"from": [ 0.0, 0.0, 0.0 ], 
 																																			"to": [ 0.5, 0.75, 2.5 ], 
+																																			"uv": [ 0.0, 0.0 ],
 																																			"rotationOrigin": [ 0.25, 0.0, 1.25 ],
 																																			"rotationX": 90.0,
 																																			"faces": {
@@ -1048,6 +1118,7 @@
 																																	"name": "HeadGear164",
 																																	"from": [ 0.25, 0.5, -2.75 ], 
 																																	"to": [ 0.25, 0.5, -2.25 ], 
+																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.5, 0.0, -2.5 ],
 																																	"faces": {
 																																		"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -1062,6 +1133,7 @@
 																																			"name": "HeadGear169",
 																																			"from": [ 0.0, 0.0, 0.0 ], 
 																																			"to": [ 0.5, 0.75, 2.5 ], 
+																																			"uv": [ 0.0, 0.0 ],
 																																			"rotationOrigin": [ 0.25, 0.0, 1.25 ],
 																																			"rotationX": -90.0,
 																																			"faces": {
@@ -1079,6 +1151,7 @@
 																																	"name": "HeadGear165",
 																																	"from": [ 0.25, -1.0, 0.75 ], 
 																																	"to": [ 0.25, -1.0, 1.25 ], 
+																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.5, -2.0, 2.5 ],
 																																	"faces": {
 																																		"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -1093,6 +1166,7 @@
 																																			"name": "HeadGear166",
 																																			"from": [ 0.05, 0.0, 0.0 ], 
 																																			"to": [ 0.45, 0.75, 2.5 ], 
+																																			"uv": [ 0.0, 0.0 ],
 																																			"rotationOrigin": [ 0.25, 0.0, 1.25 ],
 																																			"rotationX": 135.0,
 																																			"faces": {
@@ -1110,6 +1184,7 @@
 																																	"name": "HeadGear167",
 																																	"from": [ 0.25, -1.0, -2.25 ], 
 																																	"to": [ 0.25, -1.0, -1.75 ], 
+																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.5, -2.0, -0.5 ],
 																																	"faces": {
 																																		"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -1124,6 +1199,7 @@
 																																			"name": "HeadGear168",
 																																			"from": [ 0.05, 0.0, 0.0 ], 
 																																			"to": [ 0.45, 0.75, 2.5 ], 
+																																			"uv": [ 0.0, 0.0 ],
 																																			"rotationOrigin": [ 0.25, 0.0, 1.25 ],
 																																			"rotationX": -135.0,
 																																			"faces": {
@@ -1141,6 +1217,7 @@
 																																	"name": "HeadGearSpoke1",
 																																	"from": [ 0.35, 0.25, -2.0 ], 
 																																	"to": [ 0.6, 0.75, 3.0 ], 
+																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.0, 0.5, 0.5 ],
 																																	"rotationX": 90.0,
 																																	"faces": {
@@ -1156,6 +1233,7 @@
 																																	"name": "HeadGearSpoke170",
 																																	"from": [ 0.35, 0.25, -2.0 ], 
 																																	"to": [ 0.6, 0.75, 3.0 ], 
+																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.0, 0.5, 0.5 ],
 																																	"rotationX": 33.0,
 																																	"faces": {
@@ -1171,6 +1249,7 @@
 																																	"name": "HeadGearSpoke171",
 																																	"from": [ 0.35, 0.25, -2.0 ], 
 																																	"to": [ 0.6, 0.75, 3.0 ], 
+																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.0, 0.5, 0.5 ],
 																																	"rotationX": -33.0,
 																																	"faces": {
@@ -1186,6 +1265,7 @@
 																																	"name": "HeadGearTooth",
 																																	"from": [ 0.4, 3.25, 0.0 ], 
 																																	"to": [ 0.4, 3.25, 0.0 ], 
+																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.0, 3.25, 0.5 ],
 																																	"faces": {
 																																		"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -1200,6 +1280,7 @@
 																																			"name": "Cube172",
 																																			"from": [ 0.0, 0.0, 0.0 ], 
 																																			"to": [ 0.25, 0.4, 1.0 ], 
+																																			"uv": [ 0.0, 0.0 ],
 																																			"faces": {
 																																				"north": { "texture": "#bismuth1", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
 																																				"east": { "texture": "#bismuth1", "uv": [ 0.0, 0.0, 1.0, 0.5 ] },
@@ -1215,6 +1296,7 @@
 																																	"name": "HeadGearTooth174",
 																																	"from": [ 0.4, -2.25, 0.0 ], 
 																																	"to": [ 0.4, -2.25, 0.0 ], 
+																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.0, -2.25, 0.5 ],
 																																	"faces": {
 																																		"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -1229,6 +1311,7 @@
 																																			"name": "Cube175",
 																																			"from": [ 0.0, 0.0, 0.0 ], 
 																																			"to": [ 0.25, 0.4, 1.0 ], 
+																																			"uv": [ 0.0, 0.0 ],
 																																			"rotationOrigin": [ 0.0, 0.0, 0.5 ],
 																																			"rotationX": 180.0,
 																																			"faces": {
@@ -1246,6 +1329,7 @@
 																																	"name": "HeadGearTooth176",
 																																	"from": [ 0.4, 0.5, 2.75 ], 
 																																	"to": [ 0.4, 0.5, 2.75 ], 
+																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.0, 0.5, 3.25 ],
 																																	"faces": {
 																																		"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -1260,6 +1344,7 @@
 																																			"name": "Cube177",
 																																			"from": [ 0.0, 0.0, 0.0 ], 
 																																			"to": [ 0.25, 0.4, 1.0 ], 
+																																			"uv": [ 0.0, 0.0 ],
 																																			"rotationOrigin": [ 0.0, 0.0, 0.5 ],
 																																			"rotationX": 90.0,
 																																			"faces": {
@@ -1277,6 +1362,7 @@
 																																	"name": "HeadGearTooth146",
 																																	"from": [ 0.4, 0.5, -2.75 ], 
 																																	"to": [ 0.4, 0.5, -2.75 ], 
+																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.0, 0.5, -2.25 ],
 																																	"faces": {
 																																		"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -1291,6 +1377,7 @@
 																																			"name": "Cube147",
 																																			"from": [ 0.0, 0.0, 0.0 ], 
 																																			"to": [ 0.25, 0.4, 1.0 ], 
+																																			"uv": [ 0.0, 0.0 ],
 																																			"rotationOrigin": [ 0.0, 0.0, 0.5 ],
 																																			"rotationX": -90.0,
 																																			"faces": {
@@ -1308,6 +1395,7 @@
 																																	"name": "HeadGearTooth148",
 																																	"from": [ 0.4, 3.25, 0.0 ], 
 																																	"to": [ 0.4, 3.25, 0.0 ], 
+																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.0, 0.5, 0.5 ],
 																																	"rotationX": 45.0,
 																																	"faces": {
@@ -1323,6 +1411,7 @@
 																																			"name": "Cube149",
 																																			"from": [ 0.0, 0.1, 0.0 ], 
 																																			"to": [ 0.25, 0.5, 1.0 ], 
+																																			"uv": [ 0.0, 0.0 ],
 																																			"faces": {
 																																				"north": { "texture": "#bismuth1", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
 																																				"east": { "texture": "#bismuth1", "uv": [ 0.0, 0.0, 1.0, 0.5 ] },
@@ -1338,6 +1427,7 @@
 																																	"name": "HeadGearTooth150",
 																																	"from": [ 0.4, 3.25, 0.0 ], 
 																																	"to": [ 0.4, 3.25, 0.0 ], 
+																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.0, 0.5, 0.5 ],
 																																	"rotationX": -45.0,
 																																	"faces": {
@@ -1353,6 +1443,7 @@
 																																			"name": "Cube151",
 																																			"from": [ 0.0, 0.1, 0.0 ], 
 																																			"to": [ 0.25, 0.5, 1.0 ], 
+																																			"uv": [ 0.0, 0.0 ],
 																																			"faces": {
 																																				"north": { "texture": "#bismuth1", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
 																																				"east": { "texture": "#bismuth1", "uv": [ 0.0, 0.0, 1.0, 0.5 ] },
@@ -1368,6 +1459,7 @@
 																																	"name": "HeadGearTooth152",
 																																	"from": [ 0.4, 3.25, 0.0 ], 
 																																	"to": [ 0.4, 3.25, 0.0 ], 
+																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.0, 0.5, 0.5 ],
 																																	"rotationX": -135.0,
 																																	"faces": {
@@ -1383,6 +1475,7 @@
 																																			"name": "Cube153",
 																																			"from": [ 0.0, 0.1, 0.0 ], 
 																																			"to": [ 0.25, 0.5, 1.0 ], 
+																																			"uv": [ 0.0, 0.0 ],
 																																			"faces": {
 																																				"north": { "texture": "#bismuth1", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
 																																				"east": { "texture": "#bismuth1", "uv": [ 0.0, 0.0, 1.0, 0.5 ] },
@@ -1398,6 +1491,7 @@
 																																	"name": "HeadGearTooth154",
 																																	"from": [ 0.4, 3.25, 0.0 ], 
 																																	"to": [ 0.4, 3.25, 0.0 ], 
+																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.0, 0.5, 0.5 ],
 																																	"rotationX": 135.0,
 																																	"faces": {
@@ -1413,6 +1507,7 @@
 																																			"name": "Cube155",
 																																			"from": [ 0.0, 0.1, 0.0 ], 
 																																			"to": [ 0.25, 0.5, 1.0 ], 
+																																			"uv": [ 0.0, 0.0 ],
 																																			"faces": {
 																																				"north": { "texture": "#bismuth1", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
 																																				"east": { "texture": "#bismuth1", "uv": [ 0.0, 0.0, 1.0, 0.5 ] },
@@ -1440,6 +1535,7 @@
 																					"name": "StubR",
 																					"from": [ -4.0, 5.3301, 0.5981 ], 
 																					"to": [ -3.0, 7.3301, 2.5981 ], 
+																					"uv": [ 4.0, 4.0 ],
 																					"rotationOrigin": [ -4.0, 5.3301, 1.5981 ],
 																					"faces": {
 																						"north": { "texture": "#molybdochalkos1", "uv": [ 11.0, 8.0, 12.0, 10.0 ] },
@@ -1454,6 +1550,7 @@
 																					"name": "StubL",
 																					"from": [ 11.0, 5.3301, 0.5981 ], 
 																					"to": [ 12.0, 7.3301, 2.5981 ], 
+																					"uv": [ 2.5, 3.0 ],
 																					"rotationOrigin": [ 12.0, 6.25, 1.5981 ],
 																					"faces": {
 																						"north": { "texture": "#molybdochalkos1", "uv": [ 3.5, 3.0, 4.5, 5.0 ] },
@@ -1468,6 +1565,7 @@
 																					"name": "Shoulder",
 																					"from": [ 11.0, 5.3301, 0.5981 ], 
 																					"to": [ 11.0, 5.3301, 0.5981 ], 
+																					"uv": [ 2.5, 3.0 ],
 																					"rotationOrigin": [ 13.25, 6.25, 1.5981 ],
 																					"faces": {
 																						"north": { "texture": "#molybdochalkos1", "uv": [ 3.5, 3.0, 4.0, 3.5 ] },
@@ -1482,6 +1580,7 @@
 																							"name": "Shoulder1",
 																							"from": [ 1.0, -0.817, -0.317 ], 
 																							"to": [ 3.5, 3.183, 2.683 ], 
+																							"uv": [ 0.0, 0.0 ],
 																							"rotationOrigin": [ 2.0, 0.683, 1.1819 ],
 																							"rotationX": 30.0,
 																							"faces": {
@@ -1497,6 +1596,7 @@
 																									"name": "Shoulder2",
 																									"from": [ 0.0, 4.0, 0.0 ], 
 																									"to": [ 1.5, 6.0, 2.0 ], 
+																									"uv": [ 0.0, 0.0 ],
 																									"rotationOrigin": [ 2.0, 5.0, 1.0 ],
 																									"faces": {
 																										"north": { "texture": "#arm", "uv": [ 2.0, 3.0, 4.0, 4.5 ], "rotation": 90 },
@@ -1511,6 +1611,7 @@
 																									"name": "ArmUpper1",
 																									"from": [ 1.5, -9.0, 1.0 ], 
 																									"to": [ 2.0, 1.0, 1.5 ], 
+																									"uv": [ 0.0, 0.0 ],
 																									"rotationOrigin": [ 2.0, -8.0, 1.0 ],
 																									"faces": {
 																										"north": { "texture": "#molybdochalkos1", "uv": [ 0.0, 0.0, 0.5, 10.0 ], "autoUv": false },
@@ -1525,6 +1626,7 @@
 																									"name": "ArmUpper2",
 																									"from": [ 1.5, -9.0, 1.5 ], 
 																									"to": [ 2.0, 1.0, 2.0 ], 
+																									"uv": [ 0.0, 0.0 ],
 																									"rotationOrigin": [ 2.0, -8.0, 2.0 ],
 																									"rotationX": 5.0,
 																									"faces": {
@@ -1540,6 +1642,7 @@
 																									"name": "ElbowInner",
 																									"from": [ 1.0, -10.0, 0.5 ], 
 																									"to": [ 2.0, -8.0, 2.5 ], 
+																									"uv": [ 2.0, 0.0 ],
 																									"rotationOrigin": [ 2.0, -9.0, 1.0 ],
 																									"faces": {
 																										"north": { "texture": "#arm", "uv": [ 3.5, 0.0, 4.5, 2.0 ] },
@@ -1554,6 +1657,7 @@
 																											"name": "ElbowOuter",
 																											"from": [ 1.0, -0.5, -0.5 ], 
 																											"to": [ 2.5, 2.5, 2.5 ], 
+																											"uv": [ 6.5, 0.0 ],
 																											"rotationOrigin": [ 2.0, 1.0, 1.0 ],
 																											"rotationX": 60.0,
 																											"faces": {
@@ -1569,6 +1673,7 @@
 																													"name": "Spear1",
 																													"from": [ -1.5, 3.0, -0.5 ], 
 																													"to": [ 2.0, 11.0, 3.5 ], 
+																													"uv": [ 4.5, 0.0 ],
 																													"rotationOrigin": [ -1.0, 4.0, 1.0 ],
 																													"faces": {
 																														"north": { "texture": "#arm", "uv": [ 8.0, 0.0, 16.0, 3.5 ], "rotation": 90 },
@@ -1583,6 +1688,7 @@
 																															"name": "Spear63",
 																															"from": [ 0.5, 8.0, 0.5 ], 
 																															"to": [ 3.0, 16.0, 3.5 ], 
+																															"uv": [ 0.0, 0.0 ],
 																															"rotationOrigin": [ 2.0, 9.0, 1.5 ],
 																															"faces": {
 																																"north": { "texture": "#arm", "uv": [ 0.0, 10.5, 8.0, 13.0 ], "rotation": 90 },
@@ -1597,6 +1703,7 @@
 																																	"name": "Spear64",
 																																	"from": [ 0.5, 8.0, 0.5 ], 
 																																	"to": [ 2.0, 16.0, 2.5 ], 
+																																	"uv": [ 0.0, 5.5 ],
 																																	"rotationOrigin": [ 1.5, 9.0, 1.0 ],
 																																	"faces": {
 																																		"north": { "texture": "#arm", "uv": [ 0.0, 9.0, 8.0, 10.5 ], "rotation": 90 },
@@ -1611,6 +1718,7 @@
 																																			"name": "Spear65",
 																																			"from": [ 0.5, 8.0, 0.5 ], 
 																																			"to": [ 1.0, 14.0, 1.5 ], 
+																																			"uv": [ 7.0, 7.5 ],
 																																			"rotationOrigin": [ 1.0, 9.0, 0.5 ],
 																																			"faces": {
 																																				"north": { "texture": "#arm", "uv": [ 7.0, 7.5, 13.0, 8.0 ], "rotation": 90 },
@@ -1631,6 +1739,7 @@
 																													"name": "ArmGear",
 																													"from": [ 0.25, 0.0, 1.0 ], 
 																													"to": [ 0.25, 0.0, 1.0 ], 
+																													"uv": [ 0.0, 0.0 ],
 																													"rotationOrigin": [ 0.5, 0.5, 1.5 ],
 																													"faces": {
 																														"north": { "texture": "#bismuth1", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -1645,6 +1754,7 @@
 																															"name": "HeadGear86",
 																															"from": [ 0.25, -2.9, -1.0 ], 
 																															"to": [ 0.75, -1.9, 2.0 ], 
+																															"uv": [ 0.0, 0.0 ],
 																															"rotationOrigin": [ 0.25, -3.0, -1.0 ],
 																															"faces": {
 																																"north": { "texture": "#bismuth1", "uv": [ 0.0, 0.0, 0.5, 1.0 ] },
@@ -1659,6 +1769,7 @@
 																															"name": "HeadGear87",
 																															"from": [ 0.25, 2.9, -1.0 ], 
 																															"to": [ 0.75, 3.9, 2.0 ], 
+																															"uv": [ 0.0, 0.0 ],
 																															"rotationOrigin": [ 0.25, 3.0, -1.0 ],
 																															"faces": {
 																																"north": { "texture": "#bismuth1", "uv": [ 0.0, 0.0, 0.5, 1.0 ] },
@@ -1673,6 +1784,7 @@
 																															"name": "HeadGear88",
 																															"from": [ 0.3, -3.0, 2.0 ], 
 																															"to": [ 0.7, -2.0, 5.0 ], 
+																															"uv": [ 0.0, 0.0 ],
 																															"rotationOrigin": [ 0.25, -3.0, 2.0 ],
 																															"rotationX": -45.0,
 																															"faces": {
@@ -1688,6 +1800,7 @@
 																															"name": "HeadGear89",
 																															"from": [ 0.25, -1.0, 4.0 ], 
 																															"to": [ 0.75, 0.0, 7.0 ], 
+																															"uv": [ 0.0, 0.0 ],
 																															"rotationOrigin": [ 0.25, -1.0, 4.0 ],
 																															"rotationX": -90.0,
 																															"faces": {
@@ -1703,6 +1816,7 @@
 																															"name": "HeadGear90",
 																															"from": [ 0.3, 3.0, 2.0 ], 
 																															"to": [ 0.7, 4.0, 5.0 ], 
+																															"uv": [ 0.0, 0.0 ],
 																															"rotationOrigin": [ 0.25, 4.0, 2.0 ],
 																															"rotationX": 45.0,
 																															"faces": {
@@ -1718,6 +1832,7 @@
 																															"name": "HeadGear91",
 																															"from": [ 0.3, 3.0, -4.0 ], 
 																															"to": [ 0.7, 4.0, -1.0 ], 
+																															"uv": [ 0.0, 0.0 ],
 																															"rotationOrigin": [ 0.25, 4.0, -1.0 ],
 																															"rotationX": -45.0,
 																															"faces": {
@@ -1733,6 +1848,7 @@
 																															"name": "HeadGear92",
 																															"from": [ 0.25, -1.0, -2.0 ], 
 																															"to": [ 0.75, 0.0, 1.0 ], 
+																															"uv": [ 0.0, 0.0 ],
 																															"rotationOrigin": [ 0.25, -1.0, -2.0 ],
 																															"rotationX": -90.0,
 																															"faces": {
@@ -1748,6 +1864,7 @@
 																															"name": "HeadGear93",
 																															"from": [ 0.3, -3.0, -4.0 ], 
 																															"to": [ 0.7, -2.0, -1.0 ], 
+																															"uv": [ 0.0, 0.0 ],
 																															"rotationOrigin": [ 0.25, -3.0, -1.0 ],
 																															"rotationX": 45.0,
 																															"faces": {
@@ -1763,6 +1880,7 @@
 																															"name": "HeadGearAxle96",
 																															"from": [ 0.37, 0.25, -3.0 ], 
 																															"to": [ 0.37, 0.25, -3.0 ], 
+																															"uv": [ 0.0, 0.0 ],
 																															"rotationOrigin": [ 0.25, 0.5, 0.5 ],
 																															"rotationX": 90.0,
 																															"faces": {
@@ -1778,6 +1896,7 @@
 																																	"name": "HeadGear95",
 																																	"from": [ 0.0, 0.0, 0.25 ], 
 																																	"to": [ 0.25, 0.5, 6.75 ], 
+																																	"uv": [ 0.0, 0.0 ],
 																																	"faces": {
 																																		"north": { "texture": "#bismuth1", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
 																																		"east": { "texture": "#bismuth1", "uv": [ 0.0, 0.0, 6.5, 0.5 ] },
@@ -1793,6 +1912,7 @@
 																															"name": "HeadGearAxle97",
 																															"from": [ 0.37, 0.25, -3.0 ], 
 																															"to": [ 0.37, 0.25, -3.0 ], 
+																															"uv": [ 0.0, 0.0 ],
 																															"rotationOrigin": [ 0.25, 0.5, 0.5 ],
 																															"rotationX": 33.0,
 																															"faces": {
@@ -1808,6 +1928,7 @@
 																																	"name": "HeadGear98",
 																																	"from": [ 0.0, 0.0, 0.25 ], 
 																																	"to": [ 0.25, 0.5, 6.75 ], 
+																																	"uv": [ 0.0, 0.0 ],
 																																	"faces": {
 																																		"north": { "texture": "#bismuth1", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
 																																		"east": { "texture": "#bismuth1", "uv": [ 0.0, 0.0, 6.5, 0.5 ] },
@@ -1823,6 +1944,7 @@
 																															"name": "HeadGearAxle99",
 																															"from": [ 0.37, 0.25, -3.0 ], 
 																															"to": [ 0.37, 0.25, -3.0 ], 
+																															"uv": [ 0.0, 0.0 ],
 																															"rotationOrigin": [ 0.25, 0.5, 0.5 ],
 																															"rotationX": -33.0,
 																															"faces": {
@@ -1838,6 +1960,7 @@
 																																	"name": "HeadGear100",
 																																	"from": [ 0.0, 0.0, 0.25 ], 
 																																	"to": [ 0.25, 0.5, 6.75 ], 
+																																	"uv": [ 0.0, 0.0 ],
 																																	"faces": {
 																																		"north": { "texture": "#bismuth1", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
 																																		"east": { "texture": "#bismuth1", "uv": [ 0.0, 0.0, 6.5, 0.5 ] },
@@ -1853,6 +1976,7 @@
 																															"name": "GearSpoke1",
 																															"from": [ 0.375, 3.9, 0.0 ], 
 																															"to": [ 0.375, 3.9, 0.0 ], 
+																															"uv": [ 0.0, 0.0 ],
 																															"rotationOrigin": [ 0.5, 4.0, 0.5 ],
 																															"faces": {
 																																"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -1867,6 +1991,7 @@
 																																	"name": "Cube1",
 																																	"from": [ 0.0, 0.0, 0.0 ], 
 																																	"to": [ 0.25, 0.65, 1.0 ], 
+																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.0, 0.0, 0.5 ],
 																																	"faces": {
 																																		"north": { "texture": "#bismuth1", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -1883,6 +2008,7 @@
 																															"name": "GearSpoke103",
 																															"from": [ 0.375, -2.9, 0.0 ], 
 																															"to": [ 0.375, -2.9, 0.0 ], 
+																															"uv": [ 0.0, 0.0 ],
 																															"rotationOrigin": [ 0.5, -3.0, 0.5 ],
 																															"faces": {
 																																"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -1897,6 +2023,7 @@
 																																	"name": "Cube104",
 																																	"from": [ 0.0, 0.0, 0.0 ], 
 																																	"to": [ 0.25, 0.65, 1.0 ], 
+																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.0, 0.0, 0.5 ],
 																																	"rotationX": 180.0,
 																																	"faces": {
@@ -1914,6 +2041,7 @@
 																															"name": "GearSpoke105",
 																															"from": [ 0.375, 0.5, 3.5 ], 
 																															"to": [ 0.375, 0.5, 3.5 ], 
+																															"uv": [ 0.0, 0.0 ],
 																															"rotationOrigin": [ 0.5, 0.0, 3.5 ],
 																															"faces": {
 																																"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -1928,6 +2056,7 @@
 																																	"name": "Cube106",
 																																	"from": [ 0.0, 0.0, 0.0 ], 
 																																	"to": [ 0.25, 0.65, 1.0 ], 
+																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.0, 0.0, 0.5 ],
 																																	"rotationX": 90.0,
 																																	"faces": {
@@ -1945,6 +2074,7 @@
 																															"name": "GearSpoke107",
 																															"from": [ 0.375, 0.5, -3.5 ], 
 																															"to": [ 0.375, 0.5, -3.5 ], 
+																															"uv": [ 0.0, 0.0 ],
 																															"rotationOrigin": [ 0.5, 0.0, -3.5 ],
 																															"faces": {
 																																"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -1959,6 +2089,7 @@
 																																	"name": "Cube108",
 																																	"from": [ 0.0, 0.0, 0.0 ], 
 																																	"to": [ 0.25, 0.65, 1.0 ], 
+																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.0, 0.0, 0.5 ],
 																																	"rotationX": -90.0,
 																																	"faces": {
@@ -1976,6 +2107,7 @@
 																															"name": "GearSpoke109",
 																															"from": [ 0.375, 3.0, 2.5 ], 
 																															"to": [ 0.375, 3.0, 2.5 ], 
+																															"uv": [ 0.0, 0.0 ],
 																															"rotationOrigin": [ 0.5, 3.0, 2.5 ],
 																															"faces": {
 																																"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -1990,6 +2122,7 @@
 																																	"name": "Cube110",
 																																	"from": [ 0.0, 0.0, 0.0 ], 
 																																	"to": [ 0.25, 0.65, 1.0 ], 
+																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.0, 0.0, 0.5 ],
 																																	"rotationX": 45.0,
 																																	"faces": {
@@ -2007,6 +2140,7 @@
 																															"name": "GearSpoke111",
 																															"from": [ 0.375, 3.0, -2.5 ], 
 																															"to": [ 0.375, 3.0, -2.5 ], 
+																															"uv": [ 0.0, 0.0 ],
 																															"rotationOrigin": [ 0.5, 3.0, -2.5 ],
 																															"faces": {
 																																"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -2021,6 +2155,7 @@
 																																	"name": "Cube112",
 																																	"from": [ 0.0, 0.0, 0.0 ], 
 																																	"to": [ 0.25, 0.65, 1.0 ], 
+																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.0, 0.0, 0.5 ],
 																																	"rotationX": -45.0,
 																																	"faces": {
@@ -2038,6 +2173,7 @@
 																															"name": "GearSpoke113",
 																															"from": [ 0.375, -2.0, 2.5 ], 
 																															"to": [ 0.375, -2.0, 2.5 ], 
+																															"uv": [ 0.0, 0.0 ],
 																															"rotationOrigin": [ 0.5, -2.0, 2.5 ],
 																															"faces": {
 																																"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -2052,6 +2188,7 @@
 																																	"name": "Cube114",
 																																	"from": [ 0.0, 0.0, 0.0 ], 
 																																	"to": [ 0.25, 0.65, 1.0 ], 
+																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.0, 0.0, 0.5 ],
 																																	"rotationX": 135.0,
 																																	"faces": {
@@ -2069,6 +2206,7 @@
 																															"name": "GearSpoke115",
 																															"from": [ 0.375, -2.0, -2.5 ], 
 																															"to": [ 0.375, -2.0, -2.5 ], 
+																															"uv": [ 0.0, 0.0 ],
 																															"rotationOrigin": [ 0.5, -2.0, -2.5 ],
 																															"faces": {
 																																"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -2083,6 +2221,7 @@
 																																	"name": "Cube116",
 																																	"from": [ 0.0, 0.0, 0.0 ], 
 																																	"to": [ 0.25, 0.65, 1.0 ], 
+																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.0, 0.0, 0.5 ],
 																																	"rotationX": -135.0,
 																																	"faces": {
@@ -2104,6 +2243,7 @@
 																											"name": "ElbowInner2",
 																											"from": [ 0.0, 0.5, -1.5 ], 
 																											"to": [ 1.0, 1.5, 0.0 ], 
+																											"uv": [ 0.0, 0.0 ],
 																											"rotationOrigin": [ 0.0, 0.0, -1.0 ],
 																											"faces": {
 																												"north": { "texture": "#molybdochalkos1", "uv": [ 0.0, 0.0, 1.0, 1.0 ] },
@@ -2120,6 +2260,7 @@
 																									"name": "ArmUpper3",
 																									"from": [ 1.6, -9.0, -0.6 ], 
 																									"to": [ 1.85, 2.0, -0.35 ], 
+																									"uv": [ 0.0, 0.0 ],
 																									"rotationOrigin": [ 1.0, -3.0, -2.0 ],
 																									"faces": {
 																										"north": { "texture": "#molybdochalkos1", "uv": [ 0.0, 0.0, 0.5, 11.0 ] },
@@ -2134,6 +2275,7 @@
 																									"name": "Shoulder4",
 																									"from": [ 1.5, 2.0, -1.0 ], 
 																									"to": [ 2.5, 3.0, 0.0 ], 
+																									"uv": [ 2.0, 11.0 ],
 																									"rotationOrigin": [ 1.0, 3.0, -1.0 ],
 																									"faces": {
 																										"north": { "texture": "#molybdochalkos1", "uv": [ 6.0, 13.0, 7.0, 14.0 ] },
@@ -2148,6 +2290,7 @@
 																									"name": "ShoulderGearCenter",
 																									"from": [ 0.5, 2.0, -1.0 ], 
 																									"to": [ 1.5, 3.0, 0.0 ], 
+																									"uv": [ 0.0, 0.0 ],
 																									"rotationOrigin": [ 0.5, 2.5, -0.5 ],
 																									"faces": {
 																										"north": { "texture": "#molybdochalkos1", "uv": [ 0.0, 0.0, 1.0, 1.0 ] },
@@ -2162,6 +2305,7 @@
 																											"name": "ShoulderGear",
 																											"from": [ 0.0, 0.0, 0.0 ], 
 																											"to": [ 0.0, 0.0, 0.0 ], 
+																											"uv": [ 0.0, 0.0 ],
 																											"rotationOrigin": [ 0.0, 0.5, 0.5 ],
 																											"faces": {
 																												"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -2176,6 +2320,7 @@
 																													"name": "ShoulderGear1",
 																													"from": [ 0.25, 2.25, -0.5 ], 
 																													"to": [ 0.75, 2.75, 1.5 ], 
+																													"uv": [ 0.0, 0.0 ],
 																													"rotationOrigin": [ 0.5, 0.5, 0.5 ],
 																													"faces": {
 																														"north": { "texture": "#bismuth1", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -2190,6 +2335,7 @@
 																													"name": "ShoulderGear159",
 																													"from": [ 0.25, 2.25, -0.5 ], 
 																													"to": [ 0.75, 2.75, 1.5 ], 
+																													"uv": [ 0.0, 0.0 ],
 																													"rotationOrigin": [ 0.5, 0.5, 0.5 ],
 																													"rotationX": -180.0,
 																													"faces": {
@@ -2205,6 +2351,7 @@
 																													"name": "ShoulderGear160",
 																													"from": [ 0.25, 2.25, -0.5 ], 
 																													"to": [ 0.75, 2.75, 1.5 ], 
+																													"uv": [ 0.0, 0.0 ],
 																													"rotationOrigin": [ 0.5, 0.5, 0.5 ],
 																													"rotationX": 90.0,
 																													"faces": {
@@ -2220,6 +2367,7 @@
 																													"name": "ShoulderGear161",
 																													"from": [ 0.25, 2.25, -0.5 ], 
 																													"to": [ 0.75, 2.75, 1.5 ], 
+																													"uv": [ 0.0, 0.0 ],
 																													"rotationOrigin": [ 0.5, 0.5, 0.5 ],
 																													"rotationX": -90.0,
 																													"faces": {
@@ -2235,6 +2383,7 @@
 																													"name": "ShoulderGear162",
 																													"from": [ 0.3, 2.25, -0.5 ], 
 																													"to": [ 0.7, 2.75, 1.5 ], 
+																													"uv": [ 0.0, 0.0 ],
 																													"rotationOrigin": [ 0.5, 0.5, 0.5 ],
 																													"rotationX": 45.0,
 																													"faces": {
@@ -2250,6 +2399,7 @@
 																													"name": "ShoulderGear163",
 																													"from": [ 0.3, 2.25, -0.5 ], 
 																													"to": [ 0.7, 2.75, 1.5 ], 
+																													"uv": [ 0.0, 0.0 ],
 																													"rotationOrigin": [ 0.5, 0.5, 0.5 ],
 																													"rotationX": -45.0,
 																													"faces": {
@@ -2265,6 +2415,7 @@
 																													"name": "ShoulderGear164",
 																													"from": [ 0.3, 2.25, -0.5 ], 
 																													"to": [ 0.7, 2.75, 1.5 ], 
+																													"uv": [ 0.0, 0.0 ],
 																													"rotationOrigin": [ 0.5, 0.5, 0.5 ],
 																													"rotationX": 135.0,
 																													"faces": {
@@ -2280,6 +2431,7 @@
 																													"name": "ShoulderGear165",
 																													"from": [ 0.3, 2.25, -0.5 ], 
 																													"to": [ 0.7, 2.75, 1.5 ], 
+																													"uv": [ 0.0, 0.0 ],
 																													"rotationOrigin": [ 0.5, 0.5, 0.5 ],
 																													"rotationX": -135.0,
 																													"faces": {
@@ -2295,6 +2447,7 @@
 																													"name": "ShoulderGear166",
 																													"from": [ 0.35, 0.25, -1.75 ], 
 																													"to": [ 0.6, 0.75, 2.75 ], 
+																													"uv": [ 0.0, 0.0 ],
 																													"rotationOrigin": [ 0.5, 0.5, 0.5 ],
 																													"rotationX": 90.0,
 																													"faces": {
@@ -2310,6 +2463,7 @@
 																													"name": "ShoulderGear167",
 																													"from": [ 0.35, 0.25, -1.75 ], 
 																													"to": [ 0.6, 0.75, 2.75 ], 
+																													"uv": [ 0.0, 0.0 ],
 																													"rotationOrigin": [ 0.5, 0.5, 0.5 ],
 																													"rotationX": 33.0,
 																													"faces": {
@@ -2325,6 +2479,7 @@
 																													"name": "ShoulderGear168",
 																													"from": [ 0.35, 0.25, -1.75 ], 
 																													"to": [ 0.6, 0.75, 2.75 ], 
+																													"uv": [ 0.0, 0.0 ],
 																													"rotationOrigin": [ 0.5, 0.5, 0.5 ],
 																													"rotationX": -33.0,
 																													"faces": {
@@ -2340,6 +2495,7 @@
 																													"name": "Cube169",
 																													"from": [ 0.35, 2.75, 0.25 ], 
 																													"to": [ 0.6, 3.0, 0.75 ], 
+																													"uv": [ 0.0, 0.0 ],
 																													"rotationOrigin": [ 0.5, 0.5, 0.5 ],
 																													"faces": {
 																														"north": { "texture": "#bismuth1", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -2354,6 +2510,7 @@
 																													"name": "Cube171",
 																													"from": [ 0.35, 2.75, 0.25 ], 
 																													"to": [ 0.6, 3.0, 0.75 ], 
+																													"uv": [ 0.0, 0.0 ],
 																													"rotationOrigin": [ 0.5, 0.5, 0.5 ],
 																													"rotationX": 90.0,
 																													"faces": {
@@ -2369,6 +2526,7 @@
 																													"name": "Cube170",
 																													"from": [ 0.35, 2.75, 0.25 ], 
 																													"to": [ 0.6, 3.0, 0.75 ], 
+																													"uv": [ 0.0, 0.0 ],
 																													"rotationOrigin": [ 0.5, 0.5, 0.5 ],
 																													"rotationX": -180.0,
 																													"faces": {
@@ -2384,6 +2542,7 @@
 																													"name": "Cube173",
 																													"from": [ 0.35, 2.75, 0.25 ], 
 																													"to": [ 0.6, 3.0, 0.75 ], 
+																													"uv": [ 0.0, 0.0 ],
 																													"rotationOrigin": [ 0.5, 0.5, 0.5 ],
 																													"rotationX": -90.0,
 																													"faces": {
@@ -2399,6 +2558,7 @@
 																													"name": "Cube174",
 																													"from": [ 0.35, 2.75, 0.25 ], 
 																													"to": [ 0.6, 3.0, 0.75 ], 
+																													"uv": [ 0.0, 0.0 ],
 																													"rotationOrigin": [ 0.5, 0.5, 0.5 ],
 																													"rotationX": 45.0,
 																													"faces": {
@@ -2414,6 +2574,7 @@
 																													"name": "Cube176",
 																													"from": [ 0.35, 2.75, 0.25 ], 
 																													"to": [ 0.6, 3.0, 0.75 ], 
+																													"uv": [ 0.0, 0.0 ],
 																													"rotationOrigin": [ 0.5, 0.5, 0.5 ],
 																													"rotationX": -45.0,
 																													"faces": {
@@ -2429,6 +2590,7 @@
 																													"name": "Cube178",
 																													"from": [ 0.35, 2.75, 0.25 ], 
 																													"to": [ 0.6, 3.0, 0.75 ], 
+																													"uv": [ 0.0, 0.0 ],
 																													"rotationOrigin": [ 0.5, 0.5, 0.5 ],
 																													"rotationX": 135.0,
 																													"faces": {
@@ -2444,6 +2606,7 @@
 																													"name": "Cube179",
 																													"from": [ 0.35, 2.75, 0.25 ], 
 																													"to": [ 0.6, 3.0, 0.75 ], 
+																													"uv": [ 0.0, 0.0 ],
 																													"rotationOrigin": [ 0.5, 0.5, 0.5 ],
 																													"rotationX": -135.0,
 																													"faces": {
@@ -2481,6 +2644,7 @@
 							"name": "LegL",
 							"from": [ 5.0, -10.5, -4.0 ], 
 							"to": [ 5.0, -10.5, -4.0 ], 
+							"uv": [ 0.0, 0.0 ],
 							"rotationOrigin": [ 6.0, 0.0, -0.75 ],
 							"rotationX": -6.0,
 							"faces": {
@@ -2496,6 +2660,7 @@
 									"name": "Upper163",
 									"from": [ 0.0, -1.0, 3.0 ], 
 									"to": [ 2.0, 12.0, 6.0 ], 
+									"uv": [ 0.0, 0.0 ],
 									"rotationOrigin": [ 1.0, 9.0, 4.0 ],
 									"rotationX": -47.0,
 									"faces": {
@@ -2511,6 +2676,7 @@
 											"name": "Midsection164",
 											"from": [ 0.5, -10.0, 1.0 ], 
 											"to": [ 1.5, 0.0, 3.0 ], 
+											"uv": [ 5.0, 4.0 ],
 											"rotationOrigin": [ 1.0, 0.0, 2.0 ],
 											"rotationX": 127.0,
 											"faces": {
@@ -2526,6 +2692,7 @@
 													"name": "BottomJoint165",
 													"from": [ -1.0, -2.0, -1.0 ], 
 													"to": [ 2.0, 1.0, 2.0 ], 
+													"uv": [ 2.0, 0.0 ],
 													"rotationOrigin": [ 0.5, 1.0, 0.5 ],
 													"rotationX": -114.0,
 													"faces": {
@@ -2541,6 +2708,7 @@
 															"name": "Lower166",
 															"from": [ 1.0, -11.0, 1.0 ], 
 															"to": [ 2.0, 0.0, 2.0 ], 
+															"uv": [ 0.0, 0.0 ],
 															"rotationOrigin": [ 1.5, 0.0, 1.5 ],
 															"faces": {
 																"north": { "texture": "#legs", "uv": [ 1.5, 5.0, 2.5, 16.0 ] },
@@ -2555,6 +2723,7 @@
 																	"name": "LowerWire167",
 																	"from": [ 0.25, 7.25, 2.0 ], 
 																	"to": [ 0.25, 7.25, 2.0 ], 
+																	"uv": [ 0.0, 0.0 ],
 																	"rotationOrigin": [ 0.25, 7.0566, 2.4656 ],
 																	"rotationX": 22.5,
 																	"faces": {
@@ -2570,6 +2739,7 @@
 																			"name": "Cube168",
 																			"from": [ 0.05, 0.0, 0.0 ], 
 																			"to": [ 0.45, 4.0, 0.4 ], 
+																			"uv": [ 0.0, 0.0 ],
 																			"rotationOrigin": [ 0.0, 0.0, 0.0 ],
 																			"rotationX": -45.0,
 																			"faces": {
@@ -2585,6 +2755,7 @@
 																			"name": "Cube180",
 																			"from": [ 0.0, -3.7304, -0.2341 ], 
 																			"to": [ 0.5, 0.2696, 0.2659 ], 
+																			"uv": [ 0.0, 0.0 ],
 																			"rotationOrigin": [ -0.25, -1.7304, -0.4841 ],
 																			"faces": {
 																				"north": { "texture": "#molybdochalkos1", "uv": [ 0.0, 0.0, 0.5, 4.0 ] },
@@ -2607,6 +2778,7 @@
 											"name": "UpperWire170",
 											"from": [ 0.0, 0.0, 0.0 ], 
 											"to": [ 0.0, 0.0, 0.0 ], 
+											"uv": [ 0.0, 0.0 ],
 											"faces": {
 												"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
 												"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
@@ -2620,6 +2792,7 @@
 													"name": "Cube180",
 													"from": [ 0.75, 6.0, -0.5 ], 
 													"to": [ 1.25, 12.0, 0.0 ], 
+													"uv": [ 0.0, 0.0 ],
 													"rotationOrigin": [ 1.25, 10.0, -0.75 ],
 													"rotationX": 30.0,
 													"faces": {
@@ -2635,6 +2808,7 @@
 													"name": "Cube180",
 													"from": [ 0.79, 0.8, -2.0 ], 
 													"to": [ 1.19, 6.8, -1.6 ], 
+													"uv": [ 0.0, 0.0 ],
 													"rotationOrigin": [ 1.25, 6.0, -1.75 ],
 													"rotationX": -30.0,
 													"faces": {

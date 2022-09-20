@@ -19,7 +19,7 @@
       { "code": "controlledphysics", "stepHeight": 1.2 },
       { "code": "floatupwhenstuck", "onlyWhenDead": true },
       { "code": "interpolateposition" },
-	  { "code": "harvestable", duration: 5 }
+	  { "code": "harvestable", "duration": 5 }
     ],
     "animations": [
       {
@@ -33,14 +33,14 @@
         "animation": "die",
         "weight": 10,
         "blendMode": "Average",
-		"triggeredBy": { onControls: ["Dead"] }
+		"triggeredBy": { "onControls": ["Dead"] }
       },
 	  {
         "code": "idle",
         "animation": "idle",
         "weight": 10,
         "blendMode": "Average",
-		"triggeredby": { defaultAnim: true }
+		"triggeredby": { "defaultAnim": true }
       },
 	  {
         "code": "walk",
@@ -116,7 +116,7 @@
         ]
       },
 	  { 
-		"code": "harvestable", duration: 5, drops: 
+		"code": "harvestable", "duration": 5, "drops": 
 		[
 			{
 				"type": "item",
