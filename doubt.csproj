@@ -44,17 +44,21 @@
       <HintPath>D:\Games\Vintagestory\Lib\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="VintagestoryAPI">
-      <HintPath>..\..\..\..\..\..\..\..\Games\Vintagestory\VintagestoryAPI.dll</HintPath>
+    <Reference Include="VintagestoryAPI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Games\Vintagestory\VintagestoryAPI.dll</HintPath>
     </Reference>
-    <Reference Include="VSCreativeMod">
-      <HintPath>..\..\..\..\..\..\..\..\Games\Vintagestory\Mods\VSCreativeMod.dll</HintPath>
+    <Reference Include="VSCreativeMod, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Games\Vintagestory\Mods\VSCreativeMod.dll</HintPath>
     </Reference>
-    <Reference Include="VSEssentials">
-      <HintPath>..\..\..\..\..\..\..\..\Games\Vintagestory\Mods\VSEssentials.dll</HintPath>
+    <Reference Include="VSEssentials, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Games\Vintagestory\Mods\VSEssentials.dll</HintPath>
     </Reference>
-    <Reference Include="VSSurvivalMod">
-      <HintPath>..\..\..\..\..\..\..\..\Games\Vintagestory\Mods\VSSurvivalMod.dll</HintPath>
+    <Reference Include="VSSurvivalMod, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Games\Vintagestory\Mods\VSSurvivalMod.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

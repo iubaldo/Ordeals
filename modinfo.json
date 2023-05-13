@@ -3,9 +3,9 @@
   "modid": "doubt",
   "name": "Doubt",
   "authors": ["Landar"],
-  "description": "Living is painful. Adds the Green Dawn enemy from Lobotomy Corporation.",
+  "description": "Living is painful. Adds the Green Dawn, 'Doubt,' from Lobotomy Corporation.",
   "version": "1.0.0",
   "dependencies": {
-    "game": "1.17.4"
+    "game": "1.18.3"
   }
 }

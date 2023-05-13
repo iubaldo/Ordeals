@@ -14,9 +14,8 @@ namespace doubt.src
         {
             base.Start(api);
 
-            api.Logger.Warning("Loading Doubt...");
-
-
+            // api.Logger.Warning("Loading Doubt...");
+            // api.Logger.StoryEvent("Loading Doubt...");
         }
     }
 }

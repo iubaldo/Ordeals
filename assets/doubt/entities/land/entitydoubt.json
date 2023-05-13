@@ -10,6 +10,10 @@
     "y": 2
   },
   "eyeHeight": 2.7,
+  "attributes": {
+    "killedByInfoText": "deadcreature-entitydoubt",
+    "reckless": true
+  },
   "drops": [],
   "client": {
     "renderer": "Shape",
@@ -19,7 +23,7 @@
       { "code": "controlledphysics", "stepHeight": 1.2 },
       { "code": "floatupwhenstuck", "onlyWhenDead": true },
       { "code": "interpolateposition" },
-	  { "code": "harvestable", "duration": 5 }
+	    { "code": "harvestable", "duration": 4 }
     ],
     "animations": [
       {
@@ -30,21 +34,21 @@
       },
       {
         "code": "die",
-        "animation": "death",
+        "animation": "die",
         "weight": 10,
         "blendMode": "Average",
-		"triggeredBy": { "onControls": ["dead"] }
+		    "triggeredBy": { "onControls": ["dead"] }
       },
 	  {
         "code": "idle",
         "animation": "idle",
         "blendMode": "Average",
-		"triggeredby": { "defaultAnim": true }
+		    "triggeredby": { "defaultAnim": true }
       },
 	  {
         "code": "walk",
         "animation": "walk",
-		"animationSpeed": 1.12,
+		    "animationSpeed": 1.12,
         "blendMode": "AddAverage"
       }
     ]
@@ -54,7 +58,7 @@
       { "code": "repulseagents" },
       { "code": "controlledphysics", "stepHeight": 1.2 },
       { "code": "health", "currenthealth": 30, "maxhealth": 30 },
-      { "code": "deaddecay", "hoursToDecay": 6 },
+      { "code": "deaddecay", "hoursToDecay": 8 },
       { "code": "floatupwhenstuck", "onlyWhenDead": true },
       { "code": "despawn", "minPlayerDistance": 64, "minSeconds": 5 },
       {
@@ -66,70 +70,71 @@
             "priorityForCancel": 1.35,
             "minduration": 4000,
             "maxduration": 6000,
-            "chance": 0.001,
             "initialMinCoolDown": 2000,
             "initialMaxCoolDown": 150000,
             "mincooldown": 300000,
             "maxcooldown": 10000000,
-            "animation": "idle"
+            "animation": "idle",
+            "sound": "creature/idle"
           },
           {
             "code": "wander",
-            "priority": 1.0,
+            "priority": 1.3,
             "movespeed": 0.008,
             "animation": "walk",
+            "sound": "creature/walk",
             "preferredLightLevel": 15
           },
           {
             "code": "lookaround",
             "priority": 0.5
           },
-		  {
-			"code": "meleeattack",
-			"entityCodes": ["player"],
-			"priority": 2,
-			"damage": 1,
-			"damageTier": 3,
-			"damageType": "PiercingAttack",
-			"mincooldown": 500, 
-			"maxcooldown": 1750, 
-			"minDist": 2,
-			"damagePlayerAtMs": 400,
-			"attackDurationMs": 1000,
-			"animation": "attack",
-			"sound": "creature/attack",
-			"soundStartMs": 400
-		  },
-		  {
-			"code": "seekentity",
-			"entityCodes": ["player"],
-			"priority": 1.5,
-			"mincooldown": 400, 
-			"maxcooldown": 800, 
-			"movespeed": 0.018,
-			"seekingRange": 30,
-			"animationSpeed": 1.2,
-			"animation": "walk"
-		  },
+          {
+            "code": "meleeattack",
+            "entityCodes": ["player"],
+            "priority": 3,
+            "damage": 1,
+            "damageTier": 3,
+            "damageType": "PiercingAttack",
+            "mincooldown": 500, 
+            "maxcooldown": 1750, 
+            "minDist": 1.5,
+            "damagePlayerAtMs": 400,
+            "attackDurationMs": 1000,
+            "animationSpeed": 1.25,
+            "animation": "attack",
+            "sound": "creature/attack",
+            "soundStartMs": 400
+          },
+          {
+            "code": "seekentity",
+            "entityCodes": ["player"],
+            "priority": 1.5,
+            "mincooldown": 400, 
+            "maxcooldown": 800, 
+            "movespeed": 0.024,
+            "seekingRange": 48,
+            "animationSpeed": 3,
+            "animation": "walk",
+            "sound": "creature/walk"
+          }
         ]
       },
-	  { 
-		"code": "harvestable", "duration": 5, "drops": 
-		[
-			{
-				"type": "item",
-				"code": "gear-rusty",
-				"quantity": { "avg": 4, "var": 2 }
-			}
-		]
-	  }
+      { 
+        "code": "harvestable", 
+        "duration": 5, 
+        "drops": [
+          {
+            "type": "item",
+            "code": "gear-rusty",
+            "quantity": { "avg": 4, "var": 2 }
+          }
+        ]
+      }
     ]
   },
   "sounds": {
     "hurt": "creature/hurt",
-    "death": "creature/death",
-    "idle": "creature/idle"
-  },
-  "idlesoundrange": 20,
-  "idlesoundchance": 0.025
+    "death": "creature/death"
+  }
 }
