@@ -8,16 +8,16 @@
 	"textureSizes": {
 	},
 	"textures": {
-		"head": "entity/head",
+		"head": "entity/dawngreen/head",
 		"blackbronze": "game:block/metal/ingot/blackbronze",
 		"molybdochalkos1": "game:block/metal/sheet/molybdochalkos1",
-		"cloak1": "entity/cloak1",
-		"chestspine1": "entity/chestspine1",
-		"legs": "entity/legs",
-		"cloak2": "entity/cloak2",
-		"chestspine2": "entity/chestspine2",
+		"cloak1": "entity/dawngreen/cloak1",
+		"chestspine1": "entity/dawngreen/chestspine1",
+		"legs": "entity/dawngreen/legs",
+		"cloak2": "entity/dawngreen/cloak2",
+		"chestspine2": "entity/dawngreen/chestspine2",
 		"bismuth1": "game:block/metal/sheet/bismuth1",
-		"arm": "entity/arm"
+		"arm": "entity/dawngreen/arm"
 	},
 	"elements": [
 		{
@@ -26,14 +26,6 @@
 			"to": [ 0.0, 0.0, 0.0 ],
 			"uv": [ 0.0, 0.0 ],
 			"rotationOrigin": [ 16.0, 0.0, 0.0 ],
-			"faces": {
-				"north": { "texture": "#null", "uv": [ 0.0, 0.5, 0.5, 1.0 ] },
-				"east": { "texture": "#null", "uv": [ 0.5, 0.5, 1.0, 1.0 ] },
-				"south": { "texture": "#null", "uv": [ 1.0, 0.5, 1.5, 1.0 ] },
-				"west": { "texture": "#null", "uv": [ 1.5, 0.5, 2.0, 1.0 ] },
-				"up": { "texture": "#null", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-				"down": { "texture": "#null", "uv": [ 0.5, 0.0, 1.0, 0.5 ] }
-			},
 			"children": [
 				{
 					"name": "Doubt",
@@ -42,14 +34,6 @@
 					"uv": [ 0.0, 0.0 ],
 					"rotationOrigin": [ 0.0, 0.0, 0.0 ],
 					"rotationY": -89.98,
-					"faces": {
-						"north": { "texture": "#face", "uv": [ 0.0, 0.5, 0.5, 1.0 ] },
-						"east": { "texture": "#face", "uv": [ 0.5, 0.5, 1.0, 1.0 ] },
-						"south": { "texture": "#face", "uv": [ 1.0, 0.5, 1.5, 1.0 ] },
-						"west": { "texture": "#face", "uv": [ 1.5, 0.5, 2.0, 1.0 ] },
-						"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-						"down": { "texture": "#face", "uv": [ 0.5, 0.0, 1.0, 0.5 ] }
-					},
 					"children": [
 						{
 							"name": "Legs",
@@ -57,14 +41,6 @@
 							"to": [ 8.0, 19.0, 5.0 ],
 							"uv": [ 0.0, 0.0 ],
 							"rotationOrigin": [ 8.0, 19.0, 5.0 ],
-							"faces": {
-								"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-								"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-								"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-								"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-								"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-								"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-							},
 							"children": [
 								{
 									"name": "LegR",
@@ -73,14 +49,6 @@
 									"uv": [ 0.0, 0.0 ],
 									"rotationOrigin": [ -6.0, 0.0, -0.75 ],
 									"rotationX": 19.0,
-									"faces": {
-										"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-										"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-										"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-										"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-										"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-										"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-									},
 									"children": [
 										{
 											"name": "Upper",
@@ -152,14 +120,6 @@
 																			"uv": [ 0.0, 0.0 ],
 																			"rotationOrigin": [ 0.25, 7.0566, 2.4656 ],
 																			"rotationX": 22.5,
-																			"faces": {
-																				"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																				"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																				"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																				"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																				"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																				"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																			},
 																			"children": [
 																				{
 																					"name": "Cube11",
@@ -205,14 +165,6 @@
 													"from": [ 0.0, 0.0, 0.0 ],
 													"to": [ 0.0, 0.0, 0.0 ],
 													"uv": [ 0.0, 0.0 ],
-													"faces": {
-														"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-														"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-														"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-														"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-														"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-														"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-													},
 													"children": [
 														{
 															"name": "Cube15",
@@ -528,14 +480,6 @@
 																									"to": [ 0.0, 2.4, 2.75 ],
 																									"uv": [ 0.0, 0.0 ],
 																									"rotationOrigin": [ 1.0, 4.0, 1.0 ],
-																									"faces": {
-																										"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																										"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																										"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																										"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																										"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																										"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																									},
 																									"children": [
 																										{
 																											"name": "NeckUpper",
@@ -576,14 +520,6 @@
 																													"uv": [ 0.0, 0.0 ],
 																													"rotationOrigin": [ 1.75, -0.0805, -0.6237 ],
 																													"rotationX": 65.0,
-																													"faces": {
-																														"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																														"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																														"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																														"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																														"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																														"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																													},
 																													"children": [
 																														{
 																															"name": "Head46",
@@ -626,14 +562,6 @@
 																													"uv": [ 0.0, 0.0 ],
 																													"rotationOrigin": [ -1.25, -2.3255, 1.1696 ],
 																													"rotationX": 50.0,
-																													"faces": {
-																														"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																														"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																														"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																														"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																														"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																														"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																													},
 																													"children": [
 																														{
 																															"name": "Cube55",
@@ -656,14 +584,6 @@
 																															"to": [ 3.5, 1.0, 2.5 ],
 																															"uv": [ 0.0, 0.0 ],
 																															"rotationOrigin": [ 4.5, 2.0, 2.5 ],
-																															"faces": {
-																																"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																															},
 																															"children": [
 																																{
 																																	"name": "Eyeball1",
@@ -752,14 +672,6 @@
 																															"uv": [ 0.0, 0.0 ],
 																															"rotationOrigin": [ 2.5, -1.0, 2.5 ],
 																															"rotationX": 15.0,
-																															"faces": {
-																																"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																															},
 																															"children": [
 																																{
 																																	"name": "Eyeball77",
@@ -847,14 +759,6 @@
 																															"uv": [ 0.0, 0.0 ],
 																															"rotationOrigin": [ 3.5, -2.0, 2.5 ],
 																															"rotationX": 15.0,
-																															"faces": {
-																																"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																															},
 																															"children": [
 																																{
 																																	"name": "Eyeball79",
@@ -941,14 +845,6 @@
 																															"to": [ 0.0, 3.6227, -1.4193 ],
 																															"uv": [ 0.0, 0.0 ],
 																															"rotationOrigin": [ 0.5, 4.1227, -0.9193 ],
-																															"faces": {
-																																"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																															},
 																															"children": [
 																																{
 																																	"name": "HeadGearCenter",
@@ -971,14 +867,6 @@
 																																			"to": [ 0.25, 2.5, -0.25 ],
 																																			"uv": [ 0.0, 0.0 ],
 																																			"rotationOrigin": [ 0.5, 2.0, 0.5 ],
-																																			"faces": {
-																																				"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																																			},
 																																			"children": [
 																																				{
 																																					"name": "HeadGear159",
@@ -1003,14 +891,6 @@
 																																			"to": [ 0.25, -1.5, -0.25 ],
 																																			"uv": [ 0.0, 0.0 ],
 																																			"rotationOrigin": [ 0.5, -1.0, 0.5 ],
-																																			"faces": {
-																																				"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																																			},
 																																			"children": [
 																																				{
 																																					"name": "HeadGear156",
@@ -1036,14 +916,6 @@
 																																			"to": [ 0.25, 2.0, 1.25 ],
 																																			"uv": [ 0.0, 0.0 ],
 																																			"rotationOrigin": [ 0.5, 1.0, 2.5 ],
-																																			"faces": {
-																																				"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																																			},
 																																			"children": [
 																																				{
 																																					"name": "HeadGear158",
@@ -1069,14 +941,6 @@
 																																			"to": [ 0.25, 2.0, -1.75 ],
 																																			"uv": [ 0.0, 0.0 ],
 																																			"rotationOrigin": [ 0.5, 1.0, -0.5 ],
-																																			"faces": {
-																																				"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																																			},
 																																			"children": [
 																																				{
 																																					"name": "HeadGear161",
@@ -1102,14 +966,6 @@
 																																			"to": [ 0.25, 0.5, 1.75 ],
 																																			"uv": [ 0.0, 0.0 ],
 																																			"rotationOrigin": [ 0.5, 0.0, 2.5 ],
-																																			"faces": {
-																																				"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																																			},
 																																			"children": [
 																																				{
 																																					"name": "HeadGear163",
@@ -1135,14 +991,6 @@
 																																			"to": [ 0.25, 0.5, -2.25 ],
 																																			"uv": [ 0.0, 0.0 ],
 																																			"rotationOrigin": [ 0.5, 0.0, -2.5 ],
-																																			"faces": {
-																																				"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																																			},
 																																			"children": [
 																																				{
 																																					"name": "HeadGear169",
@@ -1168,14 +1016,6 @@
 																																			"to": [ 0.25, -1.0, 1.25 ],
 																																			"uv": [ 0.0, 0.0 ],
 																																			"rotationOrigin": [ 0.5, -2.0, 2.5 ],
-																																			"faces": {
-																																				"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																																			},
 																																			"children": [
 																																				{
 																																					"name": "HeadGear166",
@@ -1201,14 +1041,6 @@
 																																			"to": [ 0.25, -1.0, -1.75 ],
 																																			"uv": [ 0.0, 0.0 ],
 																																			"rotationOrigin": [ 0.5, -2.0, -0.5 ],
-																																			"faces": {
-																																				"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																																			},
 																																			"children": [
 																																				{
 																																					"name": "HeadGear168",
@@ -1282,14 +1114,6 @@
 																																			"to": [ 0.4, 3.25, 0.0 ],
 																																			"uv": [ 0.0, 0.0 ],
 																																			"rotationOrigin": [ 0.0, 3.25, 0.5 ],
-																																			"faces": {
-																																				"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																																			},
 																																			"children": [
 																																				{
 																																					"name": "Cube172",
@@ -1313,14 +1137,6 @@
 																																			"to": [ 0.4, -2.25, 0.0 ],
 																																			"uv": [ 0.0, 0.0 ],
 																																			"rotationOrigin": [ 0.0, -2.25, 0.5 ],
-																																			"faces": {
-																																				"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																																			},
 																																			"children": [
 																																				{
 																																					"name": "Cube175",
@@ -1346,14 +1162,6 @@
 																																			"to": [ 0.4, 0.5, 2.75 ],
 																																			"uv": [ 0.0, 0.0 ],
 																																			"rotationOrigin": [ 0.0, 0.5, 3.25 ],
-																																			"faces": {
-																																				"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																																			},
 																																			"children": [
 																																				{
 																																					"name": "Cube177",
@@ -1379,14 +1187,6 @@
 																																			"to": [ 0.4, 0.5, -2.75 ],
 																																			"uv": [ 0.0, 0.0 ],
 																																			"rotationOrigin": [ 0.0, 0.5, -2.25 ],
-																																			"faces": {
-																																				"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																																			},
 																																			"children": [
 																																				{
 																																					"name": "Cube147",
@@ -1413,14 +1213,6 @@
 																																			"uv": [ 0.0, 0.0 ],
 																																			"rotationOrigin": [ 0.0, 0.5, 0.5 ],
 																																			"rotationX": 45.0,
-																																			"faces": {
-																																				"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																																			},
 																																			"children": [
 																																				{
 																																					"name": "Cube149",
@@ -1445,14 +1237,6 @@
 																																			"uv": [ 0.0, 0.0 ],
 																																			"rotationOrigin": [ 0.0, 0.5, 0.5 ],
 																																			"rotationX": -45.0,
-																																			"faces": {
-																																				"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																																			},
 																																			"children": [
 																																				{
 																																					"name": "Cube151",
@@ -1477,14 +1261,6 @@
 																																			"uv": [ 0.0, 0.0 ],
 																																			"rotationOrigin": [ 0.0, 0.5, 0.5 ],
 																																			"rotationX": -135.0,
-																																			"faces": {
-																																				"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																																			},
 																																			"children": [
 																																				{
 																																					"name": "Cube153",
@@ -1509,14 +1285,6 @@
 																																			"uv": [ 0.0, 0.0 ],
 																																			"rotationOrigin": [ 0.0, 0.5, 0.5 ],
 																																			"rotationX": 135.0,
-																																			"faces": {
-																																				"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																				"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																																			},
 																																			"children": [
 																																				{
 																																					"name": "Cube155",
@@ -1898,14 +1666,6 @@
 																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.25, 0.5, 0.5 ],
 																																	"rotationX": 90.0,
-																																	"faces": {
-																																		"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																																	},
 																																	"children": [
 																																		{
 																																			"name": "HeadGear95",
@@ -1930,14 +1690,6 @@
 																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.25, 0.5, 0.5 ],
 																																	"rotationX": 33.0,
-																																	"faces": {
-																																		"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																																	},
 																																	"children": [
 																																		{
 																																			"name": "HeadGear98",
@@ -1962,14 +1714,6 @@
 																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.25, 0.5, 0.5 ],
 																																	"rotationX": -33.0,
-																																	"faces": {
-																																		"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																																	},
 																																	"children": [
 																																		{
 																																			"name": "HeadGear100",
@@ -1993,14 +1737,6 @@
 																																	"to": [ 0.375, 3.9, 0.0 ],
 																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.5, 4.0, 0.5 ],
-																																	"faces": {
-																																		"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																																	},
 																																	"children": [
 																																		{
 																																			"name": "Cube1",
@@ -2025,14 +1761,6 @@
 																																	"to": [ 0.375, -2.9, 0.0 ],
 																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.5, -3.0, 0.5 ],
-																																	"faces": {
-																																		"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																																	},
 																																	"children": [
 																																		{
 																																			"name": "Cube104",
@@ -2058,14 +1786,6 @@
 																																	"to": [ 0.375, 0.5, 3.5 ],
 																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.5, 0.0, 3.5 ],
-																																	"faces": {
-																																		"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																																	},
 																																	"children": [
 																																		{
 																																			"name": "Cube106",
@@ -2091,14 +1811,6 @@
 																																	"to": [ 0.375, 0.5, -3.5 ],
 																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.5, 0.0, -3.5 ],
-																																	"faces": {
-																																		"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																																	},
 																																	"children": [
 																																		{
 																																			"name": "Cube108",
@@ -2124,14 +1836,6 @@
 																																	"to": [ 0.375, 3.0, 2.5 ],
 																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.5, 3.0, 2.5 ],
-																																	"faces": {
-																																		"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																																	},
 																																	"children": [
 																																		{
 																																			"name": "Cube110",
@@ -2157,14 +1861,6 @@
 																																	"to": [ 0.375, 3.0, -2.5 ],
 																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.5, 3.0, -2.5 ],
-																																	"faces": {
-																																		"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																																	},
 																																	"children": [
 																																		{
 																																			"name": "Cube112",
@@ -2190,14 +1886,6 @@
 																																	"to": [ 0.375, -2.0, 2.5 ],
 																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.5, -2.0, 2.5 ],
-																																	"faces": {
-																																		"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																																	},
 																																	"children": [
 																																		{
 																																			"name": "Cube114",
@@ -2223,14 +1911,6 @@
 																																	"to": [ 0.375, -2.0, -2.5 ],
 																																	"uv": [ 0.0, 0.0 ],
 																																	"rotationOrigin": [ 0.5, -2.0, -2.5 ],
-																																	"faces": {
-																																		"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																																		"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																																	},
 																																	"children": [
 																																		{
 																																			"name": "Cube116",
@@ -2322,14 +2002,6 @@
 																													"to": [ 0.0, 0.0, 0.0 ],
 																													"uv": [ 0.0, 0.0 ],
 																													"rotationOrigin": [ 0.0, 0.5, 0.5 ],
-																													"faces": {
-																														"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																														"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																														"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																														"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																														"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																														"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																													},
 																													"children": [
 																														{
 																															"name": "ShoulderGear1",
@@ -2662,14 +2334,6 @@
 									"uv": [ 0.0, 0.0 ],
 									"rotationOrigin": [ 6.0, 0.0, -0.75 ],
 									"rotationX": -6.0,
-									"faces": {
-										"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-										"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-										"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-										"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-										"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-										"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-									},
 									"children": [
 										{
 											"name": "Upper163",
@@ -2741,14 +2405,6 @@
 																			"uv": [ 0.0, 0.0 ],
 																			"rotationOrigin": [ 0.25, 7.0566, 2.4656 ],
 																			"rotationX": 22.5,
-																			"faces": {
-																				"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																				"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																				"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																				"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																				"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-																				"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-																			},
 																			"children": [
 																				{
 																					"name": "Cube168",
@@ -2794,14 +2450,6 @@
 													"from": [ 0.0, 0.0, 0.0 ],
 													"to": [ 0.0, 0.0, 0.0 ],
 													"uv": [ 0.0, 0.0 ],
-													"faces": {
-														"north": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-														"east": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-														"south": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-														"west": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-														"up": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] },
-														"down": { "texture": "#face", "uv": [ 0.0, 0.0, 0.5, 0.5 ] }
-													},
 													"children": [
 														{
 															"name": "Cube180",
@@ -3259,7 +2907,7 @@
 			"name": "die",
 			"code": "die",
 			"quantityframes": 90,
-			"onActivityStopped": "PlayTillEnd",
+			"onActivityStopped": "EaseOut",
 			"onAnimationEnd": "Hold",
 			"keyframes": [
 				{

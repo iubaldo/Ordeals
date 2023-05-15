@@ -1,5 +1,5 @@
 {
-  "code": "entitydoubt",
+  "code": "entitydawngreen",
   "class": "EntityAgent",
   "hitboxSize": {
     "x": 1,
@@ -11,13 +11,13 @@
   },
   "eyeHeight": 2.7,
   "attributes": {
-    "killedByInfoText": "deadcreature-entitydoubt",
+    "killedByInfoText": "deadcreature-entitydawngreen",
     "reckless": true
   },
   "drops": [],
   "client": {
     "renderer": "Shape",
-    "shape": { "base": "entity/land/shapedoubt" },
+    "shape": { "base": "entity/land/shapedawngreen" },
     "behaviors": [
       { "code": "repulseagents" },
       { "code": "controlledphysics", "stepHeight": 1.2 },
@@ -29,23 +29,21 @@
       {
         "code": "hurt",
         "animation": "hurt",
-        "weight": 10,
-        "blendMode": "AddAverage"
+        "blendMode": "Average"
       },
       {
         "code": "die",
         "animation": "die",
-        "weight": 10,
         "blendMode": "Average",
 		    "triggeredBy": { "onControls": ["dead"] }
       },
-	  {
+	    {
         "code": "idle",
         "animation": "idle",
         "blendMode": "Average",
 		    "triggeredby": { "defaultAnim": true }
       },
-	  {
+	    {
         "code": "walk",
         "animation": "walk",
 		    "animationSpeed": 1.12,
@@ -75,14 +73,14 @@
             "mincooldown": 300000,
             "maxcooldown": 10000000,
             "animation": "idle",
-            "sound": "creature/idle"
+            "sound": "creature/dawngreen/idle"
           },
           {
             "code": "wander",
             "priority": 1.3,
             "movespeed": 0.008,
             "animation": "walk",
-            "sound": "creature/walk",
+            "sound": "creature/dawngreen/walk",
             "preferredLightLevel": 15
           },
           {
@@ -103,7 +101,7 @@
             "attackDurationMs": 1000,
             "animationSpeed": 1.25,
             "animation": "attack",
-            "sound": "creature/attack",
+            "sound": "creature/dawngreen/attack",
             "soundStartMs": 400
           },
           {
@@ -116,7 +114,7 @@
             "seekingRange": 48,
             "animationSpeed": 3,
             "animation": "walk",
-            "sound": "creature/walk"
+            "sound": "creature/dawngreen/walk"
           }
         ]
       },
@@ -137,10 +135,23 @@
           }
         ]
       }
-    ]
+    ],
+    "spawnconditions": {
+			"runtime": {
+				"group": "hostile",
+				"maxQuantity": 4,
+				"maxLightLevel": 7,
+				"chance": 0.1,
+				"lightLevelType": "MaxTimeOfDayLight",
+				"groupSize": { "dist": "invexp", "avg": 1, "var": 3 },
+				"insideBlockCodes": ["air", "tallgrass-*"],
+				"minY": 0,
+				"maxY": 0.35
+			}
+		}
   },
   "sounds": {
-    "hurt": "creature/hurt",
-    "death": "creature/death"
+    "hurt": "creature/dawngreen/hurt",
+    "death": "creature/dawngreen/death"
   }
 }
