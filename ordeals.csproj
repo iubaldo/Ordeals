@@ -68,6 +68,7 @@
     <Content Include="modinfo.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\OrdealEvent.cs" />
     <Compile Include="src\OrdealsMain.cs" />
     <Compile Include="src\RedirectLogs.cs" />
   </ItemGroup>
