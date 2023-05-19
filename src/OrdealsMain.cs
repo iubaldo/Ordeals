@@ -24,11 +24,10 @@ namespace ordeals.src
         IClientNetworkChannel clientChannel;
 
         Dictionary<string, OrdealEventConfig> configs;
-        Dictionary<OrdealVariant, OrdealEventText> texts;
         Dictionary<OrdealTier, OrdealStrength> ordealStrengths;
-        Dictionary<OrdealVariant, OrdealSpawnGroups> ordealSpawnGroups;
-
-        EntityProperties[] ordealEntityTypes;
+        Dictionary<OrdealVariant, OrdealEventText> texts;       
+        Dictionary<OrdealVariant, OrdealSpawnSettings> ordealSpawnSettings;
+        Dictionary<OrdealVariant, EntityProperties> ordealEntityTypes;
 
         OrdealEventConfig config;
         OrdealEventRuntimeData data = new OrdealEventRuntimeData();
@@ -206,17 +205,89 @@ namespace ordeals.src
         }
 
 
-        private void beginOrdeal()
+        private void beginOrdeal(OrdealVariant variant)
         {
             // show splash screen
+            sapi.BroadcastMessageToAllGroups("Beginning ordeal...", EnumChatType.Notification);
+
+            OrdealStrength strength = ordealStrengths[(OrdealTier) data.currentOrdealTier];
+            OrdealSpawnSettings spawnSettings = ordealSpawnSettings[variant];
+
+            CollisionTester collisionTester = new CollisionTester();
+
+            // spawn mobs
+            foreach (IPlayer player in api.World.AllOnlinePlayers)
+            {
+                Vec3d playerPos = player.Entity.ServerPos.XYZ;
+
+                for (int i = 0; i < spawnSettings.numGroups; i++) // TODO: adjust size by ordeal strength/variants
+                {
+                    int groupSize = sapi.World.Rand.Next(spawnSettings.minGroupSize, spawnSettings.maxGroupSize);
+                    for (int j = 0; j < groupSize; j++)
+                    {
+                        var entityType = ordealEntityTypes[variant];
+
+                        int tries = 15;
+
+                        while (tries-- > 0)
+                        {
+                            int spawnX = api.World.Rand.Next(-spawnSettings.spawnRange, spawnSettings.spawnRange);
+                            int spawnY = api.World.Rand.Next(-spawnSettings.spawnRange, spawnSettings.spawnRange);
+                            int spawnZ = api.World.Rand.Next(-spawnSettings.spawnRange, spawnSettings.spawnRange);
+
+                            Vec3d spawnPos = new Vec3d((int)playerPos.X + spawnX + 0.5, (int)playerPos.Y + spawnY + 0.001, (int)playerPos.Z + spawnZ + 0.5);
+                            BlockPos worldPos = new BlockPos((int)spawnPos.X, (int)spawnPos.Y, (int)spawnPos.Z);
+
+                            while (api.World.BlockAccessor.GetBlock(worldPos.X, worldPos.Y - 1, worldPos.Z).Id == 0 && spawnPos.Y > 0)
+                            {
+                                worldPos.Y--;
+                                spawnPos.Y--;
+                            }
+
+                            if (!api.World.BlockAccessor.IsValidPos((int)spawnPos.X, (int)spawnPos.Y, (int)spawnPos.Z)) 
+                                continue;
+
+                            Cuboidf collisionBox = entityType.SpawnCollisionBox.OmniNotDownGrowBy(0.1f);
+                            if (collisionTester.IsColliding(api.World.BlockAccessor, collisionBox, spawnPos, false)) 
+                                continue;
+
+                            DoSpawn(entityType, spawnPos, 0);
+                        }
+                        
+                    }
+                }
+            }
+        }
 
 
+        private void DoSpawn(EntityProperties entityType, Vec3d spawnPos, long herdid)
+        {
+            Entity entity = api.ClassRegistry.CreateEntity(entityType);
+
+            EntityAgent agent = entity as EntityAgent;
+            if (agent != null) 
+                agent.HerdId = herdid;
+
+            entity.ServerPos.SetPos(spawnPos);
+            entity.ServerPos.SetYaw((float)api.World.Rand.NextDouble() * GameMath.TWOPI);
+            entity.Pos.SetFrom(entity.ServerPos);
+            entity.PositionBeforeFalling.Set(entity.ServerPos.X, entity.ServerPos.Y, entity.ServerPos.Z);
+
+            //entity.Attributes.SetString("origin", "timedistortion");
+
+            api.World.SpawnEntity(entity);
+
+            //entity.WatchedAttributes.SetDouble("temporalStability", GameMath.Clamp((1 - 1.5f * StormStrength), 0, 1));
+            //entity.Attributes.SetBool("ignoreDaylightFlee", true);
         }
 
 
         private void endOrdeal()
         {
+            sapi.BroadcastMessageToAllGroups("Ending ordeal...", EnumChatType.Notification);
 
+
+            // TODO: forcibly end ordeal after time limit? would also have to delete all spawned entities
         }
 
 
@@ -224,23 +295,29 @@ namespace ordeals.src
         private void prepareNextOrdeal()
         {
             // calculate next ordeal variant based on ordealTier
+            if (config == null) 
+                return;
+
+
         }
 
 
         private void loadEntities()
         {
-            ordealEntityTypes = new EntityProperties[]
+            // TODO: add additional entities as they're made
+            ordealEntityTypes = new Dictionary<OrdealVariant, EntityProperties>()
             {
-                sapi.World.GetEntityType(new AssetLocation("ordeals:entitydawngreen"))
+                { OrdealVariant.DawnGreen, sapi.World.GetEntityType(new AssetLocation("ordeals:entitydawngreen")) } 
             };
         }
 
 
         private void initOrdealSpawnGroups()
         {
-            ordealSpawnGroups = new Dictionary<OrdealVariant, OrdealSpawnGroups>()
+            // TODO: add additional entities as they're made
+            ordealSpawnSettings = new Dictionary<OrdealVariant, OrdealSpawnSettings>()
             {
-                { OrdealVariant.DawnGreen, new OrdealSpawnGroups { groups = 3 } }
+                { OrdealVariant.DawnGreen, new OrdealSpawnSettings { numGroups = 3 } }
             };
         }
 
@@ -302,14 +379,14 @@ namespace ordeals.src
 
                 .BeginSubCommand("nextOrdeal")
                     .WithDescription("Tells you the amount of days until the next Ordeal.")
-                    .HandleWith(onCmdnextOrdeal)
+                    .HandleWith(onCmdNextOrdeal)
                 .EndSubCommand();
 
                 // additional commands for starting new ordeal, ending current ordeal, scheduling a new ordeal, rescheduling next upcoming ordeal
         }
 
 
-        private TextCommandResult onCmdnextOrdeal(TextCommandCallingArgs args)
+        private TextCommandResult onCmdNextOrdeal(TextCommandCallingArgs args)
         {
             // args.Caller.Player to find player
 

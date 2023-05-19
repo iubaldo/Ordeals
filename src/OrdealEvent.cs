@@ -65,11 +65,13 @@ namespace ordeals.src
     }
 
 
-    public class OrdealSpawnGroups
+    public class OrdealSpawnSettings
     {
-        public int groups = 1;
+        public int numGroups = 1;
         public int minGroupSize = 1;
         public int maxGroupSize = 1;
+
+        public int spawnRange = 15;
     }
 
 
@@ -83,6 +85,6 @@ namespace ordeals.src
 
         public double nextOrdealTotalDays = 7;    // set to occur at the end of every month by default
         public OrdealVariant nextOrdealVariant = 0;
-        public int ordealTier = 0;
+        public int currentOrdealTier = 0;
     }
 }
