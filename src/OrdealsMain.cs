@@ -25,6 +25,10 @@ namespace ordeals.src
 
         Dictionary<string, OrdealEventConfig> configs;
         Dictionary<OrdealVariant, OrdealEventText> texts;
+        Dictionary<OrdealTier, OrdealStrength> ordealStrengths;
+        Dictionary<OrdealVariant, OrdealSpawnGroups> ordealSpawnGroups;
+
+        EntityProperties[] ordealEntityTypes;
 
         OrdealEventConfig config;
         OrdealEventRuntimeData data = new OrdealEventRuntimeData();
@@ -46,6 +50,10 @@ namespace ordeals.src
             base.StartServerSide(api);
             sapi = api;
 
+            initTexts();
+            initConfigs();
+            initOrdealStrengths();
+            initOrdealSpawnGroups();
             registerCommands();
 
             serverChannel =
@@ -64,20 +72,18 @@ namespace ordeals.src
                         data = SerializerUtil.Deserialize<OrdealEventRuntimeData>(bytedata);
                     } catch (Exception)
                     {
-                        api.World.Logger.Notification("Failed loading ordeal event data, will initialize new data set");
+                        api.World.Logger.Notification("Failed loading ordeal event runtime data, will initialize new data set");
                         data = new OrdealEventRuntimeData();
-                        data.nextOrdealDay = sapi.World.Calendar.DaysPerMonth;
+                        data.nextOrdealTotalDays = sapi.World.Calendar.DaysPerMonth;
                         shouldPrepNextOrdeal = true;
                     }    
                 }
                 else
                 {
                     data = new OrdealEventRuntimeData();
-                    data.nextOrdealDay = sapi.World.Calendar.DaysPerMonth;
+                    data.nextOrdealTotalDays = sapi.World.Calendar.DaysPerMonth;
                     shouldPrepNextOrdeal = true;
                 }
-
-                // LoadNoise();
 
                 if (shouldPrepNextOrdeal)
                     prepareNextOrdeal();
@@ -86,6 +92,7 @@ namespace ordeals.src
             api.Event.GameWorldSave += Event_GameWorldSave;
             api.Event.PlayerJoin += Event_PlayerJoin;
             api.Event.PlayerNowPlaying += Event_PlayerNowPlaying;
+            api.Event.OnEntityDeath += Event_OnEntityDeath;
             api.Event.RegisterGameTickListener(onOrdealEventTick, 2000);
         }
 
@@ -113,31 +120,27 @@ namespace ordeals.src
                 return;
             }
 
-            if (data.isOrdealActive)
-            {
-                // trySpawnDrifters();
-            }
+ 
 
-            double nextOrdealDaysLeft = data.nextOrdealDay - api.World.Calendar.TotalDays;
+            double nextOrdealDaysLeft = data.nextOrdealTotalDays - api.World.Calendar.TotalDays;
 
             if (nextOrdealDaysLeft > 0.03 && nextOrdealDaysLeft < 0.35 && data.ordealDayNotify > 1)
             {
                 data.ordealDayNotify = 1;
-                sapi.BroadcastMessageToAllGroups(texts[data.ordealTier].approaching, EnumChatType.Notification);
+                sapi.BroadcastMessageToAllGroups(texts[data.nextOrdealVariant].approaching, EnumChatType.Notification);
             }
 
             if (nextOrdealDaysLeft <= 0.02 && data.ordealDayNotify > 0)
             {
                 data.ordealDayNotify = 0;
-                sapi.BroadcastMessageToAllGroups(texts[data.ordealTier].imminent, EnumChatType.Notification);
+                sapi.BroadcastMessageToAllGroups(texts[data.nextOrdealVariant].imminent, EnumChatType.Notification);
             }
 
             if (nextOrdealDaysLeft <= 0)
             {
-                float tempstormDurationMul = (float)api.World.Config.GetDecimal("tempstormDurationMul", 1);
-                double stormActiveDays = (0.1f + data.nextOrdealVariant * 0.1f) * tempstormDurationMul;
+                //double stormActiveDays = (0.1f + data.nextOrdealVariant * 0.1f) * tempstormDurationMul;
 
-                // Happens when time is fast forwarded
+                // Make sure it still happens when time is fast forwarded
                 if (!data.isOrdealActive && nextOrdealDaysLeft + stormActiveDays < 0)
                 {
                     prepareNextOrdeal();
@@ -147,9 +150,11 @@ namespace ordeals.src
 
                 if (!data.isOrdealActive)
                 {
-                    data.ordealActiveTotalDays = api.World.Calendar.TotalDays + stormActiveDays;
-                    if (data.ordealTier == EnumTempStormStrength.Medium) data.stormGlitchStrength = 0.67f + (float)api.World.Rand.NextDouble() / 10;
-                    if (data.ordealTier == EnumTempStormStrength.Heavy) data.stormGlitchStrength = 0.9f + (float)api.World.Rand.NextDouble() / 10;
+                    //data.ordealActiveTotalDays = api.World.Calendar.TotalDays + stormActiveDays;
+                    //if (data.ordealTier == EnumTempStormStrength.Medium) 
+                    //    data.stormGlitchStrength = 0.67f + (float)api.World.Rand.NextDouble() / 10;
+                    //if (data.ordealTier == EnumTempStormStrength.Heavy) 
+                    //    data.stormGlitchStrength = 0.9f + (float)api.World.Rand.NextDouble() / 10;
                     data.isOrdealActive = true;
 
                     serverChannel.BroadcastPacket(data);
@@ -170,7 +175,7 @@ namespace ordeals.src
                 if (activeDaysLeft < 0.02 && data.ordealDayNotify == 0)
                 {
                     data.ordealDayNotify = -1;
-                    // sapi.BroadcastMessageToAllGroups(texts[data.ordealTier].Waning, EnumChatType.Notification);
+                    //sapi.BroadcastMessageToAllGroups(texts[data.ordealTier].Waning, EnumChatType.Notification);
                 }
 
 
@@ -200,9 +205,60 @@ namespace ordeals.src
             }
         }
 
-        private void prepareNextOrdeal()
+
+        private void beginOrdeal()
+        {
+            // show splash screen
+
+
+        }
+
+
+        private void endOrdeal()
         {
 
+        }
+
+
+        // run when current ordeal ends
+        private void prepareNextOrdeal()
+        {
+            // calculate next ordeal variant based on ordealTier
+        }
+
+
+        private void loadEntities()
+        {
+            ordealEntityTypes = new EntityProperties[]
+            {
+                sapi.World.GetEntityType(new AssetLocation("ordeals:entitydawngreen"))
+            };
+        }
+
+
+        private void initOrdealSpawnGroups()
+        {
+            ordealSpawnGroups = new Dictionary<OrdealVariant, OrdealSpawnGroups>()
+            {
+                { OrdealVariant.DawnGreen, new OrdealSpawnGroups { groups = 3 } }
+            };
+        }
+
+
+        private void initOrdealStrengths()
+        {
+            ordealStrengths = new Dictionary<OrdealTier, OrdealStrength>()
+            {
+                { OrdealTier.Malkuth, new OrdealStrength()      { dawn = 1 } },
+                { OrdealTier.Yesod, new OrdealStrength()        { dawn = 2 } },
+                { OrdealTier.Hod, new OrdealStrength()          { dawn = 2, noon = 1 } },
+                { OrdealTier.Netzach, new OrdealStrength()      { dawn = 3, noon = 2 } },
+                { OrdealTier.Tiphereth, new OrdealStrength()    { dawn = 4, noon = 2, dusk = 1 } },
+                { OrdealTier.Gebura, new OrdealStrength()       { dawn = 4, noon = 3, dusk = 2 } },
+                { OrdealTier.Chesed, new OrdealStrength()       { dawn = 5, noon = 3, dusk = 3 } },
+                { OrdealTier.Binah, new OrdealStrength()        { dawn = 6, noon = 4, dusk = 4, midnight = 1 } },
+                { OrdealTier.Hokma, new OrdealStrength()        { dawn = 6, noon = 5, dusk = 5, midnight = 2 } }
+            };
         }
 
 
@@ -261,12 +317,21 @@ namespace ordeals.src
         }
 
 
+        private void Event_OnEntityDeath(Entity entity, DamageSource damageSource)
+        {
+            if (!(entity.Code.Path.Contains("Dawn") || entity.Code.Path.Contains("Noon") || entity.Code.Path.Contains("Dusk") || entity.Code.Path.Contains("Midnight")))
+                return;
+
+            // reduce mob count
+        }
+
+
         private void Event_PlayerNowPlaying(IServerPlayer byPlayer)
         {
             if (sapi.WorldManager.SaveGame.IsNew && ordealsEnabled)
             {
-                double nextOrdealDaysLeft = data.nextOrdealDay - api.World.Calendar.TotalDays;
-                byPlayer.SendMessage(GlobalConstants.GeneralChatGroup, Lang.Get("{0} days until the first temporal storm.", (int)nextOrdealDaysLeft), EnumChatType.Notification);
+                double nextOrdealDaysLeft = data.nextOrdealTotalDays - api.World.Calendar.TotalDays;
+                byPlayer.SendMessage(GlobalConstants.GeneralChatGroup, Lang.Get("{0} days until the first ordeal.", (int)nextOrdealDaysLeft), EnumChatType.Notification);
             }
         }
 
@@ -283,7 +348,7 @@ namespace ordeals.src
 
         private void Event_GameWorldSave()
         {
-            sapi.WorldManager.SaveGame.StoreData("temporalStormData", SerializerUtil.Serialize(data));
+            sapi.WorldManager.SaveGame.StoreData("ordealEventData", SerializerUtil.Serialize(data));
         }
     }
 }

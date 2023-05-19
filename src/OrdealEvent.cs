@@ -26,7 +26,7 @@ namespace ordeals.src
     }
 
 
-    public enum OrdealTier // determines which ordeal variants will appear when an ordeal event occurs
+    public enum OrdealTier // determines ordeal strengths and which ordealVariants can appear
     {
         Malkuth,
         Yesod,
@@ -37,7 +37,6 @@ namespace ordeals.src
         Chesed,
         Binah,
         Hokma,
-        Daat,
         Keter
     }
 
@@ -57,17 +56,32 @@ namespace ordeals.src
     }
 
 
+    public class OrdealStrength
+    {
+        public float dawn = 0;
+        public float noon = 0;
+        public float dusk = 0;
+        public float midnight = 0;
+    }
+
+
+    public class OrdealSpawnGroups
+    {
+        public int groups = 1;
+        public int minGroupSize = 1;
+        public int maxGroupSize = 1;
+    }
+
+
     [ProtoContract(ImplicitFields = ImplicitFields.AllPublic)]
     public class OrdealEventRuntimeData
     {
         public bool isOrdealActive;
+        public int activeEntities = 0;
 
         public int ordealDayNotify = 99;
-        public float ordealGlitchStrength;
-        public double ordealActiveTotalDays = 0;
 
-
-        public double nextOrdealDay = 7;    // set to occur at the end of every month by default
+        public double nextOrdealTotalDays = 7;    // set to occur at the end of every month by default
         public OrdealVariant nextOrdealVariant = 0;
         public int ordealTier = 0;
     }
