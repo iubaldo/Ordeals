@@ -92,7 +92,7 @@ namespace ordeals.src
             api.Event.PlayerJoin += Event_PlayerJoin;
             api.Event.PlayerNowPlaying += Event_PlayerNowPlaying;
             api.Event.OnEntityDeath += Event_OnEntityDeath;
-            api.Event.RegisterGameTickListener(onOrdealEventTick, 2000);
+            // api.Event.RegisterGameTickListener(onOrdealEventTick, 2000); // TODO: uncomment to test actual event
         }
 
 
@@ -119,7 +119,6 @@ namespace ordeals.src
                 return;
             }
 
- 
 
             double nextOrdealDaysLeft = data.nextOrdealTotalDays - api.World.Calendar.TotalDays;
 
@@ -140,12 +139,12 @@ namespace ordeals.src
                 //double stormActiveDays = (0.1f + data.nextOrdealVariant * 0.1f) * tempstormDurationMul;
 
                 // Make sure it still happens when time is fast forwarded
-                if (!data.isOrdealActive && nextOrdealDaysLeft + stormActiveDays < 0)
-                {
-                    prepareNextOrdeal();
-                    serverChannel.BroadcastPacket(data);
-                    return;
-                }
+                //if (!data.isOrdealActive && nextOrdealDaysLeft + stormActiveDays < 0)
+                //{
+                //    prepareNextOrdeal();
+                //    serverChannel.BroadcastPacket(data);
+                //    return;
+                //}
 
                 if (!data.isOrdealActive)
                 {
@@ -170,37 +169,37 @@ namespace ordeals.src
 
                 }
 
-                double activeDaysLeft = data.ordealActiveTotalDays - api.World.Calendar.TotalDays;
-                if (activeDaysLeft < 0.02 && data.ordealDayNotify == 0)
-                {
-                    data.ordealDayNotify = -1;
-                    //sapi.BroadcastMessageToAllGroups(texts[data.ordealTier].Waning, EnumChatType.Notification);
-                }
+                //double activeDaysLeft = data.ordealActiveTotalDays - api.World.Calendar.TotalDays;
+                //if (activeDaysLeft < 0.02 && data.ordealDayNotify == 0)
+                //{
+                //    data.ordealDayNotify = -1;
+                //    //sapi.BroadcastMessageToAllGroups(texts[data.ordealTier].Waning, EnumChatType.Notification);
+                //}
 
 
-                // replace this condition to end the event when all spawned entities die
-                if (activeDaysLeft < 0)
-                {
-                    data.isOrdealActive = false;
-                    data.ordealDayNotify = 99;
-                    prepareNextOrdeal();
+                //// TODO: replace this condition to end the event when all spawned entities die
+                //if (activeDaysLeft < 0)
+                //{
+                //    data.isOrdealActive = false;
+                //    data.ordealDayNotify = 99;
+                //    prepareNextOrdeal();
 
-                    serverChannel.BroadcastPacket(data);
+                //    serverChannel.BroadcastPacket(data);
 
-                    var list = (api.World as IServerWorldAccessor).LoadedEntities.Values;
-                    foreach (var e in list)
-                    {
-                        if (e.Code.Path.Contains("drifter"))
-                        {
-                            e.Attributes.RemoveAttribute("ignoreDaylightFlee");
+                //    var list = (api.World as IServerWorldAccessor).LoadedEntities.Values;
+                //    foreach (var e in list)
+                //    {
+                //        if (e.Code.Path.Contains("drifter"))
+                //        {
+                //            e.Attributes.RemoveAttribute("ignoreDaylightFlee");
 
-                            if (api.World.Rand.NextDouble() < 0.5)
-                            {
-                                sapi.World.DespawnEntity(e, new EntityDespawnData() { Reason = EnumDespawnReason.Expire });
-                            }
-                        }
-                    }
-                }
+                //            if (api.World.Rand.NextDouble() < 0.5)
+                //            {
+                //                sapi.World.DespawnEntity(e, new EntityDespawnData() { Reason = EnumDespawnReason.Expire });
+                //            }
+                //        }
+                //    }
+                //}
             }
         }
 
@@ -380,7 +379,19 @@ namespace ordeals.src
                 .BeginSubCommand("nextOrdeal")
                     .WithDescription("Tells you the amount of days until the next Ordeal.")
                     .HandleWith(onCmdNextOrdeal)
-                .EndSubCommand();
+                .EndSubCommand()
+
+                .BeginSubCommand("beginOrdeal")
+                    .WithDescription("Starts a new ordeal of type ordealVariant")
+                    .WithArgs(parsers.WordRange("DawnAmber",    "DawnCrimson",  "DawnGreen",        "DawnViolet",       "DawnWhite",
+                                                                "NoonCrimson",  "NoonGreen",        "NoonViolet",       "NoonWhite",
+                                                "DuskAmber",    "DuskCrimson",  "DuskGreen",                            "DuskWhite",
+                                                "MidnightAmber",                "MidnightGreen",    "MidnightViolet",   "MidnightWhite",
+                                                "NightIndigo"))
+                    .HandleWith(onCmdBeginOrdeal)
+
+
+                ;
 
                 // additional commands for starting new ordeal, ending current ordeal, scheduling a new ordeal, rescheduling next upcoming ordeal
         }
@@ -389,6 +400,16 @@ namespace ordeals.src
         private TextCommandResult onCmdNextOrdeal(TextCommandCallingArgs args)
         {
             // args.Caller.Player to find player
+
+            return TextCommandResult.Success();
+        }
+
+
+        private TextCommandResult onCmdBeginOrdeal(TextCommandCallingArgs args)
+        {
+            // begin ordeal
+            OrdealVariant variant = (OrdealVariant) Enum.Parse(typeof(OrdealVariant), (string)args[0]);
+            beginOrdeal(variant);
 
             return TextCommandResult.Success();
         }
