@@ -3234,7 +3234,7 @@
 			"name": "hurt",
 			"code": "hurt",
 			"quantityframes": 15,
-			"onActivityStopped": "PlayTillEnd",
+			"onActivityStopped": "EaseOut",
 			"onAnimationEnd": "Stop",
 			"keyframes": [
 				{

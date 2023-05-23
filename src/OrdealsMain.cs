@@ -15,6 +15,20 @@ using ProtoBuf;
 
 namespace ordeals.src
 {
+    /*
+     * TODO:
+     * - implement enable/disable ordeals (preferably in a way that can be set in-game)
+     * - delay ordeals
+     * - correct time settings for ordeal scheduling
+     * - time limit settings to forcibly end ordeal
+     * 
+     * - all additional ordeal variants
+     * 
+     * - individual ordeals for each player
+     * 
+     */
+
+
     class OrdealsMain : ModSystem
     {
         ICoreAPI api;
@@ -49,12 +63,6 @@ namespace ordeals.src
             base.StartServerSide(api);
             sapi = api;
 
-            initTexts();
-            initConfigs();
-            initOrdealStrengths();
-            initOrdealSpawnGroups();
-            registerCommands();
-
             serverChannel =
                 api.Network.RegisterChannel("ordealevent")
                .RegisterMessageType(typeof(OrdealEventRuntimeData));
@@ -75,7 +83,7 @@ namespace ordeals.src
                         data = new OrdealEventRuntimeData();
                         data.nextOrdealTotalDays = sapi.World.Calendar.DaysPerMonth;
                         shouldPrepNextOrdeal = true;
-                    }    
+                    }
                 }
                 else
                 {
@@ -87,6 +95,13 @@ namespace ordeals.src
                 if (shouldPrepNextOrdeal)
                     prepareNextOrdeal();
             };
+
+            initTexts();
+            // initConfigs();
+            initOrdealStrengths();
+            initOrdealSpawnGroups();
+            loadEntities();
+            registerCommands();
 
             api.Event.GameWorldSave += Event_GameWorldSave;
             api.Event.PlayerJoin += Event_PlayerJoin;
@@ -156,17 +171,6 @@ namespace ordeals.src
                     data.isOrdealActive = true;
 
                     serverChannel.BroadcastPacket(data);
-
-                    var list = (api.World as IServerWorldAccessor).LoadedEntities.Values;
-                    foreach (var e in list)
-                    {
-                        if (e.Code.Path.Contains("drifter"))
-                        {
-                            e.Attributes.SetBool("ignoreDaylightFlee", true);
-                        }
-
-                    }
-
                 }
 
                 //double activeDaysLeft = data.ordealActiveTotalDays - api.World.Calendar.TotalDays;
@@ -219,40 +223,41 @@ namespace ordeals.src
             {
                 Vec3d playerPos = player.Entity.ServerPos.XYZ;
 
-                for (int i = 0; i < spawnSettings.numGroups; i++) // TODO: adjust size by ordeal strength/variants
+                // TODO: adjust size by ordeal strength/variants
+                // TODO: ensure groups spawn near each other
+                for (int i = 0; i < spawnSettings.numGroups; i++) 
                 {
                     int groupSize = sapi.World.Rand.Next(spawnSettings.minGroupSize, spawnSettings.maxGroupSize);
-                    for (int j = 0; j < groupSize; j++)
+                    var entityType = ordealEntityTypes[variant];
+
+                    int tries = 15;
+                    int numSpawned = 0;
+
+                    while (tries-- > 0 && numSpawned < groupSize)
                     {
-                        var entityType = ordealEntityTypes[variant];
+                        int spawnX = api.World.Rand.Next(-spawnSettings.spawnRange, spawnSettings.spawnRange);
+                        int spawnY = api.World.Rand.Next(-spawnSettings.spawnRange, spawnSettings.spawnRange);
+                        int spawnZ = api.World.Rand.Next(-spawnSettings.spawnRange, spawnSettings.spawnRange);
 
-                        int tries = 15;
+                        Vec3d spawnPos = new Vec3d((int)playerPos.X + spawnX + 0.5, (int)playerPos.Y + spawnY + 0.001, (int)playerPos.Z + spawnZ + 0.5);
+                        BlockPos worldPos = new BlockPos((int)spawnPos.X, (int)spawnPos.Y, (int)spawnPos.Z);
 
-                        while (tries-- > 0)
+                        while (api.World.BlockAccessor.GetBlock(worldPos.X, worldPos.Y - 1, worldPos.Z).Id == 0 && spawnPos.Y > 0)
                         {
-                            int spawnX = api.World.Rand.Next(-spawnSettings.spawnRange, spawnSettings.spawnRange);
-                            int spawnY = api.World.Rand.Next(-spawnSettings.spawnRange, spawnSettings.spawnRange);
-                            int spawnZ = api.World.Rand.Next(-spawnSettings.spawnRange, spawnSettings.spawnRange);
-
-                            Vec3d spawnPos = new Vec3d((int)playerPos.X + spawnX + 0.5, (int)playerPos.Y + spawnY + 0.001, (int)playerPos.Z + spawnZ + 0.5);
-                            BlockPos worldPos = new BlockPos((int)spawnPos.X, (int)spawnPos.Y, (int)spawnPos.Z);
-
-                            while (api.World.BlockAccessor.GetBlock(worldPos.X, worldPos.Y - 1, worldPos.Z).Id == 0 && spawnPos.Y > 0)
-                            {
-                                worldPos.Y--;
-                                spawnPos.Y--;
-                            }
-
-                            if (!api.World.BlockAccessor.IsValidPos((int)spawnPos.X, (int)spawnPos.Y, (int)spawnPos.Z)) 
-                                continue;
-
-                            Cuboidf collisionBox = entityType.SpawnCollisionBox.OmniNotDownGrowBy(0.1f);
-                            if (collisionTester.IsColliding(api.World.BlockAccessor, collisionBox, spawnPos, false)) 
-                                continue;
-
-                            DoSpawn(entityType, spawnPos, 0);
+                            worldPos.Y--;
+                            spawnPos.Y--;
                         }
-                        
+
+                        if (!api.World.BlockAccessor.IsValidPos((int)spawnPos.X, (int)spawnPos.Y, (int)spawnPos.Z)) 
+                            continue;
+
+                        Cuboidf collisionBox = entityType.SpawnCollisionBox.OmniNotDownGrowBy(0.1f);
+                        if (collisionTester.IsColliding(api.World.BlockAccessor, collisionBox, spawnPos, false)) 
+                            continue;
+
+                        api.Logger.Warning("Attempting to spawn entity " + entityType.Code.GetName() + " at location " + spawnPos.ToString());
+                        DoSpawn(entityType, spawnPos, 0);
+                        numSpawned++;
                     }
                 }
             }
@@ -293,7 +298,7 @@ namespace ordeals.src
         // run when current ordeal ends
         private void prepareNextOrdeal()
         {
-            // calculate next ordeal variant based on ordealTier
+            // TODO: calculate next ordeal variant based on ordealTier
             if (config == null) 
                 return;
 
@@ -342,7 +347,6 @@ namespace ordeals.src
         {
             texts = new Dictionary<OrdealVariant, OrdealEventText>();
             
-
             foreach (OrdealVariant variant in (OrdealVariant[])Enum.GetValues(typeof(OrdealVariant)))
             {
                 int secondPart = Array.FindLastIndex<char>(variant.ToString().ToCharArray(), Char.IsUpper);
@@ -362,7 +366,14 @@ namespace ordeals.src
         {
             configs = new Dictionary<string, OrdealEventConfig>()
             {
-
+                {
+                    "default", new OrdealEventConfig()
+                    {
+                        ordealFrequency = sapi.World.Calendar.DaysPerMonth,                 // default ordeals to occur at the end of every month
+                        ordealTierIncreaseFrequency = sapi.World.Calendar.DaysPerMonth * 3, // increase ordeal tier every 3 months
+                        indigoOrdealFrequency = sapi.World.Calendar.DaysPerMonth * 6        // indigo ordeals occur every 6 months
+                    }
+                }
             };
         }
 
@@ -374,6 +385,7 @@ namespace ordeals.src
             sapi.ChatCommands
                 .GetOrCreate("ordeals")
                 .IgnoreAdditionalArgs()
+                .RequiresPrivilege("worldedit")
                 .WithDescription("Ordeals mod commands.")
 
                 .BeginSubCommand("nextOrdeal")
@@ -389,8 +401,7 @@ namespace ordeals.src
                                                 "MidnightAmber",                "MidnightGreen",    "MidnightViolet",   "MidnightWhite",
                                                 "NightIndigo"))
                     .HandleWith(onCmdBeginOrdeal)
-
-
+                .EndSubCommand()
                 ;
 
                 // additional commands for starting new ordeal, ending current ordeal, scheduling a new ordeal, rescheduling next upcoming ordeal
@@ -407,6 +418,7 @@ namespace ordeals.src
 
         private TextCommandResult onCmdBeginOrdeal(TextCommandCallingArgs args)
         {
+            // TODO: add guard clauses for notyetimplemented errors on ordeal variants
             // begin ordeal
             OrdealVariant variant = (OrdealVariant) Enum.Parse(typeof(OrdealVariant), (string)args[0]);
             beginOrdeal(variant);

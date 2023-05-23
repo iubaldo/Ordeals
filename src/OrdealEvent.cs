@@ -71,7 +71,7 @@ namespace ordeals.src
         public int minGroupSize = 1;
         public int maxGroupSize = 1;
 
-        public int spawnRange = 15;
+        public int spawnRange = 30;
     }
 
 
