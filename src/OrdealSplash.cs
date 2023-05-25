@@ -21,19 +21,11 @@ namespace ordeals.src
     {
         private int tickInterval = 20;
         private long durationActiveMs = 0;
-        private int durationVisibleMs = 6000;
+        private int durationVisibleMs = 8000;
         private Vec4f fadeColor = new Vec4f(1f, 1f, 1f, 1f);
 
         public GuiElementImage element;
         public BitmapRef splashImage;
-
-        private ElementBounds bounds = new ElementBounds
-        {
-            Alignment = EnumDialogArea.CenterMiddle,
-            BothSizing = ElementSizing.Percentual,
-            percentWidth = 1.0,
-            percentHeight = 1.0
-        };
 
         public bool isActive = false;
 
@@ -50,32 +42,46 @@ namespace ordeals.src
 
         private void onGameTick(float dt)
         {
+            if (splashImage == null)
+                return;
+
             if (!isActive && durationActiveMs == 0L)
                 return;
 
-            if (durationActiveMs == 0L)
+            if (durationActiveMs == 0L) // start animating
             {
+                System.Diagnostics.Debug.WriteLine("start animating");
+
                 durationActiveMs = capi.InWorldEllapsedMilliseconds;
                 fadeColor.A = 0f;
                 TryOpen();
+                return;
             }
 
             long visibleMsPassed = capi.InWorldEllapsedMilliseconds - durationActiveMs;
             long visibleMsLeft = durationVisibleMs - visibleMsPassed;
 
-            if (visibleMsLeft < 0L)
+            if (visibleMsLeft <= 0L) // stop animating
             {
+                System.Diagnostics.Debug.WriteLine("stop animating");
+
+                isActive = false;
                 durationActiveMs = 0L;
                 TryClose();
+                
+                return;
             }
 
-            if (visibleMsLeft < 250L)
-                fadeColor.A = visibleMsPassed / 240L;
+            if (visibleMsPassed < 2000L) // fade in
+                fadeColor.A = visibleMsPassed / 1990f;
             else
-                fadeColor.A = 1L;
+                fadeColor.A = 1f;
 
-            if (visibleMsLeft < 1000L)
-                fadeColor.A = visibleMsLeft / 990L;
+            if (visibleMsLeft < 2000L) // fade out
+                fadeColor.A = visibleMsLeft / 1990f;          
+
+            System.Diagnostics.Debug.WriteLine("set fade to (" + fadeColor.R + ", " + fadeColor.G + ", " + fadeColor.B + ", " + fadeColor.A + ")");
+            SingleComposer.Color = fadeColor;
         }
 
 
@@ -83,17 +89,39 @@ namespace ordeals.src
         {
             // element = new GuiElementImage(capi, bounds, splashLoc);
             splashImage = capi.Assets.Get(splashLoc).ToBitmap(capi);
-           
-            SingleComposer = capi.Gui.CreateCompo("ordealSplashComposer", bounds)
-                .AddStaticCustomDraw(bounds, new DrawDelegateWithBounds(onDraw))
-                .Compose();
         }
    
 
         private void onDraw(Context context, ImageSurface surface, ElementBounds currentBounds)
         {
             // surface.Image(((BitmapExternal) splashImage).bmp, 0, 0, 960, 540);
-            surface.Image(((BitmapExternal)splashImage).bmp, (int)currentBounds.drawX, (int)currentBounds.drawY, (int)currentBounds.InnerWidth, (int)currentBounds.InnerHeight);          
+            surface.Image(((BitmapExternal)splashImage).bmp, (int)currentBounds.drawX, (int)currentBounds.drawY, (int)currentBounds.InnerWidth, (int)currentBounds.InnerHeight);
+        }
+
+
+        public override bool TryOpen()
+        {
+            isActive = true;
+
+            ElementBounds bounds = calculateBounds();
+            SingleComposer = capi.Gui.CreateCompo("ordealSplashComposer", bounds)
+                .AddStaticCustomDraw(bounds, new DrawDelegateWithBounds(onDraw))
+                .Compose();
+
+            System.Diagnostics.Debug.WriteLine("try open");
+            return base.TryOpen();
+        }
+
+
+        private ElementBounds calculateBounds()
+        {
+            return new ElementBounds
+            {
+                Alignment = EnumDialogArea.CenterMiddle,
+                BothSizing = ElementSizing.Percentual,
+                percentWidth = 1.0,
+                percentHeight = 1.0
+            };
         }
     }
 }
