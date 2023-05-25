@@ -123,6 +123,7 @@ namespace ordeals.src
                 .RegisterMessageType(typeof(OrdealEventRuntimeData))
                 .SetMessageHandler<OrdealEventRuntimeData>(onServerData);
 
+            // debug, replace with generic method later
             capi.Input.RegisterHotKey("splashgui", "enable splash image", GlKeys.U, HotkeyType.GUIOrOtherControls);
             capi.Input.SetHotKeyHandler("splashgui", ToggleGui);
             splash = new OrdealSplash(capi);
@@ -136,7 +137,10 @@ namespace ordeals.src
             if (splash.IsOpened())
                 splash.TryClose();
             else
+            {
+                api.World.PlaySoundAt(new AssetLocation("ordeals", "sounds/event/greenstart.ogg"), capi.World.Player, null, false, 5, 1);
                 splash.TryOpen();
+            }
 
             return true;
         }
