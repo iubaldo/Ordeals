@@ -92,7 +92,9 @@ namespace ordeals.src
         public int ordealDayNotify = 99;
 
         public double nextOrdealTotalDays = 7;    // set to occur at the end of every month by default
-        public OrdealVariant nextOrdealVariant = 0;
-        public int currentOrdealTier = 0;
+        public OrdealVariant nextOrdealVariant = OrdealVariant.DawnGreen;
+
+        public OrdealVariant currentOrdealVariant = OrdealVariant.DawnGreen;
+        public OrdealTier currentOrdealTier = OrdealTier.Malkuth;
     }
 }
