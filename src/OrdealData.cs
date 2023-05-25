@@ -41,6 +41,14 @@ namespace ordeals.src
     }
 
 
+    [ProtoContract(ImplicitFields = ImplicitFields.AllPublic)]
+    public class OrdealVariantTime
+    {
+        public OrdealVariant variant;
+        public bool startOrEnd; // false for start, true for end
+    }
+
+
     public class OrdealEventConfig
     {
         public float ordealFrequency;               // How often ordeal events occur

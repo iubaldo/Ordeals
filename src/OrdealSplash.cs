@@ -22,9 +22,8 @@ namespace ordeals.src
         private int tickInterval = 20;
         private long durationActiveMs = 0;
         private int durationVisibleMs = 8000;
-        private Vec4f fadeColor = new Vec4f(1f, 1f, 1f, 1f);
+        private Vec4f fadeColor = new Vec4f(1f, 1f, 1f, 0f);
 
-        public GuiElementImage element;
         public BitmapRef splashImage;
 
         public bool isActive = false;
@@ -50,8 +49,6 @@ namespace ordeals.src
 
             if (durationActiveMs == 0L) // start animating
             {
-                System.Diagnostics.Debug.WriteLine("start animating");
-
                 durationActiveMs = capi.InWorldEllapsedMilliseconds;
                 fadeColor.A = 0f;
                 TryOpen();
@@ -63,8 +60,6 @@ namespace ordeals.src
 
             if (visibleMsLeft <= 0L) // stop animating
             {
-                System.Diagnostics.Debug.WriteLine("stop animating");
-
                 isActive = false;
                 durationActiveMs = 0L;
                 TryClose();
@@ -80,35 +75,31 @@ namespace ordeals.src
             if (visibleMsLeft < 2000L) // fade out
                 fadeColor.A = visibleMsLeft / 1990f;          
 
-            System.Diagnostics.Debug.WriteLine("set fade to (" + fadeColor.R + ", " + fadeColor.G + ", " + fadeColor.B + ", " + fadeColor.A + ")");
+            // System.Diagnostics.Debug.WriteLine("set fade to (" + fadeColor.R + ", " + fadeColor.G + ", " + fadeColor.B + ", " + fadeColor.A + ")");
             SingleComposer.Color = fadeColor;
         }
 
 
         public void setSplashImage(AssetLocation splashLoc)
         {
-            // element = new GuiElementImage(capi, bounds, splashLoc);
             splashImage = capi.Assets.Get(splashLoc).ToBitmap(capi);
         }
    
 
         private void onDraw(Context context, ImageSurface surface, ElementBounds currentBounds)
         {
-            // surface.Image(((BitmapExternal) splashImage).bmp, 0, 0, 960, 540);
             surface.Image(((BitmapExternal)splashImage).bmp, (int)currentBounds.drawX, (int)currentBounds.drawY, (int)currentBounds.InnerWidth, (int)currentBounds.InnerHeight);
         }
 
 
         public override bool TryOpen()
         {
-            isActive = true;
-
             ElementBounds bounds = calculateBounds();
             SingleComposer = capi.Gui.CreateCompo("ordealSplashComposer", bounds)
                 .AddStaticCustomDraw(bounds, new DrawDelegateWithBounds(onDraw))
                 .Compose();
+            SingleComposer.Color = fadeColor;
 
-            System.Diagnostics.Debug.WriteLine("try open");
             return base.TryOpen();
         }
 

@@ -35,14 +35,19 @@ namespace ordeals.src
         ICoreServerAPI sapi;
         ICoreClientAPI capi;
 
-        IServerNetworkChannel serverChannel;
-        IClientNetworkChannel clientChannel;
+        IServerNetworkChannel sOrdealEventChannel;
+        IClientNetworkChannel cOrdealEventChannel;
+
+        IServerNetworkChannel sShowSplashChannel;
+        IClientNetworkChannel cShowSplashChannel;
 
         Dictionary<string, OrdealEventConfig> configs;
         Dictionary<OrdealTier, OrdealStrength> ordealStrengths;
         Dictionary<OrdealVariant, OrdealEventText> texts;       
         Dictionary<OrdealVariant, OrdealSpawnSettings> ordealSpawnSettings;
         Dictionary<OrdealVariant, EntityProperties> ordealEntityTypes;
+
+        OrdealSplash splash;
 
         OrdealEventConfig config;
         OrdealEventRuntimeData data = new OrdealEventRuntimeData();
@@ -64,9 +69,13 @@ namespace ordeals.src
             base.StartServerSide(api);
             sapi = api;
 
-            serverChannel =
+            sOrdealEventChannel =
                 api.Network.RegisterChannel("ordealevent")
                .RegisterMessageType(typeof(OrdealEventRuntimeData));
+
+            sShowSplashChannel =
+               api.Network.RegisterChannel("showsplash")
+               .RegisterMessageType(typeof(OrdealVariantTime));
 
             api.Event.SaveGameLoaded += () =>
             {
@@ -111,39 +120,44 @@ namespace ordeals.src
             // api.Event.RegisterGameTickListener(onOrdealEventTick, 2000); // TODO: uncomment to test actual event
         }
 
-
-        OrdealSplash splash;
+ 
         public override void StartClientSide(ICoreClientAPI api)
         {
             base.StartClientSide(api);
             capi = api;
 
-            clientChannel =
+            cOrdealEventChannel =
                 api.Network.RegisterChannel("ordealevent")
                 .RegisterMessageType(typeof(OrdealEventRuntimeData))
                 .SetMessageHandler<OrdealEventRuntimeData>(onServerData);
+            
+            cShowSplashChannel =
+                api.Network.RegisterChannel("showsplash")
+                .RegisterMessageType(typeof(OrdealVariantTime))
+                .SetMessageHandler<OrdealVariantTime>(onShowSplash);
 
             // debug, replace with generic method later
-            capi.Input.RegisterHotKey("splashgui", "enable splash image", GlKeys.U, HotkeyType.GUIOrOtherControls);
-            capi.Input.SetHotKeyHandler("splashgui", ToggleGui);
+            //capi.Input.RegisterHotKey("splashgui", "enable splash image", GlKeys.U, HotkeyType.GUIOrOtherControls);
+            //capi.Input.SetHotKeyHandler("splashgui", ToggleGui);
             splash = new OrdealSplash(capi);
-            splash.setSplashImage(new AssetLocation("ordeals", "textures/splashes/dawngreenstart.png"));
+            
         }
 
 
-        public bool ToggleGui(KeyCombination keycode)
-        {
-            api.World.Logger.Notification("opening gui");
-            if (splash.IsOpened())
-                splash.TryClose();
-            else
-            {
-                api.World.PlaySoundAt(new AssetLocation("ordeals", "sounds/event/greenstart.ogg"), capi.World.Player, null, false, 5, 1);
-                splash.TryOpen();
-            }
+        //public bool ToggleGui(KeyCombination keycode)
+        //{
+        //    api.World.Logger.Notification("opening gui");
+        //    if (splash.IsOpened())
+        //        splash.TryClose();
+        //    else
+        //    {
+        //        splash.setSplashImage(new AssetLocation("ordeals", "textures/splashes/dawngreenstart.png"));
+        //        api.World.PlaySoundAt(new AssetLocation("ordeals", "sounds/event/greenstart.ogg"), capi.World.Player, null, false, 5, 1);
+        //        splash.TryOpen();
+        //    }
 
-            return true;
-        }
+        //    return true;
+        //}
 
 
         private void onServerData(OrdealEventRuntimeData data) { this.data = data; }
@@ -194,7 +208,7 @@ namespace ordeals.src
                     //    data.stormGlitchStrength = 0.9f + (float)api.World.Rand.NextDouble() / 10;
                     data.isOrdealActive = true;
 
-                    serverChannel.BroadcastPacket(data);
+                    sOrdealEventChannel.BroadcastPacket(data);
                 }
 
                 //double activeDaysLeft = data.ordealActiveTotalDays - api.World.Calendar.TotalDays;
@@ -234,9 +248,16 @@ namespace ordeals.src
 
         private void beginOrdeal(OrdealVariant variant)
         {
-            // show splash screen
             sapi.BroadcastMessageToAllGroups("Beginning ordeal...", EnumChatType.Notification);
 
+            // show splash and play start sound
+            sShowSplashChannel.SendPacket(new OrdealVariantTime
+            {
+                variant = variant,
+                startOrEnd = false
+            }, sapi.Server.Players);
+
+            // get ordeal settings for correct variant
             OrdealStrength strength = ordealStrengths[(OrdealTier) data.currentOrdealTier];
             OrdealSpawnSettings spawnSettings = ordealSpawnSettings[variant];
 
@@ -301,12 +322,25 @@ namespace ordeals.src
             entity.Pos.SetFrom(entity.ServerPos);
             entity.PositionBeforeFalling.Set(entity.ServerPos.X, entity.ServerPos.Y, entity.ServerPos.Z);
 
-            //entity.Attributes.SetString("origin", "timedistortion");
-
             api.World.SpawnEntity(entity);
+        }
 
-            //entity.WatchedAttributes.SetDouble("temporalStability", GameMath.Clamp((1 - 1.5f * StormStrength), 0, 1));
-            //entity.Attributes.SetBool("ignoreDaylightFlee", true);
+
+        private void onShowSplash(OrdealVariantTime variantTime)
+        {
+            string variantName = Enum.GetName(typeof(OrdealVariant), variantTime.variant);
+            string time = variantTime.startOrEnd == false ? "start" : "end";
+
+            int secondPartIndex = Array.FindLastIndex(variantName.ToCharArray(), char.IsUpper);
+            string firstPart = variantName.Substring(0, secondPartIndex);
+            string secondPart = variantName.ToString().Substring(secondPartIndex);
+
+            // show splash screen
+            splash.setSplashImage(new AssetLocation("ordeals", "textures/splashes/" + variantName.ToLower() + time + ".png"));
+            splash.isActive = true;
+
+            // play event sound
+            api.World.PlaySoundAt(new AssetLocation("ordeals", "sounds/event/" + secondPart.ToLower() + time + ".ogg"), capi.World.Player, null, false, 5, 1);
         }
 
 
@@ -340,6 +374,7 @@ namespace ordeals.src
         }
 
 
+        // TODO: should probably replace these with spreadsheets or something...
         private void initOrdealSpawnGroups()
         {
             // TODO: add additional entities as they're made
@@ -350,6 +385,8 @@ namespace ordeals.src
         }
 
 
+        // TODO: make these a range of strengths rather than single values
+        //       would also need to update code for determining effects of strength on enemies
         private void initOrdealStrengths()
         {
             ordealStrengths = new Dictionary<OrdealTier, OrdealStrength>()
@@ -476,7 +513,7 @@ namespace ordeals.src
             //    return CanSpawnNearby(byPlayer, type, spawnPos, sc);
             //};
 
-            serverChannel.SendPacket(data, byPlayer);
+            sOrdealEventChannel.SendPacket(data, byPlayer);
         }
 
 
