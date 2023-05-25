@@ -33,6 +33,7 @@ namespace ordeals.src
     {
         ICoreAPI api;
         ICoreServerAPI sapi;
+        ICoreClientAPI capi;
 
         IServerNetworkChannel serverChannel;
         IClientNetworkChannel clientChannel;
@@ -111,14 +112,33 @@ namespace ordeals.src
         }
 
 
+        OrdealSplash splash;
         public override void StartClientSide(ICoreClientAPI api)
         {
             base.StartClientSide(api);
+            capi = api;
 
             clientChannel =
                 api.Network.RegisterChannel("ordealevent")
                 .RegisterMessageType(typeof(OrdealEventRuntimeData))
                 .SetMessageHandler<OrdealEventRuntimeData>(onServerData);
+
+            capi.Input.RegisterHotKey("splashgui", "enable splash image", GlKeys.U, HotkeyType.GUIOrOtherControls);
+            capi.Input.SetHotKeyHandler("splashgui", ToggleGui);
+            splash = new OrdealSplash(capi);
+            splash.setSplashImage(new AssetLocation("ordeals", "textures/splashes/dawngreenstart.png"));
+        }
+
+
+        public bool ToggleGui(KeyCombination keycode)
+        {
+            api.World.Logger.Notification("opening gui");
+            if (splash.IsOpened())
+                splash.TryClose();
+            else
+                splash.TryOpen();
+
+            return true;
         }
 
 

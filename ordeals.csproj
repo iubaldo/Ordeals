@@ -7,8 +7,8 @@
     <ProjectGuid>{B6D97A20-08EF-4BDD-94EF-22BF908C92B7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>doubt</RootNamespace>
-    <AssemblyName>doubt</AssemblyName>
+    <RootNamespace>ordeals</RootNamespace>
+    <AssemblyName>ordeals</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\bin\Debug\doubt\</OutputPath>
+    <OutputPath>..\..\bin\Debug\ordeals\</OutputPath>
     <IntermediateOutputPath>..\..\obj\Debug\doubt\</IntermediateOutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -32,11 +32,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="cairo-sharp">
+      <HintPath>D:\Games\Vintagestory\Lib\cairo-sharp.dll</HintPath>
+    </Reference>
     <Reference Include="protobuf-net">
       <HintPath>D:\Games\Vintagestory\Lib\protobuf-net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -70,6 +74,7 @@
   <ItemGroup>
     <Compile Include="src\OrdealEvent.cs" />
     <Compile Include="src\OrdealsMain.cs" />
+    <Compile Include="src\OrdealSplash.cs" />
     <Compile Include="src\RedirectLogs.cs" />
   </ItemGroup>
   <ItemGroup>

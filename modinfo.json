@@ -3,7 +3,7 @@
   "modid": "ordeals",
   "name": "Ordeals",
   "authors": ["Landar"],
-  "description": "\"By the way, have you seen... them? Those entities that wander the facility, unable to be contained.\" <br><br>Adds the Ordeal events and enemies from Lobotomy Corporation.",
+  "description": "\"By the way, have you seen... them? Those entities that wander the facility, unable to be contained.\" <br><br>Adds the Ordeal random events and related enemies from Lobotomy Corporation.",
   "version": "1.0.0",
   "dependencies": {
     "game": "1.18.3"
