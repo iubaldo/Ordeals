@@ -1,17 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Vintagestory.API.Client;
-using Vintagestory.API.Common;
-using Vintagestory.API.Common.Entities;
-using Vintagestory.API.Config;
-using Vintagestory.API.MathTools;
-using Vintagestory.API.Server;
-using Vintagestory.API.Util;
-using Vintagestory.ServerMods;
+﻿using System.Collections.Generic;
 
 using ProtoBuf;
 
@@ -45,7 +32,9 @@ namespace ordeals.src
     public class OrdealVariantTime
     {
         public OrdealVariant variant;
-        public bool startOrEnd; // false for start, true for end
+
+        /// <summary> false for start, true for end</summary>
+        public bool startOrEnd;
     }
 
 
@@ -87,12 +76,14 @@ namespace ordeals.src
     public class OrdealEventRuntimeData
     {
         public bool isOrdealActive;
-        public int activeEntities = 0;
+        public int activeWaves = 0;
 
         public int ordealDayNotify = 99;
+        public double nextOrdealTotalDays = 7;
 
-        public double nextOrdealTotalDays = 7;    // set to occur at the end of every month by default
+        // TODO: make this a stack of variants to play throughout the day
         public OrdealVariant nextOrdealVariant = OrdealVariant.DawnGreen;
+        public OrdealTier nextOrdealTier = OrdealTier.Malkuth;
 
         public OrdealVariant currentOrdealVariant = OrdealVariant.DawnGreen;
         public OrdealTier currentOrdealTier = OrdealTier.Malkuth;

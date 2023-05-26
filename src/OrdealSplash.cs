@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Text;
 
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
-using Vintagestory.API.Common.Entities;
-using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
-using Vintagestory.API.Server;
-using Vintagestory.API.Util;
-using Vintagestory.ServerMods;
-using Vintagestory.GameContent;
 
 using Cairo;
 
@@ -35,11 +26,11 @@ namespace ordeals.src
 
         public OrdealSplash(ICoreClientAPI capi) : base(capi)
         {
-            capi.Event.RegisterGameTickListener(new Action<float>(onGameTick), tickInterval);
+            capi.Event.RegisterGameTickListener(new Action<float>(OnGameTick), tickInterval);
         }
 
 
-        private void onGameTick(float dt)
+        private void OnGameTick(float dt)
         {
             if (splashImage == null)
                 return;
@@ -80,13 +71,13 @@ namespace ordeals.src
         }
 
 
-        public void setSplashImage(AssetLocation splashLoc)
+        public void SetSplashImage(AssetLocation splashLoc)
         {
             splashImage = capi.Assets.Get(splashLoc).ToBitmap(capi);
         }
    
 
-        private void onDraw(Context context, ImageSurface surface, ElementBounds currentBounds)
+        private void OnDraw(Context context, ImageSurface surface, ElementBounds currentBounds)
         {
             surface.Image(((BitmapExternal)splashImage).bmp, (int)currentBounds.drawX, (int)currentBounds.drawY, (int)currentBounds.InnerWidth, (int)currentBounds.InnerHeight);
         }
@@ -94,9 +85,9 @@ namespace ordeals.src
 
         public override bool TryOpen()
         {
-            ElementBounds bounds = calculateBounds();
+            ElementBounds bounds = CalculateBounds();
             SingleComposer = capi.Gui.CreateCompo("ordealSplashComposer", bounds)
-                .AddStaticCustomDraw(bounds, new DrawDelegateWithBounds(onDraw))
+                .AddStaticCustomDraw(bounds, new DrawDelegateWithBounds(OnDraw))
                 .Compose();
             SingleComposer.Color = fadeColor;
 
@@ -104,7 +95,7 @@ namespace ordeals.src
         }
 
 
-        private ElementBounds calculateBounds()
+        private ElementBounds CalculateBounds()
         {
             return new ElementBounds
             {
