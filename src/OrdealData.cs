@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 using ProtoBuf;
 
@@ -9,8 +10,35 @@ namespace ordeals.src
         DawnAmber,      DawnCrimson,    DawnGreen,      DawnViolet,         DawnWhite,
                         NoonCrimson,    NoonGreen,      NoonViolet,         NoonWhite,      NightIndigo,
         DuskAmber,      DuskCrimson,    DuskGreen,                          DuskWhite,
-        MidnightAmber,                  MidnightGreen,  MidnightViolet,     MidnightWhite
+        MidnightAmber,                  MidnightGreen,  MidnightViolet,     MidnightWhite,  Inactive
     }
+
+
+    public static class OrdealVariantUtil 
+    {
+        static Random rand = new Random();
+        public static string FirstPart(this OrdealVariant variant)
+        {
+            string variantName = Enum.GetName(typeof(OrdealVariant), variant);
+            int secondPartIndex = Array.FindLastIndex(variantName.ToCharArray(), char.IsUpper);
+            return variantName.Substring(0, secondPartIndex);
+        }
+
+
+        public static string SecondPart(this OrdealVariant variant)
+        {
+            string variantName = Enum.GetName(typeof(OrdealVariant), variant);
+            int secondPartIndex = Array.FindLastIndex(variantName.ToCharArray(), char.IsUpper);
+            return variantName.Substring(secondPartIndex);
+        }
+
+
+        public static OrdealVariant GetDawnVariant() { return (OrdealVariant)rand.Next(0, 4); }
+        public static OrdealVariant GetNoonVariant() { return (OrdealVariant)rand.Next(5, 8); }
+        public static OrdealVariant GetDuskVariant() { return (OrdealVariant)rand.Next(10, 13); }
+        public static OrdealVariant GetMidnightVariant() { return (OrdealVariant)rand.Next(14, 17); }
+    }
+
 
 
     public enum OrdealTier // determines ordeal strengths and which ordealVariants can appear
@@ -25,6 +53,12 @@ namespace ordeals.src
         Binah,
         Hokma,
         Keter
+    }
+
+
+    public enum OrdealNotice
+    {
+        Approaching, Imminent, DoNotNotify
     }
 
 
@@ -43,13 +77,7 @@ namespace ordeals.src
         public float ordealFrequency;               // How often ordeal events occur
         public float ordealTierIncreaseFrequency;   // How often ordeal tier increases
         public float indigoOrdealFrequency;         // How often noon ordeals will be replaced with sweepers
-    }
-
-
-    public class OrdealEventText
-    {
-        public string approaching;
-        public string imminent;
+        public float ordealTimeLimit;               // How long until the ordeal forcibly ends
     }
 
 
@@ -78,14 +106,15 @@ namespace ordeals.src
         public bool isOrdealActive;
         public int activeWaves = 0;
 
-        public int ordealDayNotify = 99;
-        public double nextOrdealTotalDays = 7;
+        public OrdealNotice noticeStatus = OrdealNotice.DoNotNotify;
+        public double ordealTimeLimit = 1;    // how long the ordeal should be active before forcibly stopping
+        public double nextOrdealStartTotalDays = 7;      // day the next ordeal will start
 
-        // TODO: make this a stack of variants to play throughout the day
-        public OrdealVariant nextOrdealVariant = OrdealVariant.DawnGreen;
+        public Stack<OrdealVariant> nextOrdealVariant = new Stack<OrdealVariant>();
+        
         public OrdealTier nextOrdealTier = OrdealTier.Malkuth;
 
-        public OrdealVariant currentOrdealVariant = OrdealVariant.DawnGreen;
-        public OrdealTier currentOrdealTier = OrdealTier.Malkuth;
+        public OrdealVariant currentOrdealVariant = OrdealVariant.DawnGreen; // should be OrdealVariant.Inactive if isOrdealActive == false
+        public OrdealTier currentOrdealTier = OrdealTier.Malkuth; 
     }
 }
