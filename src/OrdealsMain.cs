@@ -483,6 +483,9 @@ namespace ordeals.src
                     }
                 }
             };
+
+            // TODO: update this to be set via config file to choose from presets
+            config = configs["default"];
         }
 
 
