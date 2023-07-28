@@ -3,6 +3,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <StartAction>Program</StartAction>
     <StartProgram>D:\Games\Vintagestory\Vintagestory.exe</StartProgram>
-    <StartArguments>-openWorld="modsamplestest" -pcreativebuilding --addModPath="C:\Users\heatb\Desktop\game dev\vintage story modding\vsmodtemplate-1.5.7\mods"</StartArguments>
+    <StartArguments>-openWorld="modsamplestest" -pcreativebuilding --addModPath="C:\Users\heatb\Desktop\game dev\_vintage story modding\vsmodtemplate-1.5.7\mods"</StartArguments>
   </PropertyGroup>
 </Project>

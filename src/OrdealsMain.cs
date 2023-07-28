@@ -85,7 +85,7 @@ namespace ordeals.src
             sapi = api;
 
             sOrdealEventChannel =
-                api.Network.RegisterChannel("ordealevent")
+                api.Network.RegisterChannel("ordealeventruntimedata")
                .RegisterMessageType(typeof(OrdealEventRuntimeData));
 
             sShowSplashChannel =
@@ -96,7 +96,7 @@ namespace ordeals.src
             {
                 bool shouldPrepNextOrdeal = sapi.WorldManager.SaveGame.IsNew;
 
-                byte[] bytedata = sapi.WorldManager.SaveGame.GetData("ordealEventData");
+                byte[] bytedata = sapi.WorldManager.SaveGame.GetData("ordealEventRuntimeData");
                 if (bytedata != null)
                 {
                     try
@@ -121,8 +121,6 @@ namespace ordeals.src
                     PrepareNextOrdeal();
             };
 
-            //InitOrdealStrengths();
-            //InitOrdealSpawnGroups();
             LoadEntities();
             RegisterCommands();
 
@@ -140,7 +138,7 @@ namespace ordeals.src
             capi = api;
 
             cOrdealEventChannel =
-                api.Network.RegisterChannel("ordealevent")
+                api.Network.RegisterChannel("ordealeventruntimedata")
                 .RegisterMessageType(typeof(OrdealEventRuntimeData))
                 .SetMessageHandler<OrdealEventRuntimeData>(OnServerData);
             
@@ -160,21 +158,25 @@ namespace ordeals.src
         {
             if (!ordealsEnabled)
             {
-                runtimeData.currentEvent = null;
+                if (runtimeData.currentEvent != null)
+                    EndOrdeal();
                 return;
             }
 
             if (config == null)
-                InitConfigs();
+                LoadConfigs();
 
-            double nextOrdealDaysLeft = runtimeData.nextStartTotalDays - api.World.Calendar.TotalDays;
+            if (runtimeData.eventStack.Count == 0)
+                PrepareNextOrdeal();
+
+            double nextOrdealDaysLeft = runtimeData.PeekEvent().startTimeTotalDays - api.World.Calendar.TotalDays;
 
             if (nextOrdealDaysLeft > 0.03 && nextOrdealDaysLeft < 0.35 && runtimeData.noticeStatus == OrdealNotice.DoNotNotify) 
             {
                 runtimeData.noticeStatus = OrdealNotice.Approaching;
 
                 OrdealVariant variant = runtimeData.PeekEvent().PeekWave().variant;
-                string message = $"The {runtimeData.PeekEvent().PeekWave().variant.FirstPart()} of {runtimeData.PeekEvent().PeekWave().variant.SecondPart()} approaches.";
+                string message = $"The {variant.FirstPart()} of {variant.SecondPart()} approaches.";
                 sapi.BroadcastMessageToAllGroups(message, EnumChatType.Notification);
             }
 
@@ -182,31 +184,23 @@ namespace ordeals.src
             {
                 runtimeData.noticeStatus = OrdealNotice.Imminent;
 
-                string message = $"The {runtimeData.PeekEvent().PeekWave().variant.FirstPart()} of {runtimeData.PeekEvent().PeekWave().variant.SecondPart()} is imminent.";
+                OrdealVariant variant = runtimeData.PeekEvent().PeekWave().variant;
+                string message = $"The {variant.FirstPart()} of {variant.SecondPart()} is imminent.";
                 sapi.BroadcastMessageToAllGroups(message, EnumChatType.Notification);
             }
 
-            // TODO: change this to just check the start times of every ordeal in the stack
             if (nextOrdealDaysLeft <= 0)
             {
-                // Make sure ordeal still ends when time is fast forwarded
-                if (runtimeData.currentEvent == null && nextOrdealDaysLeft + runtimeData.currentEvent.timeLimitTotalDays < 0)
+                if (runtimeData.currentEvent == null && runtimeData.currentEvent.startTimeTotalDays + runtimeData.currentEvent.timeLimitTotalDays < api.World.Calendar.TotalDays)
                 {
                     EndOrdeal();
                     return;
                 }
 
                 if (runtimeData.currentEvent == null)
-                {
-                    //data.ordealActiveTotalDays = api.World.Calendar.TotalDays + stormActiveDays;
-                    //if (data.ordealTier == EnumTempStormStrength.Medium) 
-                    //    data.stormGlitchStrength = 0.67f + (float)api.World.Rand.NextDouble() / 10;
-                    //if (data.ordealTier == EnumTempStormStrength.Heavy) 
-                    //    data.stormGlitchStrength = 0.9f + (float)api.World.Rand.NextDouble() / 10;
                     BeginOrdealEvent();
-                }
 
-                double activeDaysLeft = runtimeData.currentEvent.timeLimitTotalDays - api.World.Calendar.TotalDays;
+                double activeDaysLeft = runtimeData.currentEvent.startTimeTotalDays + runtimeData.currentEvent.timeLimitTotalDays - api.World.Calendar.TotalDays;
                 if (activeDaysLeft < 0.02 && runtimeData.noticeStatus == OrdealNotice.Imminent)
                 {
                     runtimeData.noticeStatus = OrdealNotice.DoNotNotify;
@@ -289,7 +283,7 @@ namespace ordeals.src
             OrdealVariant variant = ordealEvent.currentWave.variant;
             OrdealTier tier = ordealEvent.tier;
 
-            if (!OrdealDict.entityTypes.ContainsKey(variant))
+            if (!OrdealData.entityTypes.ContainsKey(variant))
             {
                 sapi.BroadcastMessageToAllGroups($"Error: tried to spawn mobs for {tier.GetName()}-tier Ordeal Wave of Variant '{variant.GetName()}', but this variant is not yet implemented.", EnumChatType.Notification);
                 ordealEvent.currentWave = null;
@@ -298,7 +292,7 @@ namespace ordeals.src
             }
 
             // get ordeal settings for correct variant
-            OrdealStrength strength = OrdealDict.tierStrengths[ordealEvent.tier];
+            OrdealStrength strength = OrdealData.tierStrengths[ordealEvent.tier];
             WaveSpawnSettings spawnSettings = ordealEvent.currentWave.spawnSettings; 
             CollisionTester collisionTester = new CollisionTester();
 
@@ -317,7 +311,7 @@ namespace ordeals.src
                 for (int i = 0; i < spawnSettings.numGroups; i++)
                 {
                     int groupSize = sapi.World.Rand.Next(spawnSettings.minGroupSize, spawnSettings.maxGroupSize);
-                    var entityType = OrdealDict.entityTypes[variant];
+                    var entityType = OrdealData.entityTypes[variant];
 
                     int tries = 15;
                     int numSpawned = 0;
@@ -442,47 +436,17 @@ namespace ordeals.src
         private void LoadEntities()
         {
             // TODO: add additional entities as they're made
-            OrdealDict.entityTypes = new Dictionary<OrdealVariant, EntityProperties>()
+            OrdealData.entityTypes = new Dictionary<OrdealVariant, EntityProperties>()
             {
-                { OrdealVariant.DawnGreen, sapi.World.GetEntityType(new AssetLocation("ordeals:entitydawngreen")) } 
+                { OrdealVariant.DawnGreen, sapi.World.GetEntityType(new AssetLocation("ordeals:entitydawngreen")) }
             };
         }
 
 
-        // TODO: should probably replace these with spreadsheets or something... either that or json
-        //private void InitOrdealSpawnGroups()
-        //{
-        //    // TODO: add additional entities as they're made
-        //    ordealSpawnSettings = new Dictionary<OrdealVariant, WaveSpawnSettings>()
-        //    {
-        //        { OrdealVariant.DawnGreen, new WaveSpawnSettings { numGroups = 3 } }
-        //    };
-        //}
-
-
-        // TODO: make these a range of strengths rather than single values
-        //       would also need to update code for determining effects of strength on enemies
-        //private void InitOrdealStrengths()
-        //{
-        //    ordealStrengths = new Dictionary<OrdealTier, OrdealStrength>()
-        //    {
-        //        { OrdealTier.Malkuth, new OrdealStrength()      { dawn = 1 } },
-        //        { OrdealTier.Yesod, new OrdealStrength()        { dawn = 2 } },
-        //        { OrdealTier.Hod, new OrdealStrength()          { dawn = 2, noon = 1 } },
-        //        { OrdealTier.Netzach, new OrdealStrength()      { dawn = 3, noon = 2 } },
-        //        { OrdealTier.Tiphereth, new OrdealStrength()    { dawn = 4, noon = 2, dusk = 1 } },
-        //        { OrdealTier.Gebura, new OrdealStrength()       { dawn = 4, noon = 3, dusk = 2 } },
-        //        { OrdealTier.Chesed, new OrdealStrength()       { dawn = 5, noon = 3, dusk = 3 } },
-        //        { OrdealTier.Binah, new OrdealStrength()        { dawn = 6, noon = 4, dusk = 4, midnight = 1 } },
-        //        { OrdealTier.Hokma, new OrdealStrength()        { dawn = 6, noon = 5, dusk = 5, midnight = 2 } }
-        //    };
-        //}
-
-
         // TODO: make this read from a config file
-        private void InitConfigs()
+        private void LoadConfigs()
         {
-            OrdealDict.configs = new Dictionary<string, OrdealEventConfig>()
+            OrdealData.configs = new Dictionary<string, OrdealEventConfig>()
             {
                 {
                     "default", new OrdealEventConfig()
@@ -496,32 +460,34 @@ namespace ordeals.src
             };
 
             // TODO: update this to be set via config file to choose from presets
-            config = OrdealDict.configs["default"];
+            config = OrdealData.configs["default"];
         }
 
 
         private void RegisterCommands()
         {
+            api.World.Logger.Notification("Ordeals: Begin loading commands...");
+
             CommandArgumentParsers parsers = sapi.ChatCommands.Parsers;
 
             sapi.ChatCommands
-                .GetOrCreate("ordeal")
+                .GetOrCreate("ordeals")
                 .IgnoreAdditionalArgs()
                 .RequiresPrivilege("worldedit")
                 .WithDescription("Ordeals mod commands.")
 
-                .BeginSubCommand("next")
+                .BeginSubCommand("when")
                     .WithDescription("Tells you the amount of days until the next Ordeal.")
-                    .HandleWith(OnCmdNextOrdeal)
+                    .HandleWith(OnCmdShowNextOrdeal)
                 .EndSubCommand()
 
                 .BeginSubCommand("schedule")
-                    .WithDescription("Tells you the upcoming schedule of Ordeals.")
+                    .WithDescription("Tells you the upcoming list of Ordeals.")
                     .HandleWith(OnCmdShowSchedule)
                 .EndSubCommand()
 
                 .BeginSubCommand("begin")
-                    .WithDescription("Starts a new ordeal of type ordealVariant")
+                    .WithDescription("Starts a new Ordeal of type ordealVariant")
                     .WithArgs(parsers.WordRange("OrdealVariant",
                                                 "DawnAmber",    "DawnCrimson",  "DawnGreen",        "DawnViolet",       "DawnWhite",
                                                                 "NoonCrimson",  "NoonGreen",        "NoonViolet",       "NoonWhite",
@@ -537,20 +503,23 @@ namespace ordeals.src
                 .EndSubCommand()
                 ;
 
-                // additional commands for starting new ordeal, ending current ordeal, scheduling a new ordeal, rescheduling next upcoming ordeal
+            // additional commands for starting new ordeal, ending current ordeal, scheduling a new ordeal, rescheduling next upcoming ordeal
+
+            api.World.Logger.Notification("Ordeals: Commands successfully registered.");
         }
 
 
-        private TextCommandResult OnCmdNextOrdeal(TextCommandCallingArgs args)
+        private TextCommandResult OnCmdShowNextOrdeal(TextCommandCallingArgs args)
         {
             string message = "";
             if (runtimeData.eventStack.Count == 0)
                 message = "There are no Ordeals currently scheduled.";
+            else if (runtimeData.currentEvent != null)
+                message = $"A {runtimeData.currentEvent.tier.GetName()}-tier Ordeal is currently active with {runtimeData.currentEvent.waveStack.Count} waves remaining.";
             else
             {
-                double nextOrdealDaysLeft = runtimeData.nextStartTotalDays - api.World.Calendar.TotalDays;
-                message = "A " + runtimeData.currentEvent.waveStack[-1].variant.FirstPart() + " of " + runtimeData.currentEvent.waveStack[-1].variant.SecondPart() + 
-                    " will be arriving in about " + nextOrdealDaysLeft + " days.";
+                double daysLeft = runtimeData.PeekEvent().startTimeTotalDays - api.World.Calendar.TotalDays;
+                message = $"In {daysLeft} days: {runtimeData.PeekEvent().tier.GetName()}-tier Ordeal with {runtimeData.PeekEvent().waveStack.Count} waves.";
             }
 
             sapi.SendMessage(args.Caller.Player, args.Caller.FromChatGroupId, message, EnumChatType.Notification);
@@ -567,11 +536,11 @@ namespace ordeals.src
 
             if (runtimeData.currentEvent != null)
             {
-                message = $"Currently active: {runtimeData.currentEvent.tier.GetName()}-tier Ordeal with {runtimeData.currentEvent.waveStack.Count} waves remaining.";
+                message = $"A {runtimeData.currentEvent.tier.GetName()}-tier Ordeal is currently active with {runtimeData.currentEvent.waveStack.Count} waves remaining.";
                 sapi.SendMessage(args.Caller.Player, args.Caller.FromChatGroupId, message, EnumChatType.Notification);
             }
 
-            message = "List of upcoming Ordeals: ";
+            message = "Upcoming Ordeals: ";
             sapi.SendMessage(args.Caller.Player, args.Caller.FromChatGroupId, message, EnumChatType.Notification);
 
             if (runtimeData.eventStack.Count > 0)
@@ -598,12 +567,19 @@ namespace ordeals.src
 
             if (runtimeData.currentEvent != null)
             {
-                message = "Error: cannot begin a new Ordeal while another Ordeal is currently active.";
-                sapi.SendMessage(args.Caller.Player, args.Caller.FromChatGroupId, message, EnumChatType.Notification);
-                return TextCommandResult.Success();
+                //message = "Error: cannot begin a new Ordeal while another Ordeal is currently active.";
+                //sapi.SendMessage(args.Caller.Player, args.Caller.FromChatGroupId, message, EnumChatType.Notification);
+                return TextCommandResult.Error("Error: cannot begin a new Ordeal while another Ordeal is currently active.");
             }
 
             OrdealTier tier = (OrdealTier)Enum.Parse(typeof(OrdealTier), (string)args[0]);
+
+            if (!OrdealData.tierStrengths.ContainsKey(tier))
+            {
+                //message = $"Tried to begin {variant.FirstPart()} Wave of variant '{ variant.SecondPart()}', but this variant is not yet implemented.";
+                //sapi.SendMessage(args.Caller.Player, args.Caller.FromChatGroupId, message, EnumChatType.Notification);
+                return TextCommandResult.Error($"Tried to begin {tier.GetName()}-tier Ordeal, but this tier is not yet implemented.");
+            }
 
             runtimeData.currentEvent = new OrdealEvent(tier, sapi.World.Calendar.ElapsedDays);
 
@@ -627,7 +603,7 @@ namespace ordeals.src
 
             
 
-            if (!OrdealDict.entityTypes.ContainsKey(variant))
+            if (!OrdealData.entityTypes.ContainsKey(variant))
             {
                 message = $"Tried to begin {variant.FirstPart()} Wave of variant '{ variant.SecondPart()}', but this variant is not yet implemented.";
                 sapi.SendMessage(args.Caller.Player, args.Caller.FromChatGroupId, message, EnumChatType.Notification);
@@ -736,7 +712,7 @@ namespace ordeals.src
 
         private void Event_GameWorldSave()
         {
-            sapi.WorldManager.SaveGame.StoreData("ordealEventData", SerializerUtil.Serialize(runtimeData));
+            sapi.WorldManager.SaveGame.StoreData("ordealEventRuntimeData", SerializerUtil.Serialize(runtimeData));
         }
     }
 }

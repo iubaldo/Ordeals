@@ -121,6 +121,19 @@ namespace ordeals.src
 
         public OrdealTier nextOrdealTier = OrdealTier.Malkuth;  // the tier newly added events should be evaluated at
 
+        // sort from latest to earliest start time
+        public void PushEvent(OrdealEvent newEvent)
+        {
+            for (int i = eventStack.Count - 1; i > 0; i--)
+            {
+                if (newEvent.startTimeTotalDays < eventStack[i].startTimeTotalDays)
+                {
+                    eventStack.Insert(i, newEvent);
+                    return;
+                }
+            }
+            eventStack.Insert(0, newEvent);
+        }
         public OrdealEvent PeekEvent() { return eventStack[-1]; }
         public OrdealEvent PopEvent()
         {
@@ -146,18 +159,35 @@ namespace ordeals.src
         public OrdealEvent(OrdealTier eventTier, double newStartTime)
         {
             tier = eventTier;
-            int startDay = (int)newStartTime;
+            startTimeTotalDays = newStartTime;
+        }
 
-            if (OrdealDict.tierStrengths[tier].midnight > 0)
+        public void InitWaves()
+        {
+            int startDay = (int)startTimeTotalDays;
+            if (OrdealData.tierStrengths[tier].midnight > 0)
                 waveStack.Add(new OrdealWave(OrdealVariantUtil.GetMidnightVariant(), startDay + 1.0));
-            if (OrdealDict.tierStrengths[tier].dusk > 0)
+            if (OrdealData.tierStrengths[tier].dusk > 0)
                 waveStack.Add(new OrdealWave(OrdealVariantUtil.GetDuskVariant(), startDay + 0.75));
-            if (OrdealDict.tierStrengths[tier].noon > 0)
+            if (OrdealData.tierStrengths[tier].noon > 0)
                 waveStack.Add(new OrdealWave(OrdealVariantUtil.GetNoonVariant(), startDay + 0.50));
-            if (OrdealDict.tierStrengths[tier].dawn > 0)
+            if (OrdealData.tierStrengths[tier].dawn > 0)
                 waveStack.Add(new OrdealWave(OrdealVariantUtil.GetDawnVariant(), startDay + 0.25));
         }
 
+        // sort from latest to earliest start time
+        public void PushWave(OrdealWave wave)
+        {
+            for (int i = waveStack.Count - 1; i > 0; i--)
+            {
+                if (wave.startTimeTotalDays < waveStack[i].startTimeTotalDays)
+                {
+                    waveStack.Insert(i, wave);
+                    return;
+                }
+            }
+            waveStack.Insert(0, wave);
+        }
         public OrdealWave PeekWave() { return waveStack[-1]; }
         public OrdealWave PopWave()
         {
@@ -172,20 +202,20 @@ namespace ordeals.src
     {
         public OrdealVariant variant;
         public WaveSpawnSettings spawnSettings;
-        public double waveStartTimeTotalDays;   // the time the ordeal is scheduled to start, in total days
-        public double waveTimeLimit;
+        public double startTimeTotalDays;   // the time the ordeal is scheduled to start, in total days
+        public double timeLimitTotalDays;
         public bool isWaveActive;
 
         public OrdealWave(OrdealVariant newVariant, double newStartTime)
         {
             variant = newVariant;
-            spawnSettings = OrdealDict.spawnSettings[variant];
-            waveStartTimeTotalDays = newStartTime;
+            spawnSettings = OrdealData.spawnSettings[variant];
+            startTimeTotalDays = newStartTime;
         }
     }
 
 
-    public static class OrdealDict
+    public static class OrdealData
     {
         public static Dictionary<OrdealTier, OrdealStrength> tierStrengths;
         public static Dictionary<OrdealVariant, WaveSpawnSettings> spawnSettings;
@@ -194,8 +224,10 @@ namespace ordeals.src
         public static Dictionary<OrdealVariant, EntityProperties> entityTypes; 
         public static Dictionary<string, OrdealEventConfig> configs;
 
-        static OrdealDict()
+        static OrdealData()
         {
+            // TODO: make these a range of strengths rather than single values
+            //       would also need to update code for determining effects of strength on enemies
             tierStrengths = new Dictionary<OrdealTier, OrdealStrength>()
             {
                 { OrdealTier.Malkuth, new OrdealStrength()      { dawn = 1 } },

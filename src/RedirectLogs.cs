@@ -20,6 +20,14 @@ namespace RedirectLogs
             api.Server.Logger.EntryAdded += OnServerLogEntry;
         }
 
+
+        public override void AssetsFinalize(ICoreAPI api)
+        {
+            base.AssetsFinalize(api);
+
+            api.Logger.StoryEvent("NOTE: DEBUG ACTIVE, REDIRECTING LOGS");
+        }
+
         private void OnServerLogEntry(EnumLogType logType, string message, params object[] args)
         {
             if (logType == EnumLogType.VerboseDebug) return;
