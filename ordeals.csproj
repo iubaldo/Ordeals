@@ -1,93 +1,39 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B6D97A20-08EF-4BDD-94EF-22BF908C92B7}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ordeals</RootNamespace>
-    <AssemblyName>ordeals</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>..\..\bin\Debug\ordeals\</OutputPath>
-    <IntermediateOutputPath>..\..\obj\Debug\doubt\</IntermediateOutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>..\..\bin\Release\doubt\</OutputPath>
-    <IntermediateOutputPath>..\..\obj\Release\doubt\</IntermediateOutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="cairo-sharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="cairo-sharp">
       <HintPath>D:\Games\Vintagestory\Lib\cairo-sharp.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Newtonsoft.Json">
       <HintPath>D:\Games\Vintagestory\Lib\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="protobuf-net, Version=2.1.0.0, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="protobuf-net">
       <HintPath>D:\Games\Vintagestory\Lib\protobuf-net.dll</HintPath>
     </Reference>
     <Reference Include="SkiaSharp">
       <HintPath>D:\Games\Vintagestory\Lib\SkiaSharp.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-    <Reference Include="VintagestoryAPI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Tavis.JsonPatch">
+      <HintPath>D:\Games\Vintagestory\Lib\Tavis.JsonPatch.dll</HintPath>
+    </Reference>
+    <Reference Include="VintagestoryAPI">
       <HintPath>D:\Games\Vintagestory\VintagestoryAPI.dll</HintPath>
     </Reference>
-    <Reference Include="VSCreativeMod, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="VSCreativeMod">
       <HintPath>D:\Games\Vintagestory\Mods\VSCreativeMod.dll</HintPath>
     </Reference>
-    <Reference Include="VSEssentials, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="VSEssentials">
       <HintPath>D:\Games\Vintagestory\Mods\VSEssentials.dll</HintPath>
     </Reference>
-    <Reference Include="VSSurvivalMod, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="VSSurvivalMod">
       <HintPath>D:\Games\Vintagestory\Mods\VSSurvivalMod.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="modinfo.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="src\OrdealData.cs" />
-    <Compile Include="src\OrdealsMain.cs" />
-    <Compile Include="src\OrdealSplash.cs" />
-    <Compile Include="src\RedirectLogs.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="assets\" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
-  </PropertyGroup>
+
 </Project>

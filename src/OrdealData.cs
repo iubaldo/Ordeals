@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-
-using Vintagestory.API.Server;
+﻿using Vintagestory.API.Server;
 using Vintagestory.API.Common.Entities;
 
 using ProtoBuf;
@@ -20,10 +16,13 @@ namespace ordeals.src
 
     public static class OrdealVariantUtil
     {
-        static Random rand = new Random();
+        static readonly Random rand = new();
         public static string FirstPart(this OrdealVariant variant)
         {
             string variantName = Enum.GetName(typeof(OrdealVariant), variant);
+            if (variantName == null)
+                return "";
+
             int secondPartIndex = Array.FindLastIndex(variantName.ToCharArray(), char.IsUpper);
             return variantName.Substring(0, secondPartIndex);
         }
@@ -32,13 +31,17 @@ namespace ordeals.src
         public static string SecondPart(this OrdealVariant variant)
         {
             string variantName = Enum.GetName(typeof(OrdealVariant), variant);
+            if (variantName == null)
+                return "";
+
             int secondPartIndex = Array.FindLastIndex(variantName.ToCharArray(), char.IsUpper);
             return variantName.Substring(secondPartIndex);
         }
 
 
-        public static string GetName(this OrdealVariant variant) { return Enum.GetName(typeof(OrdealVariant), variant); }
-        public static string GetName(this OrdealTier tier) { return Enum.GetName(typeof(OrdealTier), tier); }
+        public static string GetName(this OrdealVariant variant) => Enum.GetName(typeof(OrdealVariant), variant);
+
+        public static string GetName(this OrdealTier tier) => Enum.GetName(typeof(OrdealTier), tier);
 
 
         public static OrdealVariant GetDawnVariant() { return (OrdealVariant)rand.Next(0, 4); }
@@ -116,8 +119,8 @@ namespace ordeals.src
         public OrdealNotice noticeStatus = OrdealNotice.DoNotNotify;
         public double nextStartTotalDays = 7;      // day the next ordeal even will start in total days
 
-        public OrdealEvent currentEvent = null; // null when no ordeals active
-        public List<OrdealEvent> eventStack = new List<OrdealEvent>(); // can't serialize stacks, so just treat this list like one
+        public OrdealEvent? currentEvent = null; // null when no ordeals active
+        public List<OrdealEvent> eventStack = new(); // can't serialize stacks, so just treat this list like one
 
         public OrdealTier nextOrdealTier = OrdealTier.Malkuth;  // the tier newly added events should be evaluated at
 
@@ -148,8 +151,8 @@ namespace ordeals.src
     {
         public OrdealTier tier;
 
-        public List<OrdealWave> waveStack = new List<OrdealWave>(); // can't serialize stacks, so just treat this list like one
-        public OrdealWave currentWave = null;
+        public List<OrdealWave> waveStack = new(); // can't serialize stacks, so just treat this list like one
+        public OrdealWave? currentWave = null;
         public Dictionary<IServerPlayer, List<Entity>> activeGroups = new Dictionary<IServerPlayer, List<Entity>>();
 
         public double startTimeTotalDays;

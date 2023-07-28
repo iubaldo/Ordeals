@@ -1,8 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-
-using Vintagestory.API.Client;
+﻿using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Common.Entities;
 using Vintagestory.API.Config;
@@ -69,6 +65,18 @@ namespace ordeals.src
         }
 
 
+        public override void AssetsLoaded(ICoreAPI api)
+        {
+            base.AssetsLoaded(api);
+
+            if (api.Side == EnumAppSide.Server)
+            {
+                LoadEntities();
+                RegisterCommands();
+            }
+        }
+
+
         public override void AssetsFinalize(ICoreAPI api)
         {
             base.AssetsFinalize(api);
@@ -120,9 +128,7 @@ namespace ordeals.src
                 if (shouldPrepNextOrdeal)
                     PrepareNextOrdeal();
             };
-
-            LoadEntities();
-            RegisterCommands();
+            
 
             api.Event.GameWorldSave += Event_GameWorldSave;
             api.Event.PlayerJoin += Event_PlayerJoin;
@@ -563,7 +569,7 @@ namespace ordeals.src
             // create a new ordealEvent and set currentEvent to it
             // TODO: input validation using tryParse
 
-            string message = "";
+            // string message = "";
 
             if (runtimeData.currentEvent != null)
             {
