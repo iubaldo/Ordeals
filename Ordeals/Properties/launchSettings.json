@@ -1,0 +1,16 @@
+{
+  "profiles": {
+    "Client": {
+      "commandName": "Executable",
+      "executablePath": "dotnet",
+      "commandLineArgs": "$(VINTAGE_STORY)/Vintagestory.dll \r\n--tracelog \r\n-openWorld=\"modsamplestest\" \r\n-pcreativebuilding \r\n--addModPath=\"C:\\Users\\heatb\\Desktop\\game dev\\_vintage story modding\\mods\\Ordeals\\Ordeals\\bin\\Debug\\Mods\"",
+      "workingDirectory": "$(VINTAGE_STORY)"
+    },
+    "Server": {
+      "commandName": "Executable",
+      "executablePath": "dotnet",
+      "commandLineArgs": "$(VINTAGE_STORY)/VintagestoryServer.dll --tracelog --addModPath $(ProjectDir)/bin/$(Configuration)/Mods",
+      "workingDirectory": "$(VINTAGE_STORY)"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "code",
+  "modid": "ordeals",
+  "name": "Ordeals",
+  "authors": ["Landar"],
+  "description": "\"By the way, have you seen... them? Those entities that wander the facility, unable to be contained...\" \nAdds the Ordeals system and related enemies from Lobotomy Corporation.",
+  "version": "1.0.0",
+  "dependencies": {
+    "game": "1.18.8"
+  }
+}
