@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
@@ -167,7 +168,11 @@ namespace ordeals.src
                 LoadConfigs();
 
             if (runtimeData.eventStack.Count == 0)
+            {
+                sapi.Logger.Notification("Ordeal Event stack is empty, preparing a new ordeal.");
                 PrepareNextOrdeal();
+            }
+                
 
             double nextOrdealDaysLeft = runtimeData.PeekEvent().startTimeTotalDays - api.World.Calendar.TotalDays;
 
@@ -250,8 +255,7 @@ namespace ordeals.src
             }
 
             // update runtime variables
-            runtimeData.currentEvent = runtimeData.eventStack[-1];
-            runtimeData.eventStack.RemoveAt(runtimeData.eventStack.Count - 1);
+            runtimeData.currentEvent = runtimeData.PopEvent();
             sOrdealEventChannel.BroadcastPacket(runtimeData);
 
             // show start splash/sound
@@ -276,8 +280,7 @@ namespace ordeals.src
                 return;
             }
 
-            ordealEvent.currentWave = ordealEvent.waveStack[-1];
-            ordealEvent.waveStack.RemoveAt(ordealEvent.waveStack.Count - 1);
+            ordealEvent.currentWave = ordealEvent.PopWave();
             sOrdealEventChannel.BroadcastPacket(runtimeData);
 
             OrdealVariant variant = ordealEvent.currentWave.variant;
@@ -424,8 +427,12 @@ namespace ordeals.src
             // TODO: calculate next ordeal variant based on ordealTier
             //       broadcast message when last ordeal of the day has ended
             //       broadcast message if there are still ordeals left in the day
-            if (config == null) 
+            if (config == null)
+            {
+                sapi.Logger.Notification("configs are null");
                 return;
+            }
+                
 
             // advance ordeal tier if enough time has passed
             if (sapi.World.Calendar.TotalDays / config.ordealTierIncreaseFrequency >= (double)runtimeData.nextOrdealTier && (int)runtimeData.nextOrdealTier < Enum.GetNames(typeof(OrdealTier)).Count() - 1)
@@ -433,7 +440,12 @@ namespace ordeals.src
    
             // schedule next ordeal day on the next multiple of ordealFrequency
             runtimeData.nextStartTotalDays = Math.Ceiling(sapi.World.Calendar.TotalDays / config.ordealFrequency) * config.ordealFrequency;
-            runtimeData.eventStack.Add(new OrdealEvent(runtimeData.nextOrdealTier, runtimeData.nextStartTotalDays));
+            runtimeData.PushEvent(new OrdealEvent(runtimeData.nextOrdealTier, runtimeData.nextStartTotalDays));
+
+            double daysLeft = runtimeData.nextStartTotalDays - api.World.Calendar.TotalDays;
+            string message = "In " + daysLeft + " days: " + runtimeData.nextOrdealTier + "-tier Ordeal in " + daysLeft + " days.";
+
+            sapi.BroadcastMessageToAllGroups(message, EnumChatType.Notification);
 
             sOrdealEventChannel.BroadcastPacket(runtimeData);
         }
@@ -482,25 +494,46 @@ namespace ordeals.src
                 .RequiresPrivilege("worldedit")
                 .WithDescription("Ordeals mod commands.")
 
-                .BeginSubCommand("when")
+                .BeginSubCommand("next")
                     .WithDescription("Tells you the amount of days until the next Ordeal.")
                     .HandleWith(OnCmdShowNextOrdeal)
                 .EndSubCommand()
 
-                .BeginSubCommand("schedule")
+                .BeginSubCommand("list")
                     .WithDescription("Tells you the upcoming list of Ordeals.")
                     .HandleWith(OnCmdShowSchedule)
                 .EndSubCommand()
 
                 .BeginSubCommand("begin")
-                    .WithDescription("Starts a new Ordeal of type ordealVariant")
+                    .WithDescription("Starts a new Ordeal of variant OrdealVariant.")
                     .WithArgs(parsers.WordRange("OrdealVariant",
-                                                "DawnAmber",    "DawnCrimson",  "DawnGreen",        "DawnViolet",       "DawnWhite",
-                                                                "NoonCrimson",  "NoonGreen",        "NoonViolet",       "NoonWhite",
-                                                "DuskAmber",    "DuskCrimson",  "DuskGreen",                            "DuskWhite",
-                                                "MidnightAmber",                "MidnightGreen",    "MidnightViolet",   "MidnightWhite",
+                                                "DawnAmber", "DawnCrimson", "DawnGreen", "DawnViolet", "DawnWhite",
+                                                                "NoonCrimson", "NoonGreen", "NoonViolet", "NoonWhite",
+                                                "DuskAmber", "DuskCrimson", "DuskGreen", "DuskWhite",
+                                                "MidnightAmber", "MidnightGreen", "MidnightViolet", "MidnightWhite",
                                                 "NightIndigo"))
                     .HandleWith(OnCmdBeginWave)
+                .EndSubCommand()
+
+                .BeginSubCommand("schedule")
+                    .WithDescription("Schedules a new Ordeal of tier OrdealTier and time DaysFromNow &gt; 0.")
+                    .WithArgs(parsers.WordRange("OrdealTier",
+                                                "Malkuth",
+                                                "Yesod",
+                                                "Hod",
+                                                "Netzach",
+                                                "Tiphereth",
+                                                "Gebura",
+                                                "Chesed",
+                                                "Binah",
+                                                "Hokma",
+                                                "Keter")
+                    , parsers.Double("DaysFromNow"))
+                    .HandleWith(OnCmdScheduleOrdeal)
+                .EndSubCommand()
+
+                .BeginSubCommand("clear")
+                    .WithDescription("Clears list of scheduled Ordeals")
                 .EndSubCommand()
 
                 .BeginSubCommand("end")
@@ -606,9 +639,7 @@ namespace ordeals.src
 
             OrdealVariant variant = (OrdealVariant) Enum.Parse(typeof(OrdealVariant), (string)args[0]);
             OrdealTier tier = (OrdealTier)Enum.Parse(typeof(OrdealTier), (string)args[1]);
-
             
-
             if (!OrdealData.entityTypes.ContainsKey(variant))
             {
                 message = "Tried to begin " + variant.FirstPart() + " Wave of variant '" + variant.SecondPart() + "', but this variant is not yet implemented.";
@@ -619,8 +650,8 @@ namespace ordeals.src
             message = "Ok, starting Ordeal Wave of Variant '" + Enum.GetName(typeof(OrdealVariant), variant) + "'";
             sapi.SendMessage(args.Caller.Player, args.Caller.FromChatGroupId, message, EnumChatType.Notification);
 
-            runtimeData.eventStack.Add(new OrdealEvent(tier, sapi.World.Calendar.ElapsedDays));
-            runtimeData.eventStack[-1].waveStack.Add(new OrdealWave(variant, sapi.World.Calendar.ElapsedDays));
+            runtimeData.PushEvent(new OrdealEvent(tier, sapi.World.Calendar.ElapsedDays));
+            runtimeData.PeekEvent().waveStack.Add(new OrdealWave(variant, sapi.World.Calendar.ElapsedDays));
             BeginOrdealEvent();
 
             return TextCommandResult.Success();
@@ -655,6 +686,23 @@ namespace ordeals.src
         // should fail if time out of range or invalid tier given
         private TextCommandResult OnCmdScheduleOrdeal(TextCommandCallingArgs args)
         {
+            if (Enum.TryParse((string)args[0], true, out OrdealTier tier) == false)
+                return TextCommandResult.Error("Tried to schedule " + (string)args[0] + "-tier Ordeal, but this tier doesn't exist.");
+
+            if (!OrdealData.tierStrengths.ContainsKey(tier))
+            {
+                //message = "Tried to begin " + tier.GetName() + "-tier Ordeal, but this tier is not yet implemented.";
+                //sapi.SendMessage(args.Caller.Player, args.Caller.FromChatGroupId, message, EnumChatType.Notification);
+                return TextCommandResult.Error("Tried to schedule " + tier.GetName() + "-tier Ordeal, but this tier is not yet implemented.");
+            }
+
+            double daysFromNow = (double)args[1];
+            if (daysFromNow <= 0)
+                return TextCommandResult.Error("Tried to schedule an Ordeal, but DaysFromNow must be a positive number.");
+
+            // Finally, add the event to the stack
+            runtimeData.PushEvent(new OrdealEvent(tier, Math.Round(daysFromNow, 2) + sapi.World.Calendar.ElapsedDays));
+
             return TextCommandResult.Success();
         }
 

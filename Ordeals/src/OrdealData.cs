@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 using Vintagestory.API.Server;
 using Vintagestory.API.Common.Entities;
@@ -49,6 +50,7 @@ namespace ordeals.src
         public static string GetName(this OrdealTier tier) => Enum.GetName(typeof(OrdealTier), tier);
 
 
+        // TODO: find a more elegant way to do this
         public static OrdealVariant GetDawnVariant() { return (OrdealVariant)rand.Next(0, 4); }
         public static OrdealVariant GetNoonVariant() { return (OrdealVariant)rand.Next(5, 8); }
         public static OrdealVariant GetDuskVariant() { return (OrdealVariant)rand.Next(10, 13); }
@@ -142,10 +144,10 @@ namespace ordeals.src
             }
             eventStack.Insert(0, newEvent);
         }
-        public OrdealEvent PeekEvent() { return eventStack[-1]; }
+        public OrdealEvent PeekEvent() { return eventStack.Last(); }
         public OrdealEvent PopEvent()
         {
-            OrdealEvent toReturn = eventStack[-1];
+            OrdealEvent toReturn = eventStack.Last();
             eventStack.RemoveAt(eventStack.Count - 1);
             return toReturn;
         }
@@ -169,19 +171,24 @@ namespace ordeals.src
         {
             tier = eventTier;
             startTimeTotalDays = newStartTime;
+            InitWaves();
         }
 
         public void InitWaves()
         {
             int startDay = (int)startTimeTotalDays;
-            if (OrdealData.tierStrengths[tier].midnight > 0)
-                waveStack.Add(new OrdealWave(OrdealVariantUtil.GetMidnightVariant(), startDay + 1.0));
-            if (OrdealData.tierStrengths[tier].dusk > 0)
-                waveStack.Add(new OrdealWave(OrdealVariantUtil.GetDuskVariant(), startDay + 0.75));
-            if (OrdealData.tierStrengths[tier].noon > 0)
-                waveStack.Add(new OrdealWave(OrdealVariantUtil.GetNoonVariant(), startDay + 0.50));
-            if (OrdealData.tierStrengths[tier].dawn > 0)
-                waveStack.Add(new OrdealWave(OrdealVariantUtil.GetDawnVariant(), startDay + 0.25));
+
+            waveStack.Add(new OrdealWave(OrdealVariant.DawnGreen, startDay + 0.25));
+
+            // TODO: only push implemented variants
+            //if (OrdealData.tierStrengths[tier].midnight > 0)
+            //    waveStack.Add(new OrdealWave(OrdealVariantUtil.GetMidnightVariant(), startDay + 1.0));
+            //if (OrdealData.tierStrengths[tier].dusk > 0)
+            //    waveStack.Add(new OrdealWave(OrdealVariantUtil.GetDuskVariant(), startDay + 0.75));
+            //if (OrdealData.tierStrengths[tier].noon > 0)
+            //    waveStack.Add(new OrdealWave(OrdealVariantUtil.GetNoonVariant(), startDay + 0.50));
+            //if (OrdealData.tierStrengths[tier].dawn > 0)
+            //    waveStack.Add(new OrdealWave(OrdealVariantUtil.GetDawnVariant(), startDay + 0.25));
         }
 
         // sort from latest to earliest start time
@@ -197,10 +204,10 @@ namespace ordeals.src
             }
             waveStack.Insert(0, wave);
         }
-        public OrdealWave PeekWave() { return waveStack[-1]; }
+        public OrdealWave PeekWave() { return waveStack.Last(); }
         public OrdealWave PopWave()
         {
-            OrdealWave toReturn = waveStack[-1];
+            OrdealWave toReturn = waveStack.Last();
             waveStack.RemoveAt(waveStack.Count - 1);
             return toReturn;
         }
@@ -256,5 +263,7 @@ namespace ordeals.src
                 { OrdealVariant.DawnGreen, new WaveSpawnSettings { numGroups = 3 } }
             };
         }
+
+
     }
 }
