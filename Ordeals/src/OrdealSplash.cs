@@ -6,7 +6,7 @@ using Vintagestory.API.MathTools;
 
 using Cairo;
 
-namespace ordeals.src
+namespace Ordeals.src
 {
     class OrdealSplash : HudElement
     {

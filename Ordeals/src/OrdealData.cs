@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,78 +8,8 @@ using Vintagestory.API.Common.Entities;
 using ProtoBuf;
 
 
-namespace ordeals.src
+namespace Ordeals.src
 {
-    public enum OrdealVariant
-    {   
-        DawnAmber,      DawnCrimson,    DawnGreen,      DawnViolet,     DawnWhite,
-                        NoonCrimson,    NoonGreen,      NoonViolet,     NoonWhite,      NightIndigo,
-        DuskAmber,      DuskCrimson,    DuskGreen,                      DuskWhite,
-        MidnightAmber,                  MidnightGreen, MidnightViolet,  MidnightWhite,  Inactive
-    }
-
-
-    public static class OrdealVariantUtil
-    {
-        static readonly Random rand = new();
-        public static string FirstPart(this OrdealVariant variant)
-        {
-            string variantName = Enum.GetName(typeof(OrdealVariant), variant);
-            if (variantName == null)
-                return "";
-
-            int secondPartIndex = Array.FindLastIndex(variantName.ToCharArray(), char.IsUpper);
-            return variantName.Substring(0, secondPartIndex);
-        }
-
-
-        public static string SecondPart(this OrdealVariant variant)
-        {
-            string variantName = Enum.GetName(typeof(OrdealVariant), variant);
-            if (variantName == null)
-                return "";
-
-            int secondPartIndex = Array.FindLastIndex(variantName.ToCharArray(), char.IsUpper);
-            return variantName.Substring(secondPartIndex);
-        }
-
-
-        public static string GetName(this OrdealVariant variant) => Enum.GetName(typeof(OrdealVariant), variant);
-
-        public static string GetName(this OrdealTier tier) => Enum.GetName(typeof(OrdealTier), tier);
-
-
-        // TODO: find a more elegant way to do this
-        public static OrdealVariant GetDawnVariant() { return (OrdealVariant)rand.Next(0, 4); }
-        public static OrdealVariant GetNoonVariant() { return (OrdealVariant)rand.Next(5, 8); }
-        public static OrdealVariant GetDuskVariant() { return (OrdealVariant)rand.Next(10, 13); }
-        public static OrdealVariant GetMidnightVariant() { return (OrdealVariant)rand.Next(14, 17); }
-    }
-
-
-
-    public enum OrdealTier // determines ordeal strengths and which ordealVariants can appear
-    {
-        Malkuth,
-        Yesod,
-        Hod,
-        Netzach,
-        Tiphereth,
-        Gebura,
-        Chesed,
-        Binah,
-        Hokma,
-        Keter
-    }
-
-
-    public enum OrdealNotice
-    {
-        Approaching, Imminent, DoNotNotify
-    }
-
-
-    [ProtoContract(ImplicitFields = ImplicitFields.AllPublic)]
     public class OrdealVariantTime
     {
         public OrdealVariant variant;
@@ -108,6 +37,7 @@ namespace ordeals.src
     }
 
 
+    [ProtoContract(ImplicitFields = ImplicitFields.AllPublic)]
     public class WaveSpawnSettings
     {
         public int numGroups = 1;
@@ -118,53 +48,63 @@ namespace ordeals.src
     }
 
 
-    [ProtoContract(ImplicitFields = ImplicitFields.AllPublic)]
+    [ProtoContract]
     public class OrdealEventRuntimeData
     {
+        [ProtoMember(1)]
         public int activeWaves = 0;
 
-        public OrdealNotice noticeStatus = OrdealNotice.DoNotNotify;
+        [ProtoMember(2)]
+        public NoticeStatus noticeStatus = NoticeStatus.None;
+        [ProtoMember(3)]
         public double nextStartTotalDays = 7;      // day the next ordeal even will start in total days
 
+        [ProtoMember(4)]
         public OrdealEvent currentEvent = null; // null when no ordeals active
-        public List<OrdealEvent> eventStack = new(); // can't serialize stacks, so just treat this list like one
+        [ProtoMember(5)]
+        private List<OrdealEvent> eventQueue = new(); // can't serialize queues, so just treat this list like a priority queue
 
+        [ProtoMember(6)]
         public OrdealTier nextOrdealTier = OrdealTier.Malkuth;  // the tier newly added events should be evaluated at
 
-        // sort from latest to earliest start time
+
         public void PushEvent(OrdealEvent newEvent)
         {
-            for (int i = eventStack.Count - 1; i > 0; i--)
-            {
-                if (newEvent.startTimeTotalDays < eventStack[i].startTimeTotalDays)
-                {
-                    eventStack.Insert(i, newEvent);
-                    return;
-                }
-            }
-            eventStack.Insert(0, newEvent);
+            eventQueue.Add(newEvent);
+            eventQueue = eventQueue.OrderBy(item => item.startTimeTotalDays).ToList();
         }
-        public OrdealEvent PeekEvent() { return eventStack.Last(); }
+        public OrdealEvent PeekEvent() { return eventQueue.Last(); }
         public OrdealEvent PopEvent()
         {
-            OrdealEvent toReturn = eventStack.Last();
-            eventStack.RemoveAt(eventStack.Count - 1);
+            OrdealEvent toReturn = eventQueue.Last();
+            eventQueue.RemoveAt(eventQueue.Count - 1);
             return toReturn;
         }
+        public int NumEvents() { return eventQueue.Count; }
+        public bool HasEvents() { return eventQueue.Count > 0; }
+        public OrdealEvent GetEvent(int index) { return eventQueue[index]; }
+        public void ClearEvents() { eventQueue.Clear(); }
     }
 
 
-    [ProtoContract(ImplicitFields = ImplicitFields.AllPublic)]
+    [ProtoContract]
     public class OrdealEvent 
     {
+        [ProtoMember(1)]
         public OrdealTier tier;
 
-        public List<OrdealWave> waveStack = new(); // can't serialize stacks, so just treat this list like one
+        [ProtoMember(2)]
+        private List<OrdealWave> waveQueue = new(); // can't serialize queues, so just treat this list like a priority queue
+        [ProtoMember(3)]
         public OrdealWave currentWave = null;
+        [ProtoMember(4)]
         public Dictionary<IServerPlayer, List<Entity>> activeGroups = new Dictionary<IServerPlayer, List<Entity>>();
 
+        [ProtoMember(5)]
         public double startTimeTotalDays;
+        [ProtoMember(6)]
         public double timeLimitTotalDays = 1;    // how long the event should be active before forcibly stopping in total days
+        [ProtoMember(7)]
         public bool isEventActive;
 
         public OrdealEvent(OrdealTier eventTier, double newStartTime)
@@ -178,39 +118,33 @@ namespace ordeals.src
         {
             int startDay = (int)startTimeTotalDays;
 
-            waveStack.Add(new OrdealWave(OrdealVariant.DawnGreen, startDay + 0.25));
+            waveQueue.Add(new OrdealWave(OrdealVariant.DawnGreen, startDay + 0.25));
 
             // TODO: only push implemented variants
             //if (OrdealData.tierStrengths[tier].midnight > 0)
-            //    waveStack.Add(new OrdealWave(OrdealVariantUtil.GetMidnightVariant(), startDay + 1.0));
+            //    waveQueue.Add(new OrdealWave(OrdealVariantUtil.GetMidnightVariant(), startDay + 1.0));
             //if (OrdealData.tierStrengths[tier].dusk > 0)
-            //    waveStack.Add(new OrdealWave(OrdealVariantUtil.GetDuskVariant(), startDay + 0.75));
+            //    waveQueue.Add(new OrdealWave(OrdealVariantUtil.GetDuskVariant(), startDay + 0.75));
             //if (OrdealData.tierStrengths[tier].noon > 0)
-            //    waveStack.Add(new OrdealWave(OrdealVariantUtil.GetNoonVariant(), startDay + 0.50));
+            //    waveQueue.Add(new OrdealWave(OrdealVariantUtil.GetNoonVariant(), startDay + 0.50));
             //if (OrdealData.tierStrengths[tier].dawn > 0)
-            //    waveStack.Add(new OrdealWave(OrdealVariantUtil.GetDawnVariant(), startDay + 0.25));
+            //    waveQueue.Add(new OrdealWave(OrdealVariantUtil.GetDawnVariant(), startDay + 0.25));
         }
 
-        // sort from latest to earliest start time
         public void PushWave(OrdealWave wave)
         {
-            for (int i = waveStack.Count - 1; i > 0; i--)
-            {
-                if (wave.startTimeTotalDays < waveStack[i].startTimeTotalDays)
-                {
-                    waveStack.Insert(i, wave);
-                    return;
-                }
-            }
-            waveStack.Insert(0, wave);
+            waveQueue.Add(wave);
+            waveQueue = waveQueue.OrderBy(item => item.startTimeTotalDays).ToList();
         }
-        public OrdealWave PeekWave() { return waveStack.Last(); }
+        public OrdealWave PeekWave() { return waveQueue.Last(); }
         public OrdealWave PopWave()
         {
-            OrdealWave toReturn = waveStack.Last();
-            waveStack.RemoveAt(waveStack.Count - 1);
+            OrdealWave toReturn = waveQueue.Last();
+            waveQueue.RemoveAt(0);
             return toReturn;
         }
+        public int NumWaves() { return waveQueue.Count; }
+        public bool HasWaves() { return waveQueue.Count > 0; }
     }
 
 
